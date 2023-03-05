@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/components/appBar/appBar.dart';
+import 'package:project_teamd/components/appBar/appBar3.dart';
 
 import '../constants/padding.dart';
 
@@ -13,11 +13,8 @@ class OnBoardingPages extends StatelessWidget {
         padding: padding,
         child: Column(
           children: const [
-            appBar(
-              text: 'Product',
-              choise: 0,
-              icon1: Icons.search,
-              icon2: Icons.favorite,
+            appBar3(
+              choise: 1,
             ),
             SizedBox(
               height: 100,
