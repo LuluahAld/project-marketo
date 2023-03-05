@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/constants.dart';
 
-import '../components/button.dart';
-
 class OnBoardingPages extends StatelessWidget {
   const OnBoardingPages({super.key});
 
@@ -12,13 +10,9 @@ class OnBoardingPages extends StatelessWidget {
       body: Padding(
         padding: padding,
         child: Column(
-          children: [
-            const SizedBox(
+          children: const [
+            SizedBox(
               height: 100,
-            ),
-            button(
-              color: lightgreen,
-              text: 'Get Started',
             ),
           ],
         ),
