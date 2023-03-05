@@ -4,7 +4,7 @@ class MText extends StatelessWidget {
   final text;
   final fontweight;
   final color;
-  final size;
+  final double? size;
   const MText({
     super.key,
     required this.text,

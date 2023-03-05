@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
+import '../../constants/color_pallete.dart';
 
 class TextFieldM extends StatelessWidget {
   final hint;
