@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/constants.dart';
+
+import '../../constants/color_pallete.dart';
 
 class SearchBar extends StatelessWidget {
   const SearchBar({

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/constants.dart';
+
+import '../constants/padding.dart';
 
 class OnBoardingPages extends StatelessWidget {
   const OnBoardingPages({super.key});
@@ -10,15 +11,10 @@ class OnBoardingPages extends StatelessWidget {
       body: Padding(
         padding: padding,
         child: Column(
-          children: [
-            const SizedBox(
+          children: const [
+            SizedBox(
               height: 100,
             ),
-            Container(
-              width: double.infinity,
-              color: Colors.grey,
-              child: const Text('hi'),
-            )
           ],
         ),
       ),
