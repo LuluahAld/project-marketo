@@ -10,10 +10,15 @@ class OnBoardingPages extends StatelessWidget {
       body: Padding(
         padding: padding,
         child: Column(
-          children: const [
-            SizedBox(
+          children: [
+            const SizedBox(
               height: 100,
             ),
+            Container(
+              width: double.infinity,
+              color: Colors.grey,
+              child: const Text('hi'),
+            )
           ],
         ),
       ),
