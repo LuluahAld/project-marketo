@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/pages/onboarding_pages.dart';
 
-import 'components/bottom_nav_bar.dart';
+import 'components/bottomNaviagtionBar/bottom_nav_bar.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});

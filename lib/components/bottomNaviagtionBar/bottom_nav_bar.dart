@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../constants/color_pallete.dart';
+import '../../constants/color_pallete.dart';
 
 class CustomBottomNavigation extends StatelessWidget {
   const CustomBottomNavigation({super.key, this.currentIndex = 0, required this.onTap});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/components/m_text.dart';
+
+import 'm_text.dart';
 
 class MainCategory extends StatelessWidget {
   const MainCategory(this.title, this.text, this.titleColor, this.textColor, {super.key});
