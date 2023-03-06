@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/constants/padding.dart';
 
 import '../../components/logo.dart';
 import '../../components/product/explore_product_card.dart';
@@ -39,7 +38,7 @@ class ExplorePage extends StatelessWidget {
           shrinkWrap: true,
           children: [
             Padding(
-              padding: padding,
+              padding: const EdgeInsets.only(left: 16, right: 16),
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,
