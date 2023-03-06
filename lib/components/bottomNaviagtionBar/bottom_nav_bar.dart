@@ -26,7 +26,7 @@ class CustomBottomNavigation extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.shopping_cart_outlined,
+            Icons.pending_actions_outlined,
             color: green,
             size: 30,
           ),

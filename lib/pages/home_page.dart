@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/components/order/schedual_time.dart';
 
 import '../constants/padding.dart';
 
-class OnBoardingPages extends StatelessWidget {
-  const OnBoardingPages({super.key});
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,6 @@ class OnBoardingPages extends StatelessWidget {
         padding: padding,
         child: Column(
           children: const [
-            scheduleTime(),
             SizedBox(
               height: 100,
             ),
