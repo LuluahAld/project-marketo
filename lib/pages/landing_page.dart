@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/logo.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
+import 'package:project_teamd/pages/login_page.dart';
 
 import '../components/landing/landing_option_card.dart';
 
@@ -41,7 +42,9 @@ class _LandingPageState extends State<LandingPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                  },
                   child: const LandingOptionCard(
                     img: 'images/landing/user.png',
                     title: 'Find a Product',

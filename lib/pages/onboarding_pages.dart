@@ -14,18 +14,18 @@ class OnBoardingPage extends StatefulWidget {
 
 PageController _pageController = PageController();
 int index = 1;
-Widget button = const Text('');
+Widget buttono = const Text('');
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
     if (index == 2) {
-      button = ElevatedButton(
+      buttono = ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor: beige,
         ),
         onPressed: () {
-          Navigator.push(
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const LandingPage()),
           );
@@ -39,7 +39,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         ),
       );
     } else {
-      button = Column(
+      buttono = Column(
         children: const [
           SizedBox(
             height: 28,
@@ -103,7 +103,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
                 const SizedBox(
                   height: 32,
                 ),
-                button,
+                buttono,
               ],
             ),
             Column(
