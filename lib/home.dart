@@ -4,6 +4,7 @@ import 'package:project_teamd/pages/home_page.dart';
 import 'package:project_teamd/pages/order_page.dart';
 
 import 'components/bottomNaviagtionBar/bottom_nav_bar.dart';
+import 'pages/profile_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,12 +26,14 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final pages = [
       const HomePage(),
+
       const ExplorePage(),
       const OrderPage(),
+
       const Scaffold(),
 
       // const orderPage(),
-      // const profilePage(),
+      const ProfilePage(),
     ];
     return Scaffold(
       body: pages[currentIndex],
