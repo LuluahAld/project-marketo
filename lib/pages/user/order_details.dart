@@ -19,18 +19,6 @@ class OrderDetials extends StatelessWidget {
           color: green,
           size: 20,
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: green,
-              size: 30,
-            ),
-            onPressed: () {
-              // do something
-            },
-          )
-        ],
       ),
     );
   }
