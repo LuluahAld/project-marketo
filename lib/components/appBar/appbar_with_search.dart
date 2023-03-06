@@ -10,13 +10,16 @@ class appBarwirhSearch extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width,
-      height: 135,
+      height: 170,
       color: grey,
       child: Column(
         children: const [
-          Logo(size: 200),
           SizedBox(
-            height: 50,
+            height: 40,
+          ),
+          Logo(size: 200.0),
+          SizedBox(
+            height: 40,
             width: 300,
             child: SearchBar(),
           ),

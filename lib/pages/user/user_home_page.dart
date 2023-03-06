@@ -15,6 +15,7 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
+      scrollDirection: Axis.vertical,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: [
@@ -49,23 +50,17 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context, MaterialPageRoute(builder: (context) => const UserProductDetails()));
-                          },
-                          child: ProductCard(
-                            image: 'images/single-person.png',
-                            text: 'Sameera',
-                          ),
+                        ProductCard(
+                          image: 'images/single-person.png',
+                          text: 'Sameera',
                         ),
                         ProductCard(
                           image: 'images/single-person2.png',
-                          text: 'SM',
+                          text: 'Hadi',
                         ),
                         ProductCard(
-                          image: 'images/single-person1.png',
-                          text: 'Noor',
+                          image: 'images/single-person.png',
+                          text: 'Luluah',
                         ),
                       ],
                     ),
@@ -83,9 +78,15 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
-                          image: 'images/pic1.png',
-                          text: 'T-Shirt',
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => const UserProductDetails()));
+                          },
+                          child: ProductCard(
+                            image: 'images/pic1.png',
+                            text: 'T-Shirt',
+                          ),
                         ),
                         ProductCard(
                           image: 'images/bag1.jpg',
