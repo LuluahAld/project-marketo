@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/constants/padding.dart';
 
-import '../../components/appBar/appbar_with_search.dart';
+import '../../components/logo.dart';
 import '../../components/product/explore_product_card.dart';
+import '../../components/textfields/search_bar.dart';
+import '../../constants/color_pallete.dart';
 import '../../model/product.dart';
 
 class ExplorePage extends StatelessWidget {
@@ -14,7 +16,22 @@ class ExplorePage extends StatelessWidget {
     return Scaffold(
         body: Column(
       children: [
-        const appBarwirhSearch(),
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: 180,
+          color: grey,
+          child: Column(
+            children: const [
+              SizedBox(height: 44),
+              Logo(size: 200),
+              SizedBox(
+                height: 50,
+                width: 400,
+                child: SearchBar(),
+              ),
+            ],
+          ),
+        ),
         ListView(
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
