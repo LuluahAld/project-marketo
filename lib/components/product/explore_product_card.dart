@@ -27,15 +27,12 @@ class ExploreProductCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MText(text: 'Channel Bag', fontweight: FontWeight.bold, color: green, size: 20),
+                  MText(text: product.category, fontweight: FontWeight.bold, color: green, size: 20),
                   const SizedBox(
                     height: 15,
                   ),
-                  MText(text: product.id, fontweight: FontWeight.normal, color: green, size: 16),
+                  MText(text: product.name, fontweight: FontWeight.normal, color: green, size: 16),
                 ],
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3.2,
               ),
             ],
           ),

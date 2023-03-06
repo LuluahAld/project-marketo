@@ -26,8 +26,14 @@ class orderHorisCard extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Shop name'),
+                  Text(order.shopName),
+                  const SizedBox(
+                    height: 4,
+                  ),
                   Text(order.id),
+                  const SizedBox(
+                    height: 4,
+                  ),
                   Text(order.orderStatus),
                 ],
               ),
@@ -38,8 +44,14 @@ class orderHorisCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   const Text('Total'),
-                  Text(order.product.length.toString()),
-                  const Text('Order date'),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(order.numOfProduct),
+                  const SizedBox(
+                    height: 4,
+                  ),
+                  Text(order.orderDate),
                 ],
               ),
             ],

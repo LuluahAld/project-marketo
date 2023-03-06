@@ -5,6 +5,7 @@ class Order {
   final String orderStatus;
   final String orderDate;
   final String shopName;
+  final String numOfProduct;
   final List<Product> product;
 
   const Order(
@@ -12,6 +13,7 @@ class Order {
     this.orderStatus,
     this.orderDate,
     this.shopName,
+    this.numOfProduct,
     this.product,
   );
 }
