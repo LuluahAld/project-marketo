@@ -38,26 +38,21 @@ class UserHomePage extends StatelessWidget {
           shrinkWrap: true,
           padding: const EdgeInsets.all(12),
           children: [
-            MainCategory(
-              'Popular Seller',
-              'See All',
-              green,
-              lightgreen,
-            ),
+            MainCategory('Popular Seller', 'See All', green, lightgreen, 1),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   ProductCard(
-                    image: 'image/single-person.png',
+                    image: 'images/single-person.png',
                     text: 'Sameera',
                   ),
                   ProductCard(
-                    image: 'image/single-person2.png',
+                    image: 'images/single-person2.png',
                     text: 'SM',
                   ),
                   ProductCard(
-                    image: 'image/single-person1.png',
+                    image: 'images/single-person1.png',
                     text: 'Noor',
                   ),
                 ],
@@ -66,26 +61,21 @@ class UserHomePage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            MainCategory(
-              'Recently Viewed',
-              'See All',
-              green,
-              lightgreen,
-            ),
+            MainCategory('Recently Viewed', 'See All', green, lightgreen, 2),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   ProductCard(
-                    image: 'image/pic1.png',
+                    image: 'images/pic1.png',
                     text: 'T-Shirt',
                   ),
                   ProductCard(
-                    image: 'image/bag1.jpg',
+                    image: 'images/bag1.jpg',
                     text: 'Bag',
                   ),
                   ProductCard(
-                    image: 'image/watch1.jpg',
+                    image: 'images/watch1.jpg',
                     text: 'Watch',
                   ),
                 ],
