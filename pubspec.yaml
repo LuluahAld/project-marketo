@@ -36,3 +36,5 @@ flutter:
         - images/onboarding/click.png
         - images/onboarding/compare.png
         - images/onboarding/online-shopping.png
+        - images/landing/seller.png
+        - images/landing/user.png

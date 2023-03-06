@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/logo.dart';
-import 'package:project_teamd/pages/user/home.dart';
+import 'package:project_teamd/pages/landing_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../constants/color_pallete.dart';
 
-class StartPage1 extends StatefulWidget {
-  const StartPage1({super.key});
+class OnBoardingPage extends StatefulWidget {
+  const OnBoardingPage({super.key});
 
   @override
-  State<StartPage1> createState() => _StartPage1State();
+  State<OnBoardingPage> createState() => _OnBoardingPageState();
 }
 
 PageController _pageController = PageController();
 int index = 1;
 Widget button = const Text('');
 
-class _StartPage1State extends State<StartPage1> {
+class _OnBoardingPageState extends State<OnBoardingPage> {
   @override
   Widget build(BuildContext context) {
     if (index == 2) {
@@ -27,7 +27,7 @@ class _StartPage1State extends State<StartPage1> {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const Home()),
+            MaterialPageRoute(builder: (context) => const LandingPage()),
           );
         },
         child: Padding(
