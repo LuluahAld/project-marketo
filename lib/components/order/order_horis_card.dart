@@ -12,6 +12,7 @@ class orderHorisCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          height: MediaQuery.of(context).size.height / 10,
           padding: padding,
           decoration: BoxDecoration(
             color: lightgrey,
@@ -20,7 +21,7 @@ class orderHorisCard extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width / 5,
+                width: MediaQuery.of(context).size.width / 6,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,8 +46,8 @@ class orderHorisCard extends StatelessWidget {
           ),
         ),
         Container(
-            width: MediaQuery.of(context).size.width / 5.2,
-            height: MediaQuery.of(context).size.height / 7.2,
+            width: MediaQuery.of(context).size.width / 6,
+            height: MediaQuery.of(context).size.height / 10,
             decoration: BoxDecoration(
               color: grey,
               borderRadius: borderRad,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/pages/onboarding_pages.dart';
+import 'package:project_teamd/pages/home_page.dart';
 
 import 'components/bottomNaviagtionBar/bottom_nav_bar.dart';
 import 'pages/profile_page.dart';
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const OnBoardingPages(),
+      const HomePage(),
       const Scaffold(),
       const Scaffold(),
 
