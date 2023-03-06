@@ -6,6 +6,7 @@ import 'package:project_teamd/components/product/product_cart.dart';
 import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
+import 'package:project_teamd/pages/user/user_product_details.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
@@ -46,15 +47,15 @@ class UserHomePage extends StatelessWidget {
                     child: Row(
                       children: [
                         ProductCard(
-                          image: 'image/single-person.png',
+                          image: 'images/single-person.png',
                           text: 'Sameera',
                         ),
                         ProductCard(
-                          image: 'image/single-person2.png',
+                          image: 'images/single-person2.png',
                           text: 'SM',
                         ),
                         ProductCard(
-                          image: 'image/single-person1.png',
+                          image: 'images/single-person1.png',
                           text: 'Noor',
                         ),
                       ],
@@ -73,16 +74,22 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
-                          image: 'image/pic1.png',
-                          text: 'T-Shirt',
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => const UserProductDetails()));
+                          },
+                          child: ProductCard(
+                            image: 'images/pic1.png',
+                            text: 'T-Shirt',
+                          ),
                         ),
                         ProductCard(
-                          image: 'image/bag1.jpg',
+                          image: 'images/bag1.jpg',
                           text: 'Bag',
                         ),
                         ProductCard(
-                          image: 'image/watch1.jpg',
+                          image: 'images/watch1.jpg',
                           text: 'Watch',
                         ),
                       ],
