@@ -11,7 +11,6 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  // List<Meal> cartMeals = [];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,8 +21,8 @@ class _ProductCardState extends State<ProductCard> {
               padding: const EdgeInsets.only(right: 20, left: 12, top: 14),
               child: Container(
                 decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
-                width: MediaQuery.of(context).size.width / 2.3,
-                height: MediaQuery.of(context).size.height / 5,
+                width: MediaQuery.of(context).size.width / 2.7,
+                height: MediaQuery.of(context).size.height / 5.5,
                 child: Column(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
