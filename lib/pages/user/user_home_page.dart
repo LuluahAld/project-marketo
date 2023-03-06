@@ -14,6 +14,7 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
+      scrollDirection: Axis.vertical,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: [
