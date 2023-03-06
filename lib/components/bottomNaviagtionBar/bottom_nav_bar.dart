@@ -28,7 +28,7 @@ class CustomBottomNavigation extends StatelessWidget {
             Icons.pending_actions_outlined,
             size: 30,
           ),
-          label: '',
+          label: 'Orders',
         ),
         BottomNavigationBarItem(
           icon: Icon(

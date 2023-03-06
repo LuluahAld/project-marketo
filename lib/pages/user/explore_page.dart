@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/constants/padding.dart';
 
-import '../components/appBar/appbar_with_search.dart';
-import '../components/product/explore_product_card.dart';
-import '../model/product.dart';
+import '../../components/appBar/appbar_with_search.dart';
+import '../../components/product/explore_product_card.dart';
+import '../../model/product.dart';
 
 class ExplorePage extends StatelessWidget {
   const ExplorePage({super.key});

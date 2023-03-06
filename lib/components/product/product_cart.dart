@@ -3,10 +3,9 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 
 class ProductCard extends StatefulWidget {
-  const ProductCard({
-    Key? key,
-  }) : super(key: key);
-
+  ProductCard({Key? key, required this.image, required this.text}) : super(key: key);
+  String image;
+  String text;
   @override
   State<ProductCard> createState() => _ProductCardState();
 }
@@ -22,8 +21,8 @@ class _ProductCardState extends State<ProductCard> {
               padding: const EdgeInsets.only(right: 20, left: 12, top: 14),
               child: Container(
                 decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
-                width: MediaQuery.of(context).size.width / 2.3,
-                height: MediaQuery.of(context).size.height / 5,
+                width: MediaQuery.of(context).size.width / 2.7,
+                height: MediaQuery.of(context).size.height / 5.5,
                 child: Column(children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -39,7 +38,7 @@ class _ProductCardState extends State<ProductCard> {
                               color: Colors.white.withOpacity(0.2),
                             ),
                             child: Image.asset(
-                              'images/logo.png',
+                              widget.image,
                             )),
                       ],
                     ),
@@ -49,12 +48,10 @@ class _ProductCardState extends State<ProductCard> {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(3),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              MText(text: 'Product Name', fontweight: FontWeight.normal, color: green, size: 20)
-                            ],
+                            children: [MText(text: widget.text, fontweight: FontWeight.normal, color: green, size: 20)],
                           ),
                         ),
                       ],

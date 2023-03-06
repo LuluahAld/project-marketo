@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/pages/explore_page.dart';
-import 'package:project_teamd/pages/home_page.dart';
-import 'package:project_teamd/pages/order_page.dart';
+import 'package:project_teamd/pages/user/explore_page.dart';
+import 'package:project_teamd/pages/user/order_page.dart';
+import 'package:project_teamd/pages/user/user_home_page.dart';
 
-import 'components/bottomNaviagtionBar/bottom_nav_bar.dart';
-import 'pages/profile_page.dart';
+import '../../components/bottomNaviagtionBar/bottom_nav_bar.dart';
+import 'profile_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,14 +25,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const HomePage(),
-
+      const UserHomePage(),
       const ExplorePage(),
       const OrderPage(),
-
-      const Scaffold(),
-
-      // const orderPage(),
       const ProfilePage(),
     ];
     return Scaffold(
