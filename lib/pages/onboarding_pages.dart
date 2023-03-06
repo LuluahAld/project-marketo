@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/order/schedual_time.dart';
+import 'package:project_teamd/components/payment/payment_card.dart';
 
 import '../constants/padding.dart';
 
@@ -13,7 +14,7 @@ class OnBoardingPages extends StatelessWidget {
         padding: padding,
         child: Column(
           children: const [
-            scheduleTime(),
+            paymentCard(),
             SizedBox(
               height: 100,
             ),
