@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project_teamd/pages/explore_page.dart';
 import 'package:project_teamd/pages/home_page.dart';
+import 'package:project_teamd/pages/order_page.dart';
 import 'package:project_teamd/pages/order_page.dart';
 
 import 'components/bottomNaviagtionBar/bottom_nav_bar.dart';
@@ -25,10 +27,8 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final pages = [
       const HomePage(),
-      const Scaffold(),
+      const ExplorePage(),
       const OrderPage(),
-
-      // const orderPage(),
       const ProfilePage(),
     ];
     return Scaffold(
