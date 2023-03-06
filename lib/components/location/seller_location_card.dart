@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/components/m_text.dart';
+import 'package:project_teamd/components/appText/m_text.dart';
 
 import '../../constants/color_pallete.dart';
 

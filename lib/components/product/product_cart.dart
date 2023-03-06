@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/components/m_text.dart';
+import 'package:project_teamd/components/appText/m_text.dart';
+
 import 'package:project_teamd/constants/color_pallete.dart';
 
 class ProductCard extends StatefulWidget {
