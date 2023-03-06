@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
-
 import 'package:project_teamd/constants/color_pallete.dart';
 
 class ProductCard extends StatefulWidget {
@@ -13,7 +12,6 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
-  // List<Meal> cartMeals = [];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
