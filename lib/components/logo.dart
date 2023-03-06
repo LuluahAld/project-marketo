@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Logo extends StatelessWidget {
-  final size;
+  final double? size;
   const Logo({super.key, required this.size});
 
   @override

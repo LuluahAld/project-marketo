@@ -4,7 +4,7 @@ import 'package:project_teamd/components/order/order_horis_card.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/order.dart';
 
-import '../constants/padding.dart';
+import '../../constants/padding.dart';
 
 class OrderPage extends StatelessWidget {
   const OrderPage({super.key});
