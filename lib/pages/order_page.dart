@@ -11,7 +11,7 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Order order = const Order("20", "order", "", "", []);
+    Order order = const Order("1", "Pending", "2/3/2022", "Hadi Store", "2", []);
     return Scaffold(
         appBar: AppBar(
             centerTitle: true,
