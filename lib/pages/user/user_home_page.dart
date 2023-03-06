@@ -6,7 +6,6 @@ import 'package:project_teamd/components/product/product_cart.dart';
 import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
-import 'package:project_teamd/pages/user/user_product_details.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
