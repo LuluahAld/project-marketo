@@ -33,4 +33,6 @@ flutter:
         - images/bag1.jpg
         - images/watch1.jpg
         - images/pic1.png
-        - images/bag2.jpg
+        - images/onboarding/click.png
+        - images/onboarding/compare.png
+        - images/onboarding/online-shopping.png
