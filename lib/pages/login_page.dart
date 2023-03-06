@@ -5,6 +5,7 @@ import 'package:project_teamd/components/logo.dart';
 import 'package:project_teamd/components/textfields/textfield_m.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
+import 'package:project_teamd/pages/user/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key}) : super();
@@ -295,7 +296,9 @@ class _LoginState extends State<Login> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 40, right: 100),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: lightgreen,
                     ),

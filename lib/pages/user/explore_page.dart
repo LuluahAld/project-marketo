@@ -23,8 +23,9 @@ class ExplorePage extends StatelessWidget {
           color: grey,
           child: Column(
             children: const [
-              SizedBox(height: 44),
+              SizedBox(height: 56),
               Logo(size: 200),
+              SizedBox(height: 8),
               SizedBox(
                 height: 50,
                 width: 400,
