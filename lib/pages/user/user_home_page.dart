@@ -49,16 +49,22 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
-                          image: 'image/single-person.png',
-                          text: 'Sameera',
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => const UserProductDetails()));
+                          },
+                          child: ProductCard(
+                            image: 'images/single-person.png',
+                            text: 'Sameera',
+                          ),
                         ),
                         ProductCard(
-                          image: 'image/single-person2.png',
+                          image: 'images/single-person2.png',
                           text: 'SM',
                         ),
                         ProductCard(
-                          image: 'image/single-person1.png',
+                          image: 'images/single-person1.png',
                           text: 'Noor',
                         ),
                       ],
@@ -78,15 +84,15 @@ class UserHomePage extends StatelessWidget {
                     child: Row(
                       children: [
                         ProductCard(
-                          image: 'image/pic1.png',
+                          image: 'images/pic1.png',
                           text: 'T-Shirt',
                         ),
                         ProductCard(
-                          image: 'image/bag1.jpg',
+                          image: 'images/bag1.jpg',
                           text: 'Bag',
                         ),
                         ProductCard(
-                          image: 'image/watch1.jpg',
+                          image: 'images/watch1.jpg',
                           text: 'Watch',
                         ),
                       ],
