@@ -15,17 +15,18 @@ class ProfileCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
+        const SizedBox(width: 12),
         Icon(
           icon,
           color: pink,
-          size: 36,
+          size: 32,
         ),
         const SizedBox(
           width: 12,
         ),
         Text(
           text,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
         )
       ],
     );

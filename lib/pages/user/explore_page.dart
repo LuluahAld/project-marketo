@@ -4,19 +4,19 @@ import 'package:project_teamd/components/order/order_horis_card.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/order.dart';
 
-import '../constants/padding.dart';
+import '../../constants/padding.dart';
 
-class OrderPage extends StatelessWidget {
-  const OrderPage({super.key});
+class ExplorePage extends StatelessWidget {
+  const ExplorePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     Order order = const Order("20", "order", "", "", []);
     return Scaffold(
         appBar: AppBar(
+            elevation: 0.5,
             centerTitle: true,
             backgroundColor: greyLight,
-            toolbarHeight: 80.0,
             title: MText(
               text: "My Order",
               fontweight: FontWeight.bold,

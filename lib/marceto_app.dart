@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:project_teamd/pages/user_home_page.dart';
-
-import 'package:project_teamd/home.dart';
+import 'package:project_teamd/pages/user/home.dart';
 
 class MarcetoApp extends StatelessWidget {
   const MarcetoApp({super.key});

@@ -7,8 +7,8 @@ import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
 
-class userHomaPage extends StatelessWidget {
-  const userHomaPage({super.key});
+class UserHomePage extends StatelessWidget {
+  const UserHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {

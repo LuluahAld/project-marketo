@@ -15,6 +15,7 @@ dependencies:
     cupertino_icons: ^1.0.2
     intl:
     bottom_picker:
+    smooth_page_indicator: ^1.0.1
 
 dev_dependencies:
     flutter_test:
