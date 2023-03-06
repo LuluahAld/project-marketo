@@ -15,6 +15,7 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: ListView(
+      scrollDirection: Axis.vertical,
       padding: EdgeInsets.zero,
       physics: const NeverScrollableScrollPhysics(),
       children: [
@@ -50,16 +51,16 @@ class UserHomePage extends StatelessWidget {
                     child: Row(
                       children: [
                         ProductCard(
-                          image: 'image/single-person.png',
+                          image: 'images/single-person.png',
                           text: 'Sameera',
                         ),
                         ProductCard(
-                          image: 'image/single-person2.png',
-                          text: 'SM',
+                          image: 'images/single-person2.png',
+                          text: 'Hadi',
                         ),
                         ProductCard(
-                          image: 'image/single-person1.png',
-                          text: 'Noor',
+                          image: 'images/single-person.png',
+                          text: 'Luluah',
                         ),
                       ],
                     ),
@@ -77,16 +78,22 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
-                          image: 'image/pic1.png',
-                          text: 'T-Shirt',
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context, MaterialPageRoute(builder: (context) => const UserProductDetails()));
+                          },
+                          child: ProductCard(
+                            image: 'images/pic1.png',
+                            text: 'T-Shirt',
+                          ),
                         ),
                         ProductCard(
-                          image: 'image/bag1.jpg',
+                          image: 'images/bag1.jpg',
                           text: 'Bag',
                         ),
                         ProductCard(
-                          image: 'image/watch1.jpg',
+                          image: 'images/watch1.jpg',
                           text: 'Watch',
                         ),
                       ],
