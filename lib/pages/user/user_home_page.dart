@@ -45,6 +45,7 @@ class UserHomePage extends StatelessWidget {
                     'See All',
                     green,
                     lightgreen,
+                    1,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -73,6 +74,7 @@ class UserHomePage extends StatelessWidget {
                     'See All',
                     green,
                     lightgreen,
+                    1,
                   ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
