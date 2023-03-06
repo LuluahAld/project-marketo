@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_teamd/pages/onboarding_pages.dart';
 
 import 'components/bottomNaviagtionBar/bottom_nav_bar.dart';
+import 'pages/profile_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -25,9 +26,9 @@ class _HomeState extends State<Home> {
       const OnBoardingPages(),
       const Scaffold(),
       const Scaffold(),
-      const Scaffold(),
+
       // const orderPage(),
-      // const profilePage(),
+      const ProfilePage(),
     ];
     return Scaffold(
       body: pages[currentIndex],
