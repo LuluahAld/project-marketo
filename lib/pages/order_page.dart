@@ -13,38 +13,40 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Order order = const Order("20", "order", "", "", []);
     return Scaffold(
-        appBar: AppBar(
-            centerTitle: true,
-            backgroundColor: greyLight,
-            toolbarHeight: 80.0,
-            title: MText(
-              text: "My Order",
-              fontweight: FontWeight.bold,
-              color: green,
-              size: 20,
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: green,
-                  size: 30,
-                ),
-                onPressed: () {
-                  // do something
-                },
-              )
-            ]),
-        body: Padding(
-            padding: padding,
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: 6,
-              itemBuilder: (context, index) => orderHorisCard(order: order, icon: Icons.done),
-              separatorBuilder: (BuildContext context, int index) => const SizedBox(
-                height: 12,
+      appBar: AppBar(
+          elevation: 0.5,
+          centerTitle: true,
+          backgroundColor: greyLight,
+          title: MText(
+            text: "My Order",
+            fontweight: FontWeight.bold,
+            color: green,
+            size: 20,
+          ),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.search,
+                color: green,
+                size: 30,
               ),
-            )));
+              onPressed: () {
+                // do something
+              },
+            )
+          ]),
+      body: Padding(
+        padding: padding,
+        child: ListView.separated(
+          physics: const BouncingScrollPhysics(),
+          shrinkWrap: true,
+          itemCount: 6,
+          itemBuilder: (context, index) => orderHorisCard(order: order, icon: Icons.done),
+          separatorBuilder: (BuildContext context, int index) => const SizedBox(
+            height: 12,
+          ),
+        ),
+      ),
+    );
   }
 }
