@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/components/order/schedual_time.dart';
-import 'package:project_teamd/components/payment/payment_card.dart';
+import 'package:project_teamd/components/order/seller_customer.dart';
 
 import '../constants/padding.dart';
 
@@ -13,9 +12,9 @@ class OnBoardingPages extends StatelessWidget {
       body: Padding(
         padding: padding,
         child: Column(
-          children: const [
-            paymentCard(),
-            SizedBox(
+          children: [
+            sellerCustomerInfo(),
+            const SizedBox(
               height: 100,
             ),
           ],
