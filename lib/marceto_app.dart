@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'components/onboarding/onboarding.dart';
+import 'pages/onboarding_pages.dart';
 
 class MarcetoApp extends StatelessWidget {
   const MarcetoApp({super.key});
@@ -9,7 +9,7 @@ class MarcetoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StartPage(),
+      home: StartPage1(),
     );
   }
 }

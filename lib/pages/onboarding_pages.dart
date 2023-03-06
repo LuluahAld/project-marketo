@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:project_teamd/components/logo.dart';
 import 'package:project_teamd/pages/user/home.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class StartPage extends StatefulWidget {
-  const StartPage({super.key});
+import '../constants/color_pallete.dart';
+
+class StartPage1 extends StatefulWidget {
+  const StartPage1({super.key});
 
   @override
-  State<StartPage> createState() => _StartPageState();
+  State<StartPage1> createState() => _StartPage1State();
 }
 
 PageController _pageController = PageController();
 int index = 1;
 Widget button = const Text('');
 
-class _StartPageState extends State<StartPage> {
+class _StartPage1State extends State<StartPage1> {
   @override
   Widget build(BuildContext context) {
     if (index == 2) {
       button = ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color.fromARGB(255, 72, 109, 245),
+          backgroundColor: beige,
         ),
         onPressed: () {
           Navigator.push(
@@ -27,11 +30,11 @@ class _StartPageState extends State<StartPage> {
             MaterialPageRoute(builder: (context) => const Home()),
           );
         },
-        child: const Padding(
-          padding: EdgeInsets.fromLTRB(120, 12, 120, 12),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(120, 12, 120, 12),
           child: Text(
-            'Get Started hi',
-            style: TextStyle(fontSize: 16),
+            'Get Started ',
+            style: TextStyle(fontSize: 16, color: green),
           ),
         ),
       );
@@ -46,7 +49,7 @@ class _StartPageState extends State<StartPage> {
       );
     }
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: lightgreen,
       body: SafeArea(
         child: Stack(
           children: [
@@ -54,9 +57,7 @@ class _StartPageState extends State<StartPage> {
               controller: _pageController,
               children: [
                 Slider(
-                  title: 'The best licensed counselors',
-                  desc:
-                      'A network of highly professional licensed and certified psychologists, social workers and doctors.',
+                  title: 'A higher form of shopping.',
                   img: 'images/onboarding/online-shopping.png',
                   count: 1,
                   onLast: () {
@@ -64,9 +65,7 @@ class _StartPageState extends State<StartPage> {
                   },
                 ),
                 Slider(
-                  title: 'Scheduled and Instant sessions',
-                  desc:
-                      'Psychological, emotional and couple sessions. Instant sessions within 60 minutes for emergencies or scheduled at the time and counselors of your choice.',
+                  title: 'A few clicks is all it takes.',
                   img: 'images/onboarding/click.png',
                   count: 1,
                   onLast: () {
@@ -74,9 +73,7 @@ class _StartPageState extends State<StartPage> {
                   },
                 ),
                 Slider(
-                  title: 'Complete Privacy',
-                  desc:
-                      'All conversation and sensitive data are end to end encrypted. No one can read them, not even Labayh.',
+                  title: 'Compare prices and quality.',
                   img: 'images/onboarding/compare.png',
                   count: 2,
                   onLast: () {
@@ -94,7 +91,7 @@ class _StartPageState extends State<StartPage> {
                     child: SmoothPageIndicator(
                       controller: _pageController,
                       count: 3,
-                      effect: const WormEffect(),
+                      effect: WormEffect(activeDotColor: green, dotColor: beige),
                       onDotClicked: (index) => _pageController.animateToPage(
                         index,
                         duration: const Duration(milliseconds: 500),
@@ -109,6 +106,17 @@ class _StartPageState extends State<StartPage> {
                 button,
               ],
             ),
+            Column(
+              children: [
+                const SizedBox(height: 16),
+                Row(
+                  children: const [
+                    SizedBox(width: 12),
+                    Logo(size: 180),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -118,18 +126,12 @@ class _StartPageState extends State<StartPage> {
 
 class Slider extends StatefulWidget {
   final String title;
-  final String desc;
+
   final String img;
   final int count;
   final Function onLast;
 
-  const Slider(
-      {super.key,
-      required this.title,
-      required this.desc,
-      required this.img,
-      required this.count,
-      required this.onLast});
+  const Slider({super.key, required this.title, required this.img, required this.count, required this.onLast});
 
   @override
   State<Slider> createState() => _SliderState();
@@ -154,21 +156,19 @@ class _SliderState extends State<Slider> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(widget.img),
-          const SizedBox(
-            height: 24,
-          ),
-          Text(
-            widget.title,
-            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
+          Image.asset(
+            widget.img,
+            width: 300,
           ),
           const SizedBox(
-            height: 16,
+            height: 80,
           ),
-          Text(
-            widget.desc,
-            textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.blueGrey),
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 24),
+            child: Text(
+              widget.title,
+              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 40, color: beige),
+            ),
           ),
         ],
       ),
