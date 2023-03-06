@@ -5,7 +5,7 @@ class Product {
   final String brand;
   final String category;
   final double rating;
-  final double imageUrl;
+  final String imageUrl;
 
   const Product(this.id, this.name, this.price, this.brand, this.category, this.rating, this.imageUrl);
 }

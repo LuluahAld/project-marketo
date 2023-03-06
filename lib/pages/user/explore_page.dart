@@ -12,7 +12,7 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Product product = const Product("High Brand Bags", "order", 9.0, "jh", "kj", 5.0, 4.0);
+    Product product = const Product("High Brand Bags", "order", 9.0, "jh", "kj", 5.0, '');
     return Scaffold(
         body: Column(
       children: [
