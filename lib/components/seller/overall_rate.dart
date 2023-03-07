@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 
 class OverAllRate extends StatelessWidget {
-  const OverAllRate(this.text, this.titleColor, this.textColor, {super.key});
+  const OverAllRate(this.text, this.titleColor, this.fontWeight, this.size, this.textColor, {super.key});
   final String text;
+  final FontWeight fontWeight;
+  final double size;
   final Color titleColor;
   final Color textColor;
 
@@ -17,7 +19,7 @@ class OverAllRate extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            MText(text: "Over All Rating", fontweight: FontWeight.bold, color: titleColor, size: 18),
+            MText(text: "Over All Rating", fontweight: fontWeight, color: titleColor, size: size),
             Row(
               children: [
                 const Icon(

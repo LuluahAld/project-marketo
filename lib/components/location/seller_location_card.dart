@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
+import 'package:project_teamd/model/seller.dart';
 
 import '../../constants/color_pallete.dart';
 
 class SellerLocationCard extends StatelessWidget {
-  const SellerLocationCard(this.country, this.city, {super.key});
-  final String country;
-  final String city;
+  SellerLocationCard({super.key, required this.seller});
+  Seller seller;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          Icons.pin_drop,
-          color: green,
-          size: 36,
+        Column(
+          children: [
+            Icon(
+              Icons.pin_drop,
+              color: green,
+              size: 36,
+            ),
+          ],
         ),
         const SizedBox(
           width: 12,
@@ -36,7 +40,7 @@ class SellerLocationCard extends StatelessWidget {
                 ],
               ),
             ),
-            MText(text: "$country  $city", fontweight: FontWeight.bold, color: green, size: 20),
+            MText(text: seller.location, fontweight: FontWeight.bold, color: green, size: 20),
           ],
         )
       ],

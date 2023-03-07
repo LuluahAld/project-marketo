@@ -43,19 +43,52 @@ class SellerHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     SProsuctCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SProsuctCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/pic1.jpg',
+                      ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SProsuctCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
                     ),
                   ],
                 ),
@@ -124,19 +157,52 @@ class SellerHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     SProsuctCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SProsuctCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SProsuctCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
                     ),
                   ],
                 ),

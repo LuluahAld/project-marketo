@@ -29,7 +29,7 @@ class _SellerCard extends State<SellerCard> {
                   color: Colors.white.withOpacity(0.2),
                 ),
                 child: Image.asset(
-                  widget.seller.imageUrl,
+                  widget.seller.logo,
                 )),
             Padding(
               padding: const EdgeInsets.all(16.0),

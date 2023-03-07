@@ -11,7 +11,18 @@ class ExplorePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Product product = const Product("High Brand Bags", "order", 9.0, "jh", "kj", 5.0, '');
+    Product product = const Product(
+      "1",
+      "High Brand Bags channel",
+      9.0,
+      "channel",
+      "limited edition line",
+      "Hadi",
+      '5',
+      "Bags",
+      5.0,
+      'images/bag1.jpg',
+    );
 
     return Scaffold(
         body: Column(
