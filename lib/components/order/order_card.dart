@@ -61,7 +61,7 @@ class OrderCard extends StatelessWidget {
                       height: 6,
                     ),
                     MText(
-                      text: product.quantity,
+                      text: product.country,
                       fontweight: FontWeight.w500,
                       color: Colors.black,
                       size: 16,

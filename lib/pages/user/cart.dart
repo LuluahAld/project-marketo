@@ -13,17 +13,16 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Product product = const Product(
-      "1",
-      "High Brand Bags channel",
-      9.0,
-      "channel",
-      "limited edition line",
-      "Hadi",
-      '5',
-      "Bags",
-      5.0,
-      'images/bag2.jpg',
-    );
+        id: 'id',
+        name: 'name',
+        brand: 'brand',
+        shopName: 'shopName',
+        description: 'description',
+        rating: 5,
+        price: 1000,
+        category: 'category',
+        country: 'country',
+        imageUrl: 'images/bag2.jpg');
 
     return Scaffold(
         appBar: AppBar(
