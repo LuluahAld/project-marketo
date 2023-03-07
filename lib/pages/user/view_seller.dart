@@ -33,8 +33,19 @@ class _ViewSellerState extends State<ViewSeller> {
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller('Sameera', "@SuperSameera", "sameera@gmail.com", "Bags Store from london",
-        ['very good,fabuilas'], "2", "images", 'Jeddah', 'S', [], [], "5.0");
+    Seller seller = const Seller(
+        name: 'name',
+        userName: 'userName',
+        email: 'email',
+        about: 'about',
+        review: [],
+        id: 'id',
+        logo: 'logo',
+        location: 'location',
+        letter: 'letter',
+        orders: [],
+        product: [],
+        rating: 'rating');
 
     return Scaffold(
       body: Column(
@@ -372,8 +383,19 @@ class UserSellerPageView extends StatefulWidget {
 
 class _UserSellerPageViewState extends State<UserSellerPageView> {
   // declare and initizlize the page controller
-  Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-      ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+  Seller seller = const Seller(
+      name: 'name',
+      userName: 'userName',
+      email: 'email',
+      about: 'about',
+      review: [],
+      id: 'id',
+      logo: 'logo',
+      location: 'location',
+      letter: 'letter',
+      orders: [],
+      product: [],
+      rating: 'rating');
 
   // the index of the current page
 
@@ -440,18 +462,18 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Seller seller = const Seller(
-        'Hadi',
-        "@Super Hadi",
-        "hadi@gmail.com",
-        "Hi, I’m a Personal Shopper, specializing in wardrobe. My clients range from business professionals who are simply too busy to shop to those who simply wish to revamp their wardrobes.",
-        ['very good,fabuilas'],
-        "2",
-        '"imageUrl", ',
-        'Alahsaa',
-        'H',
-        [],
-        [],
-        "5.0");
+        name: 'name',
+        userName: 'userName',
+        email: 'email',
+        about: 'about',
+        review: [],
+        id: 'id',
+        logo: 'logo',
+        location: 'location',
+        letter: 'letter',
+        orders: [],
+        product: [],
+        rating: 'rating');
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
       child: Column(children: [
@@ -528,8 +550,20 @@ class Products extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-        ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+    Seller seller = const Seller(
+        name: 'name',
+        userName: 'userName',
+        email: 'email',
+        about: 'about',
+        review: [],
+        id: 'id',
+        logo: 'logo',
+        location: 'location',
+        letter: 'letter',
+        orders: [],
+        product: [],
+        rating: 'rating');
+
     return Column(children: const []);
   }
 }
@@ -540,8 +574,19 @@ class Reviews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-        ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+    Seller seller = const Seller(
+        name: 'name',
+        userName: 'userName',
+        email: 'email',
+        about: 'about',
+        review: [],
+        id: 'id',
+        logo: 'logo',
+        location: 'location',
+        letter: 'letter',
+        orders: [],
+        product: [],
+        rating: 'rating');
     User user =
         const User(id: 'id', email: 'email', name: 'name', userName: 'userName', location: 'location', orders: []);
 
