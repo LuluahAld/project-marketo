@@ -542,8 +542,8 @@ class Reviews extends StatelessWidget {
   Widget build(BuildContext context) {
     Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
         ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
-    User user = User(
-        name: 'Hana', userName: 'Super Hana', email: 'hana@gmail.com', id: '1', location: '"KSA Dhahran"', order: []);
+    User user =
+        const User(id: 'id', email: 'email', name: 'name', userName: 'userName', location: 'location', orders: []);
 
     return Column(children: [
       OverAllRate(seller.rating, green, FontWeight.w400, 22, lightgreen),

@@ -13,8 +13,8 @@ class ConfirmOrder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    User user = User(
-        name: 'Hana', userName: 'Super Hana', email: 'hana@gmail.com', id: '1', location: '"KSA Dhahran"', order: []);
+    User user =
+        const User(id: 'id', email: 'email', name: 'name', userName: 'userName', location: 'location', orders: []);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,

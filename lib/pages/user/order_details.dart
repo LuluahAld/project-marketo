@@ -23,7 +23,14 @@ class OrderDetials extends StatelessWidget {
           const orderStatus(),
           const SizedBox(height: 48),
           orderInfoCard(
-            order: const Order('0', '', '', '', '', []),
+            order: const Order(
+              id: 'id',
+              orderStatus: 'orderStatus',
+              orderDate: 'orderDate',
+              shopName: 'shopName',
+              numOfProduct: 'numOfProduct',
+              products: [],
+            ),
           ),
           const SizedBox(height: 48),
           const sellerCustomerInfo(),
