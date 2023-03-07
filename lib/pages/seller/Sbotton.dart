@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/pages/seller/Shome.dart';
 import 'package:project_teamd/pages/seller/seller_add_product.dart';
 
 class Sbutton extends StatelessWidget {
@@ -20,7 +19,7 @@ class Sbutton extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const AddProduct()));
         }
         if (NavChoice == 2) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const SHome()));
+          Navigator.pop(context);
         }
       },
       child: Text(
