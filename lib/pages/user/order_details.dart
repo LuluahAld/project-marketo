@@ -10,8 +10,8 @@ import 'package:project_teamd/model/order.dart';
 import '../../constants/color_pallete.dart';
 
 class OrderDetials extends StatelessWidget {
-  const OrderDetials({super.key});
-
+  OrderDetials({super.key, required this.order});
+  Order order;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,7 @@ class OrderDetials extends StatelessWidget {
         padding: padding,
         children: [
           const SizedBox(height: 24),
-          const orderStatus(),
+          orderStatus(order: order),
           const SizedBox(height: 48),
           orderInfoCard(
             order: const Order(

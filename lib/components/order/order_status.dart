@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
+import 'package:project_teamd/model/order.dart';
 
 class orderStatus extends StatelessWidget {
-  const orderStatus({super.key});
-
+  orderStatus({super.key, required this.order});
+  Order order;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -25,10 +26,16 @@ class orderStatus extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        Icon(
-          Icons.local_shipping,
-          color: green,
-        ),
+        if (order.orderStatus == 'On the Way')
+          Icon(
+            Icons.local_shipping,
+            color: green,
+          ),
+        if (order.orderStatus == 'In Progress' || order.orderStatus == 'Pending')
+          Icon(
+            Icons.local_shipping,
+            color: grey,
+          ),
         const SizedBox(
           width: 10,
         ),
@@ -41,10 +48,16 @@ class orderStatus extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        Icon(
-          Icons.check,
-          color: green,
-        )
+        if (order.orderStatus == 'Delivered')
+          Icon(
+            Icons.check,
+            color: green,
+          ),
+        if (order.orderStatus == 'In Progress' || order.orderStatus == 'Pending')
+          Icon(
+            Icons.check,
+            color: grey,
+          ),
       ],
     );
   }
