@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'pages/onboarding_pages.dart';
+import 'package:project_teamd/pages/onboarding_pages.dart';
 
 class MarcetoApp extends StatelessWidget {
   const MarcetoApp({super.key});
