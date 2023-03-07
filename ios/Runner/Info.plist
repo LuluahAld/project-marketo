@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+<string>Camera access enables you to take a photo for your product on Marketo.</string>
+<key>NSPhotoLibraryUsageDescription</key>
+<string>Library access enables you to set your product photo on Marketo.</string>
 </dict>
 </plist>

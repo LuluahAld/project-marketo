@@ -7,7 +7,6 @@ import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/pages/user/user_product_details.dart';
-import 'package:project_teamd/pages/user/view_seller.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
@@ -15,10 +14,7 @@ class UserHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-      scrollDirection: Axis.vertical,
-      padding: EdgeInsets.zero,
-      physics: const NeverScrollableScrollPhysics(),
+        body: Column(
       children: [
         Container(
           width: MediaQuery.of(context).size.width,
@@ -26,8 +22,9 @@ class UserHomePage extends StatelessWidget {
           color: grey,
           child: Column(
             children: const [
-              SizedBox(height: 44),
+              SizedBox(height: 56),
               Logo(size: 200),
+              SizedBox(height: 8),
               SizedBox(
                 height: 50,
                 width: 400,
@@ -52,13 +49,9 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        InkWell(
-                          onTap: () =>
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller())),
-                          child: ProductCard(
-                            image: 'images/single-person.png',
-                            text: 'Sameera',
-                          ),
+                        ProductCard(
+                          image: 'images/single-person.png',
+                          text: 'Sameera',
                         ),
                         ProductCard(
                           image: 'images/single-person2.png',

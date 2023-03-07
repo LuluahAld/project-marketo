@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_teamd/constants/padding.dart';
 
 import '../../components/logo.dart';
 import '../../components/product/explore_product_card.dart';
@@ -24,6 +23,7 @@ class ExplorePage extends StatelessWidget {
       5.0,
       'images/bag1.jpg',
     );
+
     return Scaffold(
         body: Column(
       children: [
@@ -33,8 +33,9 @@ class ExplorePage extends StatelessWidget {
           color: grey,
           child: Column(
             children: const [
-              SizedBox(height: 44),
+              SizedBox(height: 56),
               Logo(size: 200),
+              SizedBox(height: 8),
               SizedBox(
                 height: 50,
                 width: 400,
@@ -48,7 +49,7 @@ class ExplorePage extends StatelessWidget {
           shrinkWrap: true,
           children: [
             Padding(
-              padding: padding,
+              padding: const EdgeInsets.only(left: 16, right: 16),
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 shrinkWrap: true,

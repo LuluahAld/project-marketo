@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_teamd/pages/user/product_list_page.dart';
 import 'package:project_teamd/pages/user/seller_page.dart';
 
 import 'm_text.dart';
@@ -26,6 +27,9 @@ class MainCategory extends StatelessWidget {
                 onTap: () {
                   if (navigatorChoise == 1) {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SellerPage()));
+                  }
+                  if (navigatorChoise == 2) {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
                   }
                 },
                 child: MText(text: text, fontweight: FontWeight.bold, color: textColor, size: 20)),

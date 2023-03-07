@@ -18,6 +18,7 @@ class OrderCard extends StatelessWidget {
       children: [
         Container(
           clipBehavior: Clip.hardEdge,
+          width: double.infinity,
           height: MediaQuery.of(context).size.height / 4,
           decoration: BoxDecoration(
             color: grey,
@@ -28,6 +29,7 @@ class OrderCard extends StatelessWidget {
               Image.asset(
                 product.imageUrl,
                 fit: BoxFit.fitWidth,
+                width: 100,
               ),
             ],
           ),

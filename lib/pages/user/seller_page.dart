@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/seller/seller_card.dart';
-import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/seller.dart';
+
+import '../../components/appBar/appbar_local.dart';
 
 class SellerPage extends StatelessWidget {
   const SellerPage({super.key});
@@ -9,16 +10,8 @@ class SellerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          leading: const BackButton(
-            color: Colors.black, // <-- SEE HERE
-          ),
-          title: const Text(
-            'Seller',
-            style: TextStyle(color: Colors.black),
-          ),
-          backgroundColor: greyLight,
+        appBar: const AppBarLocal(
+          title: 'Sellers',
         ),
         body: SafeArea(
           child: SingleChildScrollView(

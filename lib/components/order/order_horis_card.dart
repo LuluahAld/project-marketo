@@ -21,7 +21,7 @@ class orderHorisCard extends StatelessWidget {
           child: Row(
             children: [
               SizedBox(
-                width: MediaQuery.of(context).size.width / 6,
+                width: MediaQuery.of(context).size.width / 7,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
