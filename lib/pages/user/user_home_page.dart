@@ -6,6 +6,7 @@ import 'package:project_teamd/components/product/product_cart.dart';
 import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
+import 'package:project_teamd/pages/user/cart.dart';
 import 'package:project_teamd/pages/user/view_seller.dart';
 
 class UserHomePage extends StatelessWidget {
@@ -15,122 +16,136 @@ class UserHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
-      children: [
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 180,
-          color: grey,
-          child: Column(
-            children: const [
-              SizedBox(height: 56),
-              Logo(size: 200),
-              SizedBox(height: 8),
-              SizedBox(
-                height: 50,
-                width: 400,
-                child: SearchBar(),
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width,
+              height: 180,
+              color: grey,
+              child: Column(
+                children: const [
+                  SizedBox(height: 56),
+                  Logo(size: 200),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    height: 50,
+                    width: 400,
+                    child: SearchBar(),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-        Expanded(
-          child: ListView(
-            shrinkWrap: true,
-            padding: const EdgeInsets.all(12),
-            children: [
-              MainCategory('Popular Seller', 'See All', green, lightgreen, 1),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller()));
-                      },
-                      child: ProductCard(
-                        image: 'images/single-person.png',
-                        text: 'Sameeraa',
-                      ),
-                    ),
-                    ProductCard(
-                      image: 'images/single-person2.png',
-                      text: 'Hadi',
-                    ),
-                    ProductCard(
-                      image: 'images/single-person.png',
-                      text: 'Hana',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              MainCategory('Recently Viewed', 'See All', green, lightgreen, 2),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ProductCard(
-                      image: 'images/pic1.png',
-                      text: 'T-Shirt',
-                    ),
-                    ProductCard(
-                      image: 'images/bag1.png',
-                      text: 'Bag',
-                    ),
-                    ProductCard(
-                      image: 'images/watch1.jpg',
-                      text: 'Watch',
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                    padding: padding,
-                    decoration: BoxDecoration(
-                      color: lightgrey,
-                      borderRadius: borderRad,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+            ),
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                padding: const EdgeInsets.all(12),
+                children: [
+                  MainCategory('Popular Seller', 'See All', green, lightgreen, 1),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
                       children: [
-                        MText(
-                            text: 'Share & get Up to \$100 off',
-                            fontweight: FontWeight.bold,
-                            color: lightgreen,
-                            size: 16),
-                        const SizedBox(
-                          height: 10,
+                        InkWell(
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller()));
+                          },
+                          child: ProductCard(
+                            image: 'images/single-person.png',
+                            text: 'Sameeraa',
+                          ),
                         ),
-                        Text(
-                          'Give friends a 10% discount up to \$100 off their first Marketo order',
-                          style: TextStyle(color: lightgreen),
+                        ProductCard(
+                          image: 'images/single-person2.png',
+                          text: 'Hadi',
                         ),
-                        const SizedBox(
-                          height: 10,
+                        ProductCard(
+                          image: 'images/single-person.png',
+                          text: 'Hana',
                         ),
-                        Row(
-                          children: [
-                            MText(text: 'Invite Friends', fontweight: FontWeight.bold, color: lightgreen, size: 16),
-                            Icon(
-                              Icons.arrow_forward,
-                              color: green,
-                            ),
-                          ],
-                        )
                       ],
-                    )),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  MainCategory('Recently Viewed', 'See All', green, lightgreen, 2),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ProductCard(
+                          image: 'images/pic1.png',
+                          text: 'T-Shirt',
+                        ),
+                        ProductCard(
+                          image: 'images/bag1.png',
+                          text: 'Bag',
+                        ),
+                        ProductCard(
+                          image: 'images/watch1.jpg',
+                          text: 'Watch',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Container(
+                        padding: padding,
+                        decoration: BoxDecoration(
+                          color: lightgrey,
+                          borderRadius: borderRad,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MText(
+                                text: 'Share & get Up to \$100 off',
+                                fontweight: FontWeight.bold,
+                                color: lightgreen,
+                                size: 16),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Give friends a 10% discount up to \$100 off their first Marketo order',
+                              style: TextStyle(color: lightgreen),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              children: [
+                                MText(text: 'Invite Friends', fontweight: FontWeight.bold, color: lightgreen, size: 16),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: green,
+                                ),
+                              ],
+                            )
+                          ],
+                        )),
+                  ),
+                ],
               ),
-            ],
+            )
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
+          },
+          backgroundColor: lightgrey,
+          child: SizedBox(
+            width: 100,
+            height: 100,
+            child: Icon(
+              Icons.shopping_cart,
+              color: green,
+            ),
           ),
-        )
-      ],
-    ));
+        ));
   }
 }
