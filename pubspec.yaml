@@ -18,6 +18,8 @@ dependencies:
     smooth_page_indicator: ^1.0.1
     firebase_core: ^2.7.0
     image_picker: ^0.8.6+4
+    firebase_auth:
+    cloud_firestore:
 
 dev_dependencies:
     flutter_test:

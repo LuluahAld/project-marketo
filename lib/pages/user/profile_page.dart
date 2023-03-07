@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/profile/avatar.dart';
@@ -26,30 +27,39 @@ class ProfilePage extends StatelessWidget {
             ],
           ),
         ),
-        ListView(
-          shrinkWrap: true,
-          padding: const EdgeInsets.fromLTRB(16, 28, 16, 28),
-          children: [
-            MText(text: 'My Marketo', fontweight: FontWeight.w500, color: green, size: 20),
-            const SizedBox(height: 16),
-            const ProfileCard(icon: Icons.bookmark_border, text: 'Orders'),
-            const SizedBox(height: 12),
-            const ProfileCard(icon: Icons.send_time_extension_outlined, text: 'Invite Friends'),
-            const Divider(thickness: 1, height: 40),
-            MText(text: 'Settings', fontweight: FontWeight.w500, color: green, size: 20),
-            const SizedBox(height: 16),
-            const ProfileCard(icon: Icons.settings_outlined, text: 'Preferences'),
-            const SizedBox(height: 12),
-            const ProfileCard(icon: Icons.person_outline, text: 'Account'),
-            const Divider(thickness: 1, height: 40),
-            MText(text: 'Resources', fontweight: FontWeight.w500, color: green, size: 20),
-            const SizedBox(height: 16),
-            const ProfileCard(icon: Icons.support_outlined, text: 'Support'),
-            const SizedBox(height: 12),
-            const ProfileCard(icon: Icons.policy_outlined, text: 'Community & legal'),
-            const SizedBox(height: 12),
-            const ProfileCard(icon: Icons.question_answer_outlined, text: 'Share Feedback'),
-          ],
+        Expanded(
+          child: ListView(
+            shrinkWrap: true,
+            padding: const EdgeInsets.fromLTRB(16, 28, 16, 0),
+            children: [
+              MText(text: 'My Marketo', fontweight: FontWeight.w500, color: green, size: 20),
+              const SizedBox(height: 16),
+              const ProfileCard(icon: Icons.bookmark_border, text: 'Orders'),
+              const SizedBox(height: 12),
+              const ProfileCard(icon: Icons.send_time_extension_outlined, text: 'Invite Friends'),
+              const Divider(thickness: 1, height: 40),
+              MText(text: 'Settings', fontweight: FontWeight.w500, color: green, size: 20),
+              const SizedBox(height: 16),
+              const ProfileCard(icon: Icons.settings_outlined, text: 'Preferences'),
+              const SizedBox(height: 12),
+              const ProfileCard(icon: Icons.person_outline, text: 'Account'),
+              const Divider(thickness: 1, height: 40),
+              MText(text: 'Resources', fontweight: FontWeight.w500, color: green, size: 20),
+              const SizedBox(height: 16),
+              const ProfileCard(icon: Icons.support_outlined, text: 'Support'),
+              const SizedBox(height: 12),
+              const ProfileCard(icon: Icons.policy_outlined, text: 'Community & legal'),
+              const SizedBox(height: 12),
+              const ProfileCard(icon: Icons.question_answer_outlined, text: 'Share Feedback'),
+              const Divider(thickness: 1, height: 40),
+              InkWell(
+                  onTap: () {
+                    FirebaseAuth.instance.signOut();
+                  },
+                  child: const ProfileCard(icon: Icons.power_off, text: 'Logout')),
+              const SizedBox(height: 24),
+            ],
+          ),
         )
       ],
     );

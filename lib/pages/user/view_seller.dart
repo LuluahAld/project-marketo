@@ -630,7 +630,7 @@ class Reviews extends StatelessWidget {
         orders: [],
         product: [],
         rating: "5.0");
-    User user = const User(
+    Users user = const Users(
         name: 'Hana', userName: 'Super Hana', email: 'hana@gmail.com', id: '1', location: "KSA Dhahran", orders: []);
 
     return Column(children: [

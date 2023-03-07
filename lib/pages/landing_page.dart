@@ -44,7 +44,7 @@ class _LandingPageState extends State<LandingPage> {
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const LoginPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginPage()));
                   },
                   child: const LandingOptionCard(
                     img: 'images/landing/user.png',
@@ -54,7 +54,7 @@ class _LandingPageState extends State<LandingPage> {
                 const SizedBox(width: 40),
                 InkWell(
                   onTap: () {
-                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SLoginPage()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const SLoginPage()));
                   },
                   child: const LandingOptionCard(
                     img: 'images/landing/seller.png',
