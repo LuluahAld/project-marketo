@@ -4,8 +4,11 @@ import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/product.dart';
 
 class ProsuctCard2 extends StatefulWidget {
-  ProsuctCard2({Key? key, required this.product}) : super(key: key);
+  ProsuctCard2({Key? key, required this.product, required this.cardWidth, required this.productImgWidth})
+      : super(key: key);
   Product product;
+  double cardWidth;
+  double productImgWidth;
   @override
   State<ProsuctCard2> createState() => _ProsuctCard2();
 }
@@ -14,7 +17,7 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: widget.cardWidth,
       decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
       child: Column(children: [
         Column(
@@ -25,7 +28,7 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
               children: [
                 Container(
                     height: MediaQuery.of(context).size.height / 7,
-                    width: 200,
+                    width: widget.productImgWidth,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: Colors.white.withOpacity(0.2),

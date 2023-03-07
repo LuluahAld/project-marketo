@@ -4,8 +4,12 @@ import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/seller.dart';
 
 class SellerCard extends StatefulWidget {
-  SellerCard({Key? key, required this.seller}) : super(key: key);
+  SellerCard({Key? key, required this.seller, required this.cardWidth, required this.productImgWidth})
+      : super(key: key);
   Seller seller;
+  double cardWidth;
+  double productImgWidth;
+
   @override
   State<SellerCard> createState() => _SellerCard();
 }
@@ -14,7 +18,9 @@ class _SellerCard extends State<SellerCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      // width: 200,
+      // width: MediaQuery.of(context).size.width / 2.3,
+      width: widget.cardWidth,
       decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
       child: Column(children: [
         Column(
@@ -22,7 +28,9 @@ class _SellerCard extends State<SellerCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                width: 200,
+                // width: 200,
+                // width: MediaQuery.of(context).size.width / 2.2,
+                width: widget.productImgWidth,
                 height: 120,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

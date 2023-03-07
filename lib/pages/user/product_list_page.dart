@@ -43,6 +43,8 @@ class ProductListPage extends StatelessWidget {
                           category: 'category',
                           country: 'country',
                           imageUrl: 'images/bag2.jpg'),
+                      cardWidth: 200,
+                      productImgWidth: 200,
                     ),
                     ProsuctCard2(
                       product: const Product(
@@ -56,6 +58,8 @@ class ProductListPage extends StatelessWidget {
                           category: 'category',
                           country: 'country',
                           imageUrl: 'images/bag2.jpg'),
+                      cardWidth: 200,
+                      productImgWidth: 200,
                     ),
                   ],
                 ),
@@ -77,6 +81,8 @@ class ProductListPage extends StatelessWidget {
                           category: 'category',
                           country: 'country',
                           imageUrl: 'images/bag2.jpg'),
+                      cardWidth: 200,
+                      productImgWidth: 200,
                     ),
                     ProsuctCard2(
                       product: const Product(
@@ -90,6 +96,8 @@ class ProductListPage extends StatelessWidget {
                           category: 'category',
                           country: 'country',
                           imageUrl: 'images/bag2.jpg'),
+                      cardWidth: 200,
+                      productImgWidth: 200,
                     ),
                   ],
                 ),
