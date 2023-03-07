@@ -14,7 +14,6 @@ class _SellerCard extends State<SellerCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 266,
       width: 200,
       decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
       child: Column(children: [
@@ -23,8 +22,8 @@ class _SellerCard extends State<SellerCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                height: MediaQuery.of(context).size.height / 4,
                 width: 200,
+                height: 120,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white.withOpacity(0.2),
@@ -45,7 +44,7 @@ class _SellerCard extends State<SellerCard> {
                     children: [
                       const Icon(Icons.location_on_outlined),
                       const SizedBox(
-                        width: 10,
+                        width: 4,
                       ),
                       MText(text: widget.seller.location, fontweight: FontWeight.normal, color: green, size: 16),
                     ],

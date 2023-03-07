@@ -41,7 +41,7 @@ class SellerProductListPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ProsuctCard2(product: const Product('id', 'Bag', 100, 'Gucci', 'Bags', 4.5, 'images/bag1.jpg')),
+                    ProsuctCard2(product: const Product('id', 'Bag', 100, 'Gucci', 'Bags', 4.5, 'images/bag1.png')),
                     ProsuctCard2(
                         product: const Product('id', 'T-Shirt', 100, 'Gucci', 'T-Shirts', 4.5, 'images/pic1.png')),
                   ],

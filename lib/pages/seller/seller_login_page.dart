@@ -6,7 +6,6 @@ import 'package:project_teamd/components/textfields/textfield_m.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/pages/seller/Shome.dart';
-import 'package:project_teamd/pages/user/home.dart';
 
 class SLoginPage extends StatefulWidget {
   const SLoginPage({super.key}) : super();
@@ -57,7 +56,12 @@ class _SLoginPage extends State<SLoginPage> with SingleTickerProviderStateMixin 
                   const Logo(size: 290),
                   const SizedBox(height: 52),
                   Text(
-                    'Create an account and discover thousands of relevant products and connect with Personal Shoppers.',
+                    'Business',
+                    style: TextStyle(color: pink, fontSize: 36, fontWeight: FontWeight.w300),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    'Create your business account ',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w300,
@@ -65,7 +69,7 @@ class _SLoginPage extends State<SLoginPage> with SingleTickerProviderStateMixin 
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 52),
+                  const SizedBox(height: 40),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0),
                     child: _buildMenuBar(context),

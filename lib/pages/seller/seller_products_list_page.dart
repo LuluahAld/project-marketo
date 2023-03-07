@@ -13,72 +13,76 @@ class SellerPListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-            child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    color: grey,
-                    child: Column(
-                      children: const [
-                        Logo(size: 200),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MText(text: 'Products', fontweight: FontWeight.bold, color: green, size: 20),
-                      SizedBox(
-                        width: 200,
-                        child: Sbutton(
-                          text: ' + Add Product',
-                          color: lightgreen,
-                          NavChoice: 1,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SellerProductDetails(
-                                    product:
-                                        const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
-                                  )));
-                    },
-                    child: SProductHorisCard(
-                      product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SProductHorisCard(
-                    product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SProductHorisCard(
-                    product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  SProductHorisCard(
-                    product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
-                  ),
-                ]))));
+        body: Column(children: [
+      Container(
+        width: MediaQuery.of(context).size.width,
+        height: 130,
+        color: grey,
+        child: Column(
+          children: const [
+            SizedBox(height: 56),
+            Logo(size: 230),
+            SizedBox(height: 8),
+          ],
+        ),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      ListView(
+        shrinkWrap: true,
+        padding: const EdgeInsets.all(12),
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MText(text: 'Products', fontweight: FontWeight.bold, color: green, size: 20),
+              SizedBox(
+                width: 200,
+                child: Sbutton(
+                  text: ' + Add Product',
+                  color: lightgreen,
+                  NavChoice: 1,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => SellerProductDetails(
+                            product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+                          )));
+            },
+            child: SProductHorisCard(
+              product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SProductHorisCard(
+            product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SProductHorisCard(
+            product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          SProductHorisCard(
+            product: const Product('id', 'name', 100, 'brand', 'category', 4.5, 'images/pic1.png'),
+          ),
+        ],
+      ),
+    ]));
   }
 }

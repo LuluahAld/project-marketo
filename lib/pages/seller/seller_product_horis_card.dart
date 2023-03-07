@@ -12,8 +12,8 @@ class SProductHorisCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height / 10,
-          padding: padding,
+          height: MediaQuery.of(context).size.height / 9.5,
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: lightgrey,
             borderRadius: borderRad,
@@ -25,6 +25,7 @@ class SProductHorisCard extends StatelessWidget {
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(product.name),
                   const SizedBox(
@@ -48,11 +49,10 @@ class SProductHorisCard extends StatelessWidget {
                   ),
                 ],
               ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3.2,
-              ),
+              const SizedBox(width: 180),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text('Total'),
                   const SizedBox(

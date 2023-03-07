@@ -10,6 +10,7 @@ class ProductListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          elevation: 0.5,
           centerTitle: true,
           leading: const BackButton(
             color: Colors.black, // <-- SEE HERE
@@ -19,16 +20,6 @@ class ProductListPage extends StatelessWidget {
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: greyLight,
-          actions: const [
-            Icon(Icons.search, color: Colors.black),
-            SizedBox(
-              width: 20,
-            ),
-            Icon(Icons.favorite_border, color: Colors.black),
-            SizedBox(
-              width: 20,
-            )
-          ],
         ),
         body: SafeArea(
           child: SingleChildScrollView(

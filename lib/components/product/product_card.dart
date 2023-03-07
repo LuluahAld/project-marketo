@@ -14,7 +14,6 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
       width: 200,
       decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
       child: Column(children: [
@@ -25,7 +24,7 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
             Stack(
               children: [
                 Container(
-                    height: MediaQuery.of(context).size.height / 4,
+                    height: MediaQuery.of(context).size.height / 7,
                     width: 200,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -33,6 +32,7 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
                     ),
                     child: Image.asset(
                       widget.product.imageUrl,
+                      fit: BoxFit.contain,
                     )),
                 const Positioned(top: 20, left: 20, child: Icon(Icons.favorite_border)),
               ],
@@ -58,11 +58,18 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      MText(text: widget.product.category, fontweight: FontWeight.normal, color: green, size: 16),
+                      Expanded(
+                        child: Text(
+                          widget.product.category,
+                          maxLines: 1,
+                          style: TextStyle(fontSize: 16, color: green),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
                       const SizedBox(
                         width: 10,
                       ),
-                      MText(text: '${widget.product.price} SAR', fontweight: FontWeight.normal, color: green, size: 20),
+                      MText(text: '${widget.product.price} SAR', fontweight: FontWeight.normal, color: green, size: 16),
                     ],
                   ),
                 ],

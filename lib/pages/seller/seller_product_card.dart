@@ -14,8 +14,6 @@ class _SProsuctCard extends State<SProsuctCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
-      width: 200,
       decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
       child: Column(children: [
         Column(
@@ -23,14 +21,14 @@ class _SProsuctCard extends State<SProsuctCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                height: MediaQuery.of(context).size.height / 4,
-                width: 200,
+                height: MediaQuery.of(context).size.height / 7,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.white.withOpacity(0.2),
                 ),
                 child: Image.asset(
                   widget.product.imageUrl,
+                  fit: BoxFit.fill,
                 )),
             Padding(
               padding: const EdgeInsets.all(16.0),

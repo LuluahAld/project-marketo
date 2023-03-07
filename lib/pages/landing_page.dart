@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_teamd/components/logo.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/pages/login_page.dart';
+import 'package:project_teamd/pages/seller/seller_login_page.dart';
 
 import '../components/landing/landing_option_card.dart';
 
@@ -52,7 +53,9 @@ class _LandingPageState extends State<LandingPage> {
                 ),
                 const SizedBox(width: 40),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const SLoginPage()));
+                  },
                   child: const LandingOptionCard(
                     img: 'images/landing/seller.png',
                     title: 'Become a Seller',

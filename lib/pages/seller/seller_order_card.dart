@@ -14,8 +14,6 @@ class _SOrderCard extends State<SOrderCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 250,
-      width: 200,
       decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
       child: Column(children: [
         Column(
@@ -23,7 +21,7 @@ class _SOrderCard extends State<SOrderCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Container(
-                height: MediaQuery.of(context).size.height / 4,
+                height: MediaQuery.of(context).size.height / 7,
                 width: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),

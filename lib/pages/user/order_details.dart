@@ -28,7 +28,68 @@ class OrderDetials extends StatelessWidget {
           const SizedBox(height: 48),
           const sellerCustomerInfo(),
           const SizedBox(height: 32),
-          MText(text: 'Products', fontweight: FontWeight.w500, color: green, size: 24)
+          MText(text: 'Products', fontweight: FontWeight.w500, color: lightgreen, size: 24),
+          const SizedBox(height: 16),
+          const OrderDetailsCard()
+        ],
+      ),
+    );
+  }
+}
+
+class OrderDetailsCard extends StatelessWidget {
+  const OrderDetailsCard({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: lightgrey,
+        borderRadius: borderRad,
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(12),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('Product Title'),
+                    SizedBox(height: 4),
+                    Text('Category'),
+                    SizedBox(height: 4),
+                    Text('Description'),
+                  ],
+                ),
+                const SizedBox(width: 100),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    Text('Price'),
+                    SizedBox(height: 4),
+                    Text('Brand'),
+                    SizedBox(height: 4),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Container(
+              height: 80,
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
+                color: grey,
+              ),
+              child: Image.asset(
+                'images/bag1.png',
+                width: 120,
+              )),
         ],
       ),
     );
