@@ -41,9 +41,34 @@ class SellerProductListPage extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    ProsuctCard2(product: const Product('id', 'Bag', 100, 'Gucci', 'Bags', 4.5, 'images/bag1.png')),
                     ProsuctCard2(
-                        product: const Product('id', 'T-Shirt', 100, 'Gucci', 'T-Shirts', 4.5, 'images/pic1.png')),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
+                    ),
+                    ProsuctCard2(
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
+                    ),
                   ],
                 ),
                 const SizedBox(
@@ -53,9 +78,33 @@ class SellerProductListPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ProsuctCard2(
-                        product: const Product('id', 'Watch', 100, 'Gucci', 'Watches', 4.5, 'images/watch1.jpg')),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
+                    ),
                     ProsuctCard2(
-                        product: const Product('id', 'T-Shirt', 100, 'Gucci', 'T-Shirts', 4.5, 'images/pic1.png')),
+                      product: const Product(
+                        "1",
+                        "High Brand Bags channel",
+                        9.0,
+                        "channel",
+                        "limited edition line",
+                        "Hadi",
+                        '5',
+                        "Bags",
+                        5.0,
+                        'images/bag2.jpg',
+                      ),
+                    ),
                   ],
                 ),
               ],
