@@ -5,9 +5,10 @@ import 'package:project_teamd/components/logo.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/order.dart';
 import 'package:project_teamd/model/product.dart';
-import 'package:project_teamd/pages/seller/Sbotton.dart';
 import 'package:project_teamd/pages/seller/seller_order_card.dart';
 import 'package:project_teamd/pages/seller/seller_product_card.dart';
+
+import 'Sbotton.dart';
 
 class SellerHomePage extends StatelessWidget {
   const SellerHomePage({super.key});
@@ -70,7 +71,7 @@ class SellerHomePage extends StatelessWidget {
                         '5',
                         "Bags",
                         5.0,
-                        'images/pic1.jpg',
+                        'images/pic1.png',
                       ),
                     ),
                     const SizedBox(

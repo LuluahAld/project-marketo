@@ -21,7 +21,7 @@ class ExplorePage extends StatelessWidget {
       '5',
       "Bags",
       5.0,
-      'images/bag1.jpg',
+      'images/bag1.png',
     );
 
     return Scaffold(

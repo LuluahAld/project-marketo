@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/profile/avatar.dart';
 import 'package:project_teamd/components/seller/overall_rate.dart';
@@ -11,165 +14,352 @@ import '../../components/seller/circular_tag.dart';
 
 final PageController _pageController = PageController(initialPage: 0);
 
-class ViewSeller extends StatelessWidget {
+class ViewSeller extends StatefulWidget {
   const ViewSeller({super.key});
 
   @override
+  State<ViewSeller> createState() => _ViewSellerState();
+}
+
+class _ViewSellerState extends State<ViewSeller> {
+  List<bool> isSelect = [false, false, false];
+  File? imageFile;
+
+  @override
+  void initState() {
+    isSelect = [true, false, false];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-        ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+    Seller seller = const Seller('Sameera', "@SuperSameera", "sameera@gmail.com", "Bags Store from london",
+        ['very good,fabuilas'], "2", "images", 'Jedddah', 'S', [], [], "5.0");
 
     return Scaffold(
-        body: Column(
-      children: [
-        Stack(
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height / 2.9,
-              width: double.infinity,
-              decoration: BoxDecoration(color: grey),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const SizedBox(height: 60),
-                  Avatar(initial: seller.letter, radius: 55),
-                  const SizedBox(height: 10),
-                  MText(text: seller.userName, fontweight: FontWeight.w500, color: Colors.black, size: 20),
-                  const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        decoration:
-                            BoxDecoration(color: lightgreen, borderRadius: const BorderRadius.all(Radius.circular(10))),
-                        height: MediaQuery.of(context).size.height / 20,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: lightgreen,
-                            minimumSize: const Size.fromHeight(50),
+      body: Column(
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height / 2.5,
+                width: double.infinity,
+                decoration: BoxDecoration(color: grey),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const SizedBox(height: 90),
+                    Avatar(initial: seller.letter, radius: 55),
+                    const SizedBox(height: 10),
+                    MText(text: seller.userName, fontweight: FontWeight.w500, color: Colors.black, size: 20),
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color: lightgreen, borderRadius: const BorderRadius.all(Radius.circular(10))),
+                          height: MediaQuery.of(context).size.height / 20,
+                          width: MediaQuery.of(context).size.width / 2.4,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: lightgreen,
+                              minimumSize: const Size.fromHeight(50),
+                            ),
+                            onPressed: () {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const [
+                                Icon(
+                                  Icons.favorite_border,
+                                  color: Colors.white,
+                                ),
+                                Text(
+                                  "Save",
+                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
                           ),
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Icon(
-                                Icons.favorite_border,
-                                color: Colors.white,
-                              ),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: lightgreen, borderRadius: const BorderRadius.all(Radius.circular(10))),
+                          height: MediaQuery.of(context).size.height / 20,
+                          width: MediaQuery.of(context).size.width / 2.4,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: lightgreen,
+                              minimumSize: const Size.fromHeight(50),
+                            ),
+                            onPressed: () {
+                              showModalBottomSheet(
+                                context: context,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(25.0),
+                                  ),
+                                ),
+                                builder: (context) {
+                                  return SizedBox(
+                                    height: 450,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 20, right: 20),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const SizedBox(height: 40),
+                                          Text(
+                                            'Description*',
+                                            style: TextStyle(fontSize: 20, color: green, fontWeight: FontWeight.w500),
+                                          ),
+                                          const TextField(),
+                                          const SizedBox(height: 20),
+                                          Text(
+                                            'Suggested Price',
+                                            style: TextStyle(fontSize: 20, color: green, fontWeight: FontWeight.w500),
+                                          ),
+                                          const TextField(),
+                                          const SizedBox(height: 20),
+                                          Text(
+                                            '+ Choose Image',
+                                            style: TextStyle(color: green, fontSize: 20, fontWeight: FontWeight.w500),
+                                          ),
+                                          const SizedBox(height: 20),
+                                          Container(
+                                            child: imageFile == null
+                                                ? Container(
+                                                    alignment: Alignment.center,
+                                                    child: Row(
+                                                      mainAxisAlignment: MainAxisAlignment.center,
+                                                      children: <Widget>[
+                                                        ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(backgroundColor: lightgreen),
+                                                          onPressed: () {
+                                                            _getFromGallery();
+                                                          },
+                                                          child: const Text("PICK FROM GALLERY"),
+                                                        ),
+                                                        const SizedBox(
+                                                          width: 20,
+                                                        ),
+                                                        ElevatedButton(
+                                                          style: ElevatedButton.styleFrom(backgroundColor: lightgreen),
+                                                          onPressed: () {
+                                                            _getFromCamera();
+                                                          },
+                                                          child: const Text("PICK FROM CAMERA"),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  )
+                                                : Image.asset(
+                                                    imageFile!.path,
+                                                    fit: BoxFit.cover,
+                                                    width: 100,
+                                                  ),
+                                          ),
+                                          const SizedBox(height: 12),
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: lightgreen,
+                                                minimumSize: const Size.fromHeight(50),
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(context);
+                                                imageFile = null;
+                                              },
+                                              child: const Text(
+                                                'Request',
+                                                style: TextStyle(fontSize: 16),
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: const [
+                                Icon(
+                                  Icons.chat_bubble_outline_outlined,
+                                  color: Colors.white,
+                                ),
+                                SizedBox(width: 12),
+                                Text(
+                                  "Request",
+                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            isSelect.setAll(0, [false, false, false]);
+                            isSelect[0] = !isSelect[0];
+                            setState(() {});
+                            _pageController.animateToPage(0,
+                                duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
+                          },
+                          child: Column(
+                            children: [
                               Text(
-                                "save",
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                'About',
+                                style: TextStyle(
+                                  color: isSelect[0] ? green : lightgreen,
+                                  fontSize: 20,
+                                ),
                               ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              if (isSelect[0])
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 3.3,
+                                  child: Divider(
+                                    height: 0,
+                                    thickness: 3,
+                                    color: green,
+                                  ),
+                                ),
                             ],
                           ),
                         ),
-                      ),
-                      Container(
-                        decoration:
-                            BoxDecoration(color: lightgreen, borderRadius: const BorderRadius.all(Radius.circular(10))),
-                        height: MediaQuery.of(context).size.height / 20,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: lightgreen,
-                            minimumSize: const Size.fromHeight(50),
-                          ),
-                          onPressed: () {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: const [
-                              Icon(
-                                Icons.chat_bubble_outline_outlined,
-                                color: Colors.white,
-                              ),
+                        InkWell(
+                          onTap: () {
+                            isSelect.setAll(0, [false, false, false]);
+                            isSelect[1] = !isSelect[1];
+                            setState(() {});
+                            _pageController.animateToPage(1,
+                                duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
+                          },
+                          child: Column(
+                            children: [
                               Text(
-                                "Request",
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                'Products',
+                                style: TextStyle(
+                                  color: isSelect[1] ? green : lightgreen,
+                                  fontSize: 20,
+                                ),
                               ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              if (isSelect[1])
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 3.3,
+                                  child: Divider(
+                                    height: 0,
+                                    thickness: 3,
+                                    color: green,
+                                  ),
+                                ),
                             ],
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: grey,
-                            minimumSize: const Size.fromHeight(50),
-                          ),
-                          onPressed: () {
-                            _pageController.jumpToPage(0);
+                        InkWell(
+                          onTap: () {
+                            isSelect.setAll(0, [false, false, false]);
+                            isSelect[2] = !isSelect[2];
+                            setState(() {});
+                            _pageController.animateToPage(2,
+                                duration: const Duration(milliseconds: 350), curve: Curves.easeIn);
                           },
-                          child: Text(
-                            "About",
-                            style: TextStyle(fontSize: 18, color: lightgreen),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Reviews',
+                                style: TextStyle(
+                                  color: isSelect[2] ? green : lightgreen,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 12,
+                              ),
+                              if (isSelect[2])
+                                SizedBox(
+                                  width: MediaQuery.of(context).size.width / 3.3,
+                                  child: Divider(
+                                    height: 0,
+                                    thickness: 3,
+                                    color: green,
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: grey,
-                            minimumSize: const Size.fromHeight(50),
-                          ),
-                          onPressed: () {
-                            _pageController.jumpToPage(1);
-                          },
-                          child: Text(
-                            "Products",
-                            style: TextStyle(fontSize: 18, color: lightgreen),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                        width: MediaQuery.of(context).size.width / 3,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: grey,
-                            minimumSize: const Size.fromHeight(50),
-                          ),
-                          onPressed: () {
-                            _pageController.jumpToPage(2);
-                          },
-                          child: Text(
-                            "Reviews",
-                            style: TextStyle(fontSize: 19, color: lightgreen),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-            Positioned(
-                bottom: 230,
+              Positioned(
+                top: 50,
                 left: 10,
                 child: FloatingActionButton(
-                    elevation: 0,
-                    backgroundColor: Colors.transparent,
-                    onPressed: () {},
-                    child: Icon(
-                      Icons.arrow_back,
-                      color: green,
-                      size: 30,
-                    ))),
-          ],
-        ),
-        SizedBox(height: MediaQuery.of(context).size.height / 1.9, child: const UserSellerPageView())
-      ],
-    ));
+                  elevation: 0,
+                  backgroundColor: Colors.transparent,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Icon(
+                    Icons.arrow_back_ios,
+                    color: green,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: MediaQuery.of(context).size.height / 1.9, child: const UserSellerPageView())
+        ],
+      ),
+    );
+  }
+
+  _getFromCamera() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.camera,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(() {
+        imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  _getFromGallery() async {
+    XFile? pickedFile = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 1800,
+      maxHeight: 1800,
+    );
+    if (pickedFile != null) {
+      setState(
+        () {
+          imageFile = File(pickedFile.path);
+        },
+      );
+    }
   }
 }
 
@@ -249,12 +439,23 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-        ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
-    return Column(children: [
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
+    Seller seller = const Seller(
+        'Hadi',
+        "@Super Hadi",
+        "hadi@gmail.com",
+        "Hi, I’m a Personal Shopper, specializing in wardrobe. My clients range from business professionals who are simply too busy to shop to those who simply wish to revamp their wardrobes.",
+        ['very good,fabuilas'],
+        "2",
+        '"imageUrl", ',
+        'Alahsaa',
+        'H',
+        [],
+        [],
+        "5.0");
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+      child: Column(children: [
+        Row(
           children: [
             MText(
               text: "Seller Information",
@@ -264,64 +465,60 @@ class About extends StatelessWidget {
             )
           ],
         ),
-      ),
-      const Divider(
-        height: 4,
-        thickness: 2.0,
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          children: [
-            MText(
-              text: seller.about,
-              color: green,
-              fontweight: FontWeight.normal,
-              size: 16,
-            )
-          ],
+        const Divider(
+          height: 40,
+          thickness: 1.5,
         ),
-      ),
-      const Divider(
-        height: 4,
-        thickness: 2.0,
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            seller.about,
+            textAlign: TextAlign.justify,
+            style: TextStyle(
+              color: green,
+              fontWeight: FontWeight.w300,
+              fontSize: 16,
+            ),
+          ),
+        ),
+        const Divider(
+          height: 40,
+          thickness: 1.5,
+        ),
+        Row(
           children: [
             SellerLocationCard(
               seller: seller,
             )
           ],
         ),
-      ),
-      const Divider(
-        height: 4,
-        thickness: 2.0,
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
+        const Divider(
+          height: 40,
+          thickness: 1.5,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            children: [
+              MText(
+                text: "Specialization",
+                color: green,
+                fontweight: FontWeight.normal,
+                size: 24,
+              )
+            ],
+          ),
+        ),
+        //
+        Row(
           children: [
-            MText(
-              text: "Specialization",
-              color: green,
-              fontweight: FontWeight.normal,
-              size: 24,
-            )
+            CircularTag('Bags', Colors.white, lightgreen),
+            CircularTag('Bracelets', Colors.white, lightgreen),
+            CircularTag('Tops', Colors.white, lightgreen),
           ],
         ),
-      ),
-      //
-      Row(
-        children: [
-          CircularTag('Bags', MediaQuery.of(context).size.width / 4.5, Colors.white, lightgreen),
-          CircularTag('Bracelets', MediaQuery.of(context).size.width / 4, Colors.white, lightgreen),
-          CircularTag('Tops', MediaQuery.of(context).size.width / 4.5, Colors.white, lightgreen),
-        ],
-      ),
-    ]);
+      ]),
+    );
   }
 }
 
@@ -350,8 +547,8 @@ class Reviews extends StatelessWidget {
     return Column(children: [
       OverAllRate(seller.rating, green, FontWeight.w400, 22, lightgreen),
       const Divider(
-        height: 4,
-        thickness: 2.0,
+        height: 40,
+        thickness: 1.5,
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),
@@ -372,6 +569,7 @@ class Reviews extends StatelessWidget {
           ],
         ),
       ),
+      const SizedBox(height: 20),
       Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
