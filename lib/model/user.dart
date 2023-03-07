@@ -8,12 +8,12 @@ class User {
   final String location;
   final List<Order> order;
 
-  const User(
-    this.name,
-    this.userName,
-    this.email,
-    this.id,
-    this.location,
-    this.order,
-  );
+  User({
+    required this.name,
+    required this.userName,
+    required this.email,
+    required this.id,
+    required this.location,
+    required this.order,
+  });
 }

@@ -34,7 +34,7 @@ class _ViewSellerState extends State<ViewSeller> {
   @override
   Widget build(BuildContext context) {
     Seller seller = const Seller('Sameera', "@SuperSameera", "sameera@gmail.com", "Bags Store from london",
-        ['very good,fabuilas'], "2", "images", 'Jedddah', 'S', [], [], "5.0");
+        ['very good,fabuilas'], "2", "images", 'Jeddah', 'S', [], [], "5.0");
 
     return Scaffold(
       body: Column(
@@ -542,7 +542,8 @@ class Reviews extends StatelessWidget {
   Widget build(BuildContext context) {
     Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
         ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
-    User user = const User('Hana', 'Super Hana', 'hana@gmail.com', '1', "KSA Dhahran", []);
+    User user = User(
+        name: 'Hana', userName: 'Super Hana', email: 'hana@gmail.com', id: '1', location: '"KSA Dhahran"', order: []);
 
     return Column(children: [
       OverAllRate(seller.rating, green, FontWeight.w400, 22, lightgreen),
