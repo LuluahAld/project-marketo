@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/order/order_horis_card.dart';
 import 'package:project_teamd/model/order.dart';
+import 'package:project_teamd/pages/seller/seller_order_details.dart';
 
 import '../../components/appText/m_text.dart';
 import '../../constants/color_pallete.dart';
@@ -34,7 +35,7 @@ class SellerOListPage extends StatelessWidget {
             itemCount: 6,
             itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const Scaffold()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SOrderDetials()));
                 },
                 child: orderHorisCard(
                     order: const Order(

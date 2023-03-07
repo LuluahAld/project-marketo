@@ -10,9 +10,7 @@ import 'package:project_teamd/model/seller.dart';
 import 'package:project_teamd/model/user.dart';
 
 import '../../components/location/seller_location_card.dart';
-import '../../components/product/product_card.dart';
 import '../../components/seller/circular_tag.dart';
-import '../../model/product.dart';
 
 final PageController _pageController = PageController(initialPage: 0);
 
@@ -36,7 +34,7 @@ class _ViewSellerState extends State<ViewSeller> {
   @override
   Widget build(BuildContext context) {
     Seller seller = const Seller('Sameera', "@SuperSameera", "sameera@gmail.com", "Bags Store from london",
-        ['very good,fibulas'], "2", "images", 'Jedddah', 'S', [], [], "5.0");
+        ['very good,fabuilas'], "2", "images", 'Jedddah', 'S', [], [], "5.0");
 
     return Scaffold(
       body: Column(
@@ -374,8 +372,8 @@ class UserSellerPageView extends StatefulWidget {
 
 class _UserSellerPageViewState extends State<UserSellerPageView> {
   // declare and initizlize the page controller
-  Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london", ['very good,fibulas'],
-      "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+  Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
+      ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
 
   // the index of the current page
 
@@ -446,7 +444,7 @@ class About extends StatelessWidget {
         "@Super Hadi",
         "hadi@gmail.com",
         "Hi, I’m a Personal Shopper, specializing in wardrobe. My clients range from business professionals who are simply too busy to shop to those who simply wish to revamp their wardrobes.",
-        ['very good,fibulas'],
+        ['very good,fabuilas'],
         "2",
         '"imageUrl", ',
         'Alahsaa',
@@ -531,50 +529,8 @@ class Products extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-        ['very good,fibulas'], "2", "images/bag1.png", 'alahsaa', 'H', [], [], "5.0");
-    return Column(
-      children: [
-        ListView(padding: EdgeInsets.zero, physics: const BouncingScrollPhysics(), shrinkWrap: true, children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ProsuctCard2(
-                product: const Product(
-                  id: 'id',
-                  name: 'name',
-                  brand: 'brand',
-                  shopName: 'shopName',
-                  description: 'description',
-                  rating: 5,
-                  price: 1000,
-                  category: 'category',
-                  country: 'country',
-                  imageUrl: 'images/bag2.jpg',
-                ),
-                cardWidth: MediaQuery.of(context).size.width / 2.3,
-                productImgWidth: MediaQuery.of(context).size.width / 2.2,
-              ),
-              ProsuctCard2(
-                product: const Product(
-                  id: 'id',
-                  name: 'name',
-                  brand: 'brand',
-                  shopName: 'shopName',
-                  description: 'description',
-                  rating: 5,
-                  price: 1000,
-                  category: 'category',
-                  country: 'country',
-                  imageUrl: 'images/bag1.png',
-                ),
-                cardWidth: MediaQuery.of(context).size.width / 2.3,
-                productImgWidth: MediaQuery.of(context).size.width / 2.2,
-              ),
-            ],
-          )
-        ]),
-      ],
-    );
+        ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+    return Column(children: const []);
   }
 }
 
@@ -585,7 +541,7 @@ class Reviews extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Seller seller = const Seller('Hadi', "@Super Hadi", "hadi@gmail.com", "Bags Store from london",
-        ['very good,fibulas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
+        ['very good,fabuilas'], "2", '"imageUrl", ', 'alahsaa', 'H', [], [], "5.0");
     User user = const User('Hana', 'Super Hana', 'hana@gmail.com', '1', "KSA Dhahran", []);
 
     return Column(children: [

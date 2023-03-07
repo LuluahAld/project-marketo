@@ -25,15 +25,11 @@ class SellerPage extends StatelessWidget {
                   children: [
                     SellerCard(
                       seller: const Seller('Sameera', "@Super Sameera", "Sameera@gmail.com", "Shoose Store from london",
-                          ['very good,fibulas'], "2", "imageUrl", 'Jeddah', 'H', [], [], "5.0"),
-                      cardWidth: 200,
-                      productImgWidth: 200,
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'H', [], [], "5.0"),
                     ),
                     SellerCard(
                       seller: const Seller('Hana', "@Super Hana", "Hana@gmail.com", "whatches Store from lebanon",
-                          ['very good,fibulas'], "2", "imageUrl", 'Jeddah', 'H', [], [], "5.0"),
-                      cardWidth: 200,
-                      productImgWidth: 200,
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'H', [], [], "5.0"),
                     ),
                   ],
                 ),
@@ -45,15 +41,11 @@ class SellerPage extends StatelessWidget {
                   children: [
                     SellerCard(
                       seller: const Seller('Sameera', "@Super Sameera", "Sameera@gmail.com", "Shoose Store from london",
-                          ['very good,fibulas'], "2", "imageUrl", 'Jeddah', 'S', [], [], "5.0"),
-                      cardWidth: 200,
-                      productImgWidth: 200,
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'S', [], [], "5.0"),
                     ),
                     SellerCard(
                       seller: const Seller('Luluah', "@Super Luluah", "Luluah@gmail.com", "whatches Store from lebanon",
-                          ['very good,fibulas'], "2", "imageUrl", 'Jeddah', 'L', [], [], "5.0"),
-                      cardWidth: 200,
-                      productImgWidth: 200,
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'L', [], [], "5.0"),
                     ),
                   ],
                 ),
