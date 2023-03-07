@@ -31,12 +31,12 @@ class SellerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SellerCard(
-                      seller: const Seller(
-                          'Sameera', 'userName', 'email', 'id', 'Jeddah', 'images/single-person.png', [], [], '5'),
+                      seller: const Seller('Sameera', "@Super Sameera", "Sameera@gmail.com", "Shoose Store from london",
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'H', [], [], "5.0"),
                     ),
                     SellerCard(
-                      seller: const Seller(
-                          'Hana', 'userName', 'email', 'id', 'Riyadh', 'images/single-person.png', [], [], '5'),
+                      seller: const Seller('Hana', "@Super Hana", "Hana@gmail.com", "whatches Store from lebanon",
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'H', [], [], "5.0"),
                     ),
                   ],
                 ),
@@ -47,12 +47,12 @@ class SellerPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     SellerCard(
-                      seller: const Seller(
-                          'Hadi', 'userName', 'email', 'id', 'Jeddah', 'images/single-person2.png', [], [], '5'),
+                      seller: const Seller('Sameera', "@Super Sameera", "Sameera@gmail.com", "Shoose Store from london",
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'S', [], [], "5.0"),
                     ),
                     SellerCard(
-                      seller: const Seller(
-                          'Luluah', 'userName', 'email', 'id', 'Riyadh', 'images/single-person.png', [], [], '5'),
+                      seller: const Seller('Luluah', "@Super Luluah", "Luluah@gmail.com", "whatches Store from lebanon",
+                          ['very good,fabuilas'], "2", "imageUrl", 'Jeddah', 'L', [], [], "5.0"),
                     ),
                   ],
                 ),

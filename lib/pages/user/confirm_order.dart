@@ -1,0 +1,49 @@
+import 'package:flutter/material.dart';
+import 'package:project_teamd/components/appText/m_text.dart';
+import 'package:project_teamd/components/buttons/button.dart';
+import 'package:project_teamd/components/order/order_summary_card.dart';
+import 'package:project_teamd/constants/color_pallete.dart';
+import 'package:project_teamd/model/user.dart';
+
+import '../../components/order/schedual_time.dart';
+import '../../components/order_location.dart';
+
+class ConfirmOrder extends StatelessWidget {
+  const ConfirmOrder({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    User user = const User('Hana', 'Super Hana', 'hana@gmail.com', '1', "KSA Dhahran", []);
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: grey,
+          toolbarHeight: 80.0,
+          title: MText(
+            text: "Confirm Order",
+            fontweight: FontWeight.bold,
+            color: green,
+            size: 20,
+          ),
+        ),
+        body: Padding(
+            padding: const EdgeInsets.all(25),
+            child: ListView(
+              children: [
+                OrderLocationCard(user),
+                const SizedBox(
+                  height: 32,
+                ),
+                const scheduleTime(),
+                const SizedBox(
+                  height: 32,
+                ),
+                const OrderSummaryCard('9000', "100", "8000"),
+                const SizedBox(
+                  height: 32,
+                ),
+                button(color: lightgreen, text: 'Proceed to payment')
+              ],
+            )));
+  }
+}

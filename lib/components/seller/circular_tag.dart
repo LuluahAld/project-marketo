@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 
 class CircularTag extends StatelessWidget {
-  const CircularTag(this.text, this.textColor, this.containerColor, {super.key});
+  const CircularTag(this.text, this.width, this.textColor, this.containerColor, {super.key});
   final String text;
+  final double width;
   final Color containerColor;
   final Color textColor;
 
@@ -16,7 +17,7 @@ class CircularTag extends StatelessWidget {
         padding: const EdgeInsets.all(12.0),
         child: Container(
             height: MediaQuery.of(context).size.height / 20,
-            width: MediaQuery.of(context).size.width / 4.5,
+            width: width,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
               color: containerColor,

@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
+import 'package:project_teamd/model/product.dart';
 
 import '../../constants/color_pallete.dart';
 import '../../constants/padding.dart';
 
 class OrderCard extends StatelessWidget {
-  final pName;
-  final pQuantity;
-  final pPrice;
-  final pImage;
-  const OrderCard({
+  OrderCard({
     super.key,
-    required this.pName,
-    required this.pQuantity,
-    required this.pImage,
-    required this.pPrice,
+    required this.product,
   });
+  Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +26,7 @@ class OrderCard extends StatelessWidget {
           child: Column(
             children: [
               Image.asset(
-                pImage,
+                product.imageUrl,
                 fit: BoxFit.fitWidth,
               ),
             ],
@@ -55,7 +50,7 @@ class OrderCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     MText(
-                      text: pName,
+                      text: product.name,
                       fontweight: FontWeight.w500,
                       color: Colors.black,
                       size: 16,
@@ -64,7 +59,7 @@ class OrderCard extends StatelessWidget {
                       height: 6,
                     ),
                     MText(
-                      text: pQuantity,
+                      text: product.quantity,
                       fontweight: FontWeight.w500,
                       color: Colors.black,
                       size: 16,
@@ -73,7 +68,7 @@ class OrderCard extends StatelessWidget {
                       height: 6,
                     ),
                     MText(
-                      text: pPrice,
+                      text: product.price.toString(),
                       fontweight: FontWeight.w500,
                       color: lightgreen,
                       size: 16,

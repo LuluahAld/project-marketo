@@ -6,14 +6,16 @@ class Seller {
   final String name;
   final String userName;
   final String email;
+  final String about;
+  final List<String> review;
   final String id;
+  final String logo;
   final String location;
-  final String imageUrl;
+  final String letter;
   final List<Order> order;
   final List<Product> product;
   final String rating;
 
-  const Seller(this.name, this.userName, this.email, this.id, this.location, this.imageUrl, this.order, this.product,
-      this.rating);
+  const Seller(this.name, this.userName, this.email, this.about, this.review, this.id, this.logo, this.location,
+      this.letter, this.order, this.product, this.rating);
 }
-//Seller (Name, username, email, id, location, image URL, list of order, list of products, Rating) 

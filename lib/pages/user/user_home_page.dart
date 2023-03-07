@@ -7,6 +7,7 @@ import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/pages/user/user_product_details.dart';
+import 'package:project_teamd/pages/user/view_seller.dart';
 
 class UserHomePage extends StatelessWidget {
   const UserHomePage({super.key});
@@ -51,9 +52,13 @@ class UserHomePage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ProductCard(
-                          image: 'images/single-person.png',
-                          text: 'Sameera',
+                        InkWell(
+                          onTap: () =>
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller())),
+                          child: ProductCard(
+                            image: 'images/single-person.png',
+                            text: 'Sameera',
+                          ),
                         ),
                         ProductCard(
                           image: 'images/single-person2.png',
