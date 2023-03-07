@@ -44,7 +44,7 @@ class UserHomePage extends StatelessWidget {
                   children: [
                     ProductCard(
                       image: 'images/single-person.png',
-                      text: 'Sameera',
+                      text: 'Sameeraa',
                     ),
                     ProductCard(
                       image: 'images/single-person2.png',
