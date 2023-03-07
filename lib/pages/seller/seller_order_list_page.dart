@@ -37,7 +37,14 @@ class SellerOListPage extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const Scaffold()));
                 },
                 child: orderHorisCard(
-                    order: const Order('', 'orderStatus', 'orderDate', 'shopName', 'numOfProduct', []),
+                    order: const Order(
+                      id: 'id',
+                      orderStatus: 'orderStatus',
+                      orderDate: 'orderDate',
+                      shopName: 'shopName',
+                      numOfProduct: 'numOfProduct',
+                      products: [],
+                    ),
                     icon: Icons.done)),
             separatorBuilder: (BuildContext context, int index) => const SizedBox(
               height: 12,

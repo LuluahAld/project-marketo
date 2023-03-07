@@ -122,19 +122,40 @@ class SellerHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     SOrderCard(
-                      order: const Order('id', 'orderStatus', 'orderDate', 'shopName', 'numOfProduct', []),
+                      order: const Order(
+                        id: 'id',
+                        orderStatus: 'orderStatus',
+                        orderDate: 'orderDate',
+                        shopName: 'shopName',
+                        numOfProduct: 'numOfProduct',
+                        products: [],
+                      ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SOrderCard(
-                      order: const Order('id', 'orderStatus', 'orderDate', 'shopName', 'numOfProduct', []),
+                      order: const Order(
+                        id: 'id',
+                        orderStatus: 'orderStatus',
+                        orderDate: 'orderDate',
+                        shopName: 'shopName',
+                        numOfProduct: 'numOfProduct',
+                        products: [],
+                      ),
                     ),
                     const SizedBox(
                       width: 20,
                     ),
                     SOrderCard(
-                      order: const Order('id', 'orderStatus', 'orderDate', 'shopName', 'numOfProduct', []),
+                      order: const Order(
+                        id: 'id',
+                        orderStatus: 'orderStatus',
+                        orderDate: 'orderDate',
+                        shopName: 'shopName',
+                        numOfProduct: 'numOfProduct',
+                        products: [],
+                      ),
                     ),
                   ],
                 ),
