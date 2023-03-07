@@ -8,7 +8,7 @@ class MarcetoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: StartPage1(),
+      home: OnBoardingPage(),
     );
   }
 }
