@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/pages/user/explore_page.dart';
 import 'package:project_teamd/pages/user/order_page.dart';
-import 'package:project_teamd/pages/user/view_seller.dart';
+import 'package:project_teamd/pages/user/user_home_page.dart';
 
 import '../../components/bottomNaviagtionBar/bottom_nav_bar.dart';
 import 'profile_page.dart';
@@ -25,7 +25,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     final pages = [
-      const ViewSeller(),
+      const UserHomePage(),
       const ExplorePage(),
       const OrderPage(),
       const ProfilePage(),
