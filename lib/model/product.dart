@@ -32,7 +32,7 @@ class Product {
         shopName: map['shopName'],
         category: map['category'],
         country: map['country'],
-        rating: map['rating'],
+        rating: double.parse(map['rating'].toString()),
         imageUrl: map['imageUrl']);
   }
 
