@@ -16,6 +16,7 @@ dependencies:
     intl:
     bottom_picker:
     smooth_page_indicator: ^1.0.1
+    firebase_core: ^2.7.0
 
 dev_dependencies:
     flutter_test:
