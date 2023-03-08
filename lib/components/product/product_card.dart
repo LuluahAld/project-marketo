@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/product.dart';
+import 'package:project_teamd/model/appData.dart';
 
 class ProsuctCard2 extends StatefulWidget {
   ProsuctCard2({Key? key, required this.product, required this.cardWidth, required this.productImgWidth})
@@ -52,7 +53,11 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
                       const SizedBox(
                         width: 10,
                       ),
-                      const Icon(Icons.shopping_cart),
+                      InkWell(
+                          onTap: () {
+                            appData.cart.add(widget.product);
+                          },
+                          child: const Icon(Icons.shopping_cart)),
                     ],
                   ),
                   const SizedBox(

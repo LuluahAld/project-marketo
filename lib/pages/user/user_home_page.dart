@@ -6,14 +6,33 @@ import 'package:project_teamd/components/product/product_cart.dart';
 import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
+import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/pages/user/cart.dart';
 import 'package:project_teamd/pages/user/view_seller.dart';
 
-class UserHomePage extends StatelessWidget {
+class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
 
   @override
+  State<UserHomePage> createState() => _UserHomePageState();
+}
+
+class _UserHomePageState extends State<UserHomePage> {
+  @override
+  void initState() {
+    appData.visability();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (appData.cart.isEmpty) {
+      appData.cartVisible == false;
+      setState(() {});
+    } else {
+      appData.cartVisible == true;
+      setState(() {});
+    }
     return Scaffold(
         body: Column(
           children: [
@@ -133,17 +152,46 @@ class UserHomePage extends StatelessWidget {
             )
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
-          },
-          backgroundColor: lightgrey,
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: Icon(
-              Icons.shopping_cart,
-              color: green,
+        floatingActionButton: Visibility(
+          visible: appData.cartVisible,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
+            },
+            backgroundColor: lightgrey,
+            child: Stack(
+              children: [
+                const SizedBox(
+                  height: 70,
+                  width: 70,
+                ),
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Icon(
+                    Icons.shopping_cart,
+                    color: green,
+                    size: 40,
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: pink,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      '${appData.cart.length}',
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ));
