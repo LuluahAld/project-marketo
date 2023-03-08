@@ -9,6 +9,8 @@ import 'package:project_teamd/constants/padding.dart';
 
 import '../model/user.dart';
 
+bool isUser = false;
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key}) : super();
 
@@ -235,8 +237,27 @@ class _LoginState extends State<Login> {
   bool isVisible = false;
   bool isLoading = false;
   bool isLoggedIn = false;
+
   @override
   void initState() {
+    listenToUsers() {
+      // ignore: await_only_futures
+      FirebaseFirestore.instance.collection('user').snapshots().listen(
+        (collection) {
+          List<Users> newList = [];
+          for (final doc in collection.docs) {
+            final usersN = Users.fromMap(doc.data());
+            newList.add(usersN);
+          }
+          users = newList;
+          print(users.length);
+
+          setState(() {});
+        },
+      );
+    }
+
+    listenToUsers();
     super.initState();
   }
 
@@ -354,13 +375,22 @@ class _LoginState extends State<Login> {
                           setState(() {});
 
                           if (isLoggedIn) {
+                            setState(() {
+                              isLoading = false;
+                              isUser = true;
+                            });
+                            print(users.length);
+                            for (var i = 0; i < users.length; i++) {
+                              if (users[i].id == user?.uid) {
+                                currentUser = users[i];
+
+                                setState(() {});
+                              }
+                            }
                             Navigator.of(context)
                               ..pop()
                               ..pop();
                           }
-                        });
-                        setState(() {
-                          isLoading = false;
                         });
                       } on FirebaseAuthException catch (e) {
                         print(e);
@@ -543,10 +573,12 @@ class _RegisterState extends State<Register> {
                           });
                           String uid = user.uid; // <-- User ID
                           String? email = user.email;
-                          Users usernow =
+                          currentUser =
                               Users(name: '', userName: username.text, email: email, id: uid, location: '', orders: []);
+                          setState(() {});
+                          print(currentUser.userName);
                           final collection = FirebaseFirestore.instance.collection('user');
-                          collection.doc(usernow.id).set(usernow.toMap());
+                          collection.doc(currentUser.id).set(currentUser.toMap());
                         }
                       } on FirebaseAuthException {}
                       ScaffoldMessenger.of(context).showSnackBar(

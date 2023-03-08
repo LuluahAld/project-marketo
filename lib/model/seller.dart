@@ -5,14 +5,14 @@ import 'order.dart';
 class Seller {
   final String name;
   final String userName;
-  final String email;
+  final String? email;
   final String about;
-  final List<String> review;
+  final List<dynamic> review;
   final String id;
   final String logo;
   final String location;
   final String letter;
-  final List<Order> orders;
+  final List<Orders> orders;
   final List<Product> product;
   final String rating;
 
@@ -43,7 +43,7 @@ class Seller {
       letter: map['letter'],
       product: (map['product'] as List).map((e) => Product.fromMap(e)).toList(),
       rating: map['rating'],
-      orders: (map['orders'] as List).map((e) => Order.fromMap(e)).toList(),
+      orders: (map['orders'] as List).map((e) => Orders.fromMap(e)).toList(),
     );
   }
   Map<String, dynamic> toMap() {
@@ -63,3 +63,18 @@ class Seller {
     };
   }
 }
+
+List<Seller> sellers = [];
+Seller currentSeller = const Seller(
+    name: 'name',
+    userName: 'userName',
+    email: 'email',
+    about: 'about',
+    review: [],
+    id: 'id',
+    logo: 'logo',
+    location: 'location',
+    letter: 'letter',
+    orders: [],
+    product: [],
+    rating: 'rating');

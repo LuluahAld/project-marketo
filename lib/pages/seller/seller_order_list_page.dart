@@ -38,7 +38,7 @@ class SellerOListPage extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const SOrderDetials()));
                 },
                 child: orderHorisCard(
-                    order: const Order(
+                    order: const Orders(
                       id: 'id',
                       orderStatus: 'orderStatus',
                       orderDate: 'orderDate',

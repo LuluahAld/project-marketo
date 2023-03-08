@@ -21,10 +21,18 @@ class SOrderDetials extends StatelessWidget {
         padding: padding,
         children: [
           const SizedBox(height: 24),
-          const orderStatus(),
+          orderStatus(
+            order: const Orders(
+                id: 'id',
+                orderStatus: 'orderStatus',
+                orderDate: 'orderDate',
+                shopName: 'shopName',
+                numOfProduct: 'numOfProduct',
+                products: []),
+          ),
           const SizedBox(height: 48),
           orderInfoCard(
-            order: const Order(
+            order: const Orders(
               id: 'id',
               orderStatus: 'orderStatus',
               orderDate: 'orderDate',

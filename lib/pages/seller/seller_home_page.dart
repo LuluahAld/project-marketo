@@ -122,7 +122,7 @@ class SellerHomePage extends StatelessWidget {
                 child: Row(
                   children: [
                     SOrderCard(
-                      order: const Order(
+                      order: const Orders(
                         id: 'id',
                         orderStatus: 'orderStatus',
                         orderDate: 'orderDate',
@@ -135,7 +135,7 @@ class SellerHomePage extends StatelessWidget {
                       width: 20,
                     ),
                     SOrderCard(
-                      order: const Order(
+                      order: const Orders(
                         id: 'id',
                         orderStatus: 'orderStatus',
                         orderDate: 'orderDate',
@@ -148,7 +148,7 @@ class SellerHomePage extends StatelessWidget {
                       width: 20,
                     ),
                     SOrderCard(
-                      order: const Order(
+                      order: const Orders(
                         id: 'id',
                         orderStatus: 'orderStatus',
                         orderDate: 'orderDate',

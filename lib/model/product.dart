@@ -51,3 +51,5 @@ class Product {
     };
   }
 }
+
+List<Product> cart = [];

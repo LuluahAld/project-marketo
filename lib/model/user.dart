@@ -6,7 +6,7 @@ class Users {
   final String? email;
   final String id;
   final String location;
-  final List<Order> orders;
+  final List<Orders> orders;
 
   const Users({
     required this.name,
@@ -24,7 +24,7 @@ class Users {
       userName: map['userName'],
       email: map['email'],
       location: map['location'],
-      orders: (map['orders'] as List).map((e) => Order.fromMap(e)).toList(),
+      orders: (map['orders'] as List).map((e) => Orders.fromMap(e)).toList(),
     );
   }
 
@@ -39,3 +39,7 @@ class Users {
     };
   }
 }
+
+Users currentUser =
+    const Users(name: 'name', userName: 'userName', email: 'email', id: 'id', location: 'location', orders: []);
+List<Users> users = [];

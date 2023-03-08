@@ -25,48 +25,51 @@ class CartPage extends StatelessWidget {
         imageUrl: 'images/bag2.jpg');
 
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: grey,
-          toolbarHeight: 80.0,
-          title: MText(
-            text: "My Cart",
-            fontweight: FontWeight.bold,
-            color: green,
-            size: 20,
-          ),
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: green),
+        elevation: 0.5,
+        centerTitle: true,
+        backgroundColor: grey,
+        title: MText(
+          text: "My Cart",
+          fontweight: FontWeight.bold,
+          color: green,
+          size: 20,
         ),
-        body: Padding(
-            padding: padding,
-            child: ListView(
-              children: [
-                ListView.separated(
-                  physics: const BouncingScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => OrderCard(product: product),
-                  separatorBuilder: (BuildContext context, int index) => const SizedBox(
-                    height: 12,
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(bottom: 5.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MText(text: 'Total', fontweight: FontWeight.normal, color: green, size: 20),
-                      MText(text: '9000 SAR', fontweight: FontWeight.normal, color: green, size: 18),
-                    ],
-                  ),
-                ),
-                const SizedBox(
-                  height: 12,
-                ),
-                button(color: lightgreen, text: 'Continue'),
-              ],
-            )));
+      ),
+      body: Padding(
+        padding: padding,
+        child: ListView(
+          children: [
+            ListView.separated(
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: 6,
+              itemBuilder: (context, index) => OrderCard(product: product),
+              separatorBuilder: (BuildContext context, int index) => const SizedBox(
+                height: 12,
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 5.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MText(text: 'Total', fontweight: FontWeight.normal, color: green, size: 20),
+                  MText(text: '9000 SAR', fontweight: FontWeight.normal, color: green, size: 18),
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            button(color: lightgreen, text: 'Continue'),
+          ],
+        ),
+      ),
+    );
   }
 }

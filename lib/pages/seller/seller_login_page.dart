@@ -1,11 +1,14 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/logo.dart';
-import 'package:project_teamd/components/textfields/textfield_m.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
-import 'package:project_teamd/pages/seller/Shome.dart';
+import 'package:project_teamd/model/order.dart';
+import 'package:project_teamd/model/product.dart';
+import 'package:project_teamd/model/seller.dart';
 
 class SLoginPage extends StatefulWidget {
   const SLoginPage({super.key}) : super();
@@ -13,6 +16,8 @@ class SLoginPage extends StatefulWidget {
   @override
   _SLoginPage createState() => _SLoginPage();
 }
+
+bool isSeller = false;
 
 class _SLoginPage extends State<SLoginPage> with SingleTickerProviderStateMixin {
   late PageController _pageController;
@@ -232,7 +237,34 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+
+  TextEditingController password = TextEditingController();
   bool isVisible = false;
+  bool isLoading = false;
+  bool isLoggedIn = false;
+  @override
+  void initState() {
+    listenToSellers() {
+      FirebaseFirestore.instance.collection('seller').snapshots().listen(
+        (collection) {
+          List<Seller> newList = [];
+          for (final doc in collection.docs) {
+            final usersN = Seller.fromMap(doc.data());
+            newList.add(usersN);
+          }
+          sellers = newList;
+          print(sellers.length);
+          print('up');
+          setState(() {});
+        },
+      );
+    }
+
+    listenToSellers();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -257,9 +289,26 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     const SizedBox(height: 50),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: TextFieldM(hint: 'Email'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: TextField(
+                        controller: email,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(fontSize: 18),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.5, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 40),
                     Padding(
@@ -267,6 +316,7 @@ class _LoginState extends State<Login> {
                       child: SizedBox(
                         height: 50,
                         child: TextField(
+                          controller: password,
                           obscureText: !isVisible,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
@@ -295,14 +345,66 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
+              if (isLoading) ...[
+                Positioned(
+                  bottom: 20,
+                  left: 170,
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),
+                    height: 30,
+                    width: 30,
+                    child: CircularProgressIndicator(
+                      color: lightgreen,
+                    ),
+                  ),
+                ),
+              ],
               Positioned(
                 bottom: 76,
                 left: 48,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 40, right: 100),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const SHome()));
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      try {
+                        final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text,
+                        );
+                        FirebaseAuth.instance.authStateChanges().listen((user) {
+                          isLoggedIn = user != null;
+                          setState(() {});
+
+                          if (isLoggedIn) {
+                            setState(() {
+                              isLoading = false;
+                              isSeller = true;
+                            });
+                            print(sellers.length);
+                            print('down');
+                            for (var i = 0; i < sellers.length; i++) {
+                              if (sellers[i].id == user?.uid) {
+                                currentSeller = sellers[i];
+
+                                setState(() {});
+                              }
+                            }
+                            Navigator.of(context)
+                              ..pop()
+                              ..pop();
+                          }
+                        });
+                      } on FirebaseAuthException catch (e) {
+                        print(e);
+                        if (e.code == 'user-not-found') {
+                          print('No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          print('Wrong password provided for that user.');
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: lightgreen,
@@ -333,7 +435,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool isVisible = false;
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -358,21 +464,55 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     const SizedBox(height: 28),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: TextFieldM(hint: 'Email'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: TextField(
+                        controller: email,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(fontSize: 18),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.5, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 32),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: TextFieldM(hint: 'Username'),
-                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextField(
+                          controller: username,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey.shade200,
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                            hintText: 'Username',
+                            hintStyle: const TextStyle(fontSize: 18),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1, color: green),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 0.5, color: green),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        )),
                     const SizedBox(height: 32),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: SizedBox(
                         height: 50,
                         child: TextField(
+                          controller: password,
                           obscureText: !isVisible,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
@@ -401,13 +541,130 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
               ),
+              if (isLoading) ...[
+                Positioned(
+                  bottom: 20,
+                  left: 170,
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),
+                    height: 30,
+                    width: 30,
+                    child: CircularProgressIndicator(
+                      color: lightgreen,
+                    ),
+                  ),
+                ),
+              ],
               Positioned(
                 bottom: 76,
                 left: 48,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 40, right: 100),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      try {
+                        final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text,
+                        );
+                        User? user = FirebaseAuth.instance.currentUser;
+                        if (user != null) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          String uid = user.uid; // <-- User ID
+                          String? email = user.email;
+                          if (email == 'hussin@gmail.com') {
+                            currentSeller = Seller(
+                                name: 'Shopping with Hussin',
+                                userName: 'Hussin',
+                                email: email,
+                                about: 'First Male Shopper In KSA',
+                                review: ['Good', 'Great'],
+                                id: uid,
+                                logo: 'https://cdn.salla.sa/PlpaB/OQVkSOW9fZN9siCG0QuYj8aqVUYRUL4t36zWUJiS.jpg',
+                                location: 'Riyadh, Saudi Arabia',
+                                letter: '',
+                                orders: [
+                                  const Orders(
+                                    id: 'order1',
+                                    orderStatus: 'In Process',
+                                    orderDate: '15 Jan 2023',
+                                    shopName: 'Shopping with Hussin',
+                                    numOfProduct: '1',
+                                    products: [
+                                      Product(
+                                          id: 'bag4',
+                                          name: 'Loubishore Bag in Braided Palm Leaves & Leather',
+                                          price: 2600,
+                                          brand: 'CHRISTIAN LOUBOUTIN',
+                                          description:
+                                              'The Loubishore by Christian Louboutin is the perfect bag to set off your summery edits. Its classic basket-inspired silhouette is handwoven from palm leaves with logo-embossed leather patches adding a signature touch. The design is completed with the house\'s red trims on the inside of the top handles.',
+                                          shopName: 'Shopping with Hussin',
+                                          category: 'Bags',
+                                          country: 'France',
+                                          rating: 4.5,
+                                          imageUrl:
+                                              'https://ounass-prod2.atgcdn.ae/small_light(p=zoom,of=webp,q=65)/pub/media/catalog/product//2/1/214518473_natural_in.jpg?1620725566.9286')
+                                    ],
+                                  )
+                                ],
+                                product: [
+                                  const Product(
+                                      id: 'bag4',
+                                      name: 'Loubishore Bag in Braided Palm Leaves & Leather',
+                                      price: 2600,
+                                      brand: 'CHRISTIAN LOUBOUTIN',
+                                      description:
+                                          'The Loubishore by Christian Louboutin is the perfect bag to set off your summery edits. Its classic basket-inspired silhouette is handwoven from palm leaves with logo-embossed leather patches adding a signature touch. The design is completed with the house\'s red trims on the inside of the top handles.',
+                                      shopName: 'Shopping with Hussin',
+                                      category: 'Bags',
+                                      country: 'France',
+                                      rating: 4.5,
+                                      imageUrl:
+                                          'https://ounass-prod2.atgcdn.ae/small_light(p=zoom,of=webp,q=65)/pub/media/catalog/product//2/1/214518473_natural_in.jpg?1620725566.9286')
+                                ],
+                                rating: '5.0');
+                          } else {
+                            currentSeller = Seller(
+                                name: '',
+                                userName: username.text,
+                                email: email,
+                                about: '',
+                                review: [],
+                                id: uid,
+                                logo: '',
+                                location: '',
+                                letter: '',
+                                orders: [],
+                                product: [],
+                                rating: '4.8');
+                          }
+                          setState(() {});
+
+                          final collection = FirebaseFirestore.instance.collection('seller');
+                          collection.doc(currentSeller.id).set(currentSeller.toMap());
+                        }
+                      } on FirebaseAuthException {}
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          padding: const EdgeInsets.all(12),
+                          dismissDirection: DismissDirection.none,
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.all(30),
+                          backgroundColor: lightgreen,
+                          content: const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Account Successfully Registered. Please login.',
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: lightgreen,
                     ),
@@ -420,7 +677,7 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],

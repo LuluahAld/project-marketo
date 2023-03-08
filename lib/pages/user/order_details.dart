@@ -11,7 +11,7 @@ import '../../constants/color_pallete.dart';
 
 class OrderDetials extends StatelessWidget {
   OrderDetials({super.key, required this.order});
-  Order order;
+  Orders order;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +23,7 @@ class OrderDetials extends StatelessWidget {
           orderStatus(order: order),
           const SizedBox(height: 48),
           orderInfoCard(
-            order: const Order(
+            order: const Orders(
               id: 'id',
               orderStatus: 'orderStatus',
               orderDate: 'orderDate',

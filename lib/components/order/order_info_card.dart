@@ -8,7 +8,7 @@ class orderInfoCard extends StatelessWidget {
     super.key,
     required this.order,
   });
-  Order order;
+  Orders order;
   @override
   Widget build(BuildContext context) {
     return Container(

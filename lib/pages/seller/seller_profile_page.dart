@@ -4,11 +4,11 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/profile/avatar.dart';
 import 'package:project_teamd/components/profile/profile_card.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
-import 'package:project_teamd/model/user.dart';
-import 'package:project_teamd/pages/login_page.dart';
+import 'package:project_teamd/model/seller.dart';
+import 'package:project_teamd/pages/seller/seller_login_page.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class SProfilePage extends StatelessWidget {
+  const SProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +24,10 @@ class ProfilePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               const SizedBox(height: 32),
-              if (user != null) Avatar(initial: currentUser.userName[0].toUpperCase(), radius: 68),
+              if (user != null) Avatar(initial: currentSeller.userName[0].toUpperCase(), radius: 68),
               const SizedBox(height: 20),
               if (user != null)
-                MText(text: '@${currentUser.userName}', fontweight: FontWeight.w500, color: Colors.black, size: 20)
+                MText(text: '@${currentSeller.userName}', fontweight: FontWeight.w500, color: Colors.black, size: 20)
             ],
           ),
         ),
@@ -58,7 +58,7 @@ class ProfilePage extends StatelessWidget {
               const Divider(thickness: 1, height: 40),
               InkWell(
                 onTap: () {
-                  isUser = false;
+                  isSeller = false;
                   FirebaseAuth.instance.signOut();
                 },
                 child: const ProfileCard(icon: Icons.logout, text: 'Logout'),

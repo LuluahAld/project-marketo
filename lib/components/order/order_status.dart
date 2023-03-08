@@ -4,7 +4,7 @@ import 'package:project_teamd/model/order.dart';
 
 class orderStatus extends StatelessWidget {
   orderStatus({super.key, required this.order});
-  Order order;
+  Orders order;
   @override
   Widget build(BuildContext context) {
     return Row(

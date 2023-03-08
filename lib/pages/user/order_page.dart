@@ -12,7 +12,7 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Order order = const Order(
+    Orders order = const Orders(
       id: 'id',
       orderStatus: 'orderStatus',
       orderDate: 'orderDate',
@@ -61,7 +61,7 @@ class OrderPage extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                         builder: (context) => OrderDetials(
-                              order: const Order(
+                              order: const Orders(
                                 id: 'id',
                                 orderStatus: 'In Progress',
                                 orderDate: 'orderDate',
