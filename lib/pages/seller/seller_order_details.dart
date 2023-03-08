@@ -12,7 +12,7 @@ import '../../constants/color_pallete.dart';
 
 class SOrderDetials extends StatelessWidget {
   SOrderDetials({super.key, required this.order});
-  Order order;
+  Orders order;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

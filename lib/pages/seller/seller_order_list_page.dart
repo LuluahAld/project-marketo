@@ -4,13 +4,14 @@ import 'package:project_teamd/pages/seller/seller_order_details.dart';
 
 import '../../components/appText/m_text.dart';
 import '../../constants/color_pallete.dart';
+import '../../model/order.dart';
 
 class SellerOListPage extends StatelessWidget {
   const SellerOListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    Order order = const Order(
+    Orders order = const Orders(
       id: 'id',
       orderStatus: 'In Progress',
       orderDate: 'orderDate',
