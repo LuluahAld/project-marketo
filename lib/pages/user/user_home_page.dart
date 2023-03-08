@@ -10,7 +10,6 @@ import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/pages/user/cart.dart';
-import 'package:project_teamd/pages/user/user_product_details.dart';
 import 'package:project_teamd/pages/user/view_seller.dart';
 
 import '../../components/product/product_card.dart';
@@ -158,20 +157,10 @@ class _UserHomePageState extends State<UserHomePage> {
                 child: Row(
                   children: [
                     for (final product in product)
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => UserProductDetails(
-                                        pro: product,
-                                      )));
-                        },
-                        child: ProsuctCard2(
-                          product: product,
-                          cardWidth: 200,
-                          productImgWidth: 200,
-                        ),
+                      ProsuctCard2(
+                        product: product,
+                        cardWidth: 200,
+                        productImgWidth: 200,
                       )
                   ],
                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
+import 'package:project_teamd/model/appData.dart';
 
 import '../../constants/color_pallete.dart';
 
@@ -39,7 +40,7 @@ class OrderSummaryCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MText(text: 'Total', fontweight: FontWeight.normal, color: green, size: 20),
-                      MText(text: '$total SAR', fontweight: FontWeight.normal, color: green, size: 18),
+                      MText(text: '${appData.total + 100} SAR', fontweight: FontWeight.normal, color: green, size: 18),
                     ],
                   ),
                 ),
@@ -49,7 +50,7 @@ class OrderSummaryCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MText(text: 'Delivery Fee', fontweight: FontWeight.normal, color: green, size: 20),
-                      MText(text: '$deliverFee SAR', fontweight: FontWeight.normal, color: green, size: 18),
+                      MText(text: '${100} SAR', fontweight: FontWeight.normal, color: green, size: 18),
                     ],
                   ),
                 ),
@@ -57,7 +58,7 @@ class OrderSummaryCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     MText(text: 'Subtotal', fontweight: FontWeight.normal, color: green, size: 20),
-                    MText(text: '$subTotal SAR', fontweight: FontWeight.normal, color: green, size: 18),
+                    MText(text: '${appData.total} SAR', fontweight: FontWeight.normal, color: green, size: 18),
                   ],
                 ),
               ],

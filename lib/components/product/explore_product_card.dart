@@ -45,7 +45,14 @@ class ExploreProductCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      MText(text: product.category, fontweight: FontWeight.bold, color: green, size: 20),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.6,
+                        child: Text(
+                          product.name,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.normal, color: green, fontSize: 18),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -53,14 +60,7 @@ class ExploreProductCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.6,
-                        child: Text(
-                          product.name,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontWeight: FontWeight.normal, color: green, fontSize: 16),
-                        ),
-                      ),
+                      MText(text: product.category, fontweight: FontWeight.bold, color: green, size: 16),
                     ],
                   ),
                 ],

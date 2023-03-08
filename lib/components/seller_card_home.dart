@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
+import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/model/seller.dart';
 
 class SellerCardHome extends StatefulWidget {
@@ -41,9 +42,12 @@ class _SellerCardHomeState extends State<SellerCardHome> {
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white.withOpacity(0.2),
                             ),
-                            child: Image.network(
-                              widget.seller.logo,
-                              fit: BoxFit.fill,
+                            child: ClipRRect(
+                              borderRadius: borderRad,
+                              child: Image.network(
+                                widget.seller.logo,
+                                fit: BoxFit.fill,
+                              ),
                             )),
                       ],
                     ),

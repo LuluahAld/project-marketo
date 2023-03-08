@@ -21,12 +21,12 @@ class OrderCard extends StatelessWidget {
           width: double.infinity,
           height: MediaQuery.of(context).size.height / 4,
           decoration: BoxDecoration(
-            color: grey,
+            color: Colors.white.withOpacity(0.3),
             borderRadius: borderRad,
           ),
           child: Column(
             children: [
-              Image.asset(
+              Image.network(
                 product.imageUrl,
                 fit: BoxFit.fitWidth,
                 width: 100,
@@ -51,12 +51,13 @@ class OrderCard extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    MText(
-                      text: product.name,
-                      fontweight: FontWeight.w500,
-                      color: Colors.black,
-                      size: 16,
-                    ),
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.2,
+                        child: Text(
+                          product.name,
+                          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+                          overflow: TextOverflow.ellipsis,
+                        )),
                     const SizedBox(
                       height: 6,
                     ),

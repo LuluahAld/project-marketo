@@ -39,7 +39,7 @@ class OrderLocationCard extends StatelessWidget {
                         MText(text: 'Location', fontweight: FontWeight.normal, color: green, size: 24),
                       ],
                     ),
-                    CircularTag("Change", green, grey),
+                    CircularTag('Change', green, grey),
                   ],
                 ),
                 const SizedBox(height: 12),
