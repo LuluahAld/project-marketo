@@ -89,10 +89,6 @@ class SellerProductDetails extends StatelessWidget {
                     const SizedBox(
                       height: 80,
                     ),
-                    button(
-                      text: 'Add to cart',
-                      color: lightgreen,
-                    ),
                   ],
                 ),
               ),

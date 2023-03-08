@@ -5,13 +5,32 @@ import '../../components/logo.dart';
 import '../../components/product/explore_product_card.dart';
 import '../../components/textfields/search_bar.dart';
 import '../../constants/color_pallete.dart';
+import '../../model/appData.dart';
 import '../../model/product.dart';
 
-class ExplorePage extends StatelessWidget {
+class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
 
   @override
+  State<ExplorePage> createState() => _ExplorePageState();
+}
+
+class _ExplorePageState extends State<ExplorePage> {
+  @override
+  void initState() {
+    appData.visability();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    if (appData.cart.isEmpty) {
+      appData.cartVisible == false;
+      setState(() {});
+    } else {
+      appData.cartVisible == true;
+      setState(() {});
+    }
     Product product = const Product(
         id: 'id',
         name: 'name',
@@ -66,17 +85,46 @@ class ExplorePage extends StatelessWidget {
             ),
           ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
-          },
-          backgroundColor: lightgrey,
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: Icon(
-              Icons.shopping_cart,
-              color: green,
+        floatingActionButton: Visibility(
+          visible: appData.cartVisible,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
+            },
+            backgroundColor: lightgrey,
+            child: Stack(
+              children: [
+                const SizedBox(
+                  height: 70,
+                  width: 70,
+                ),
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Icon(
+                    Icons.shopping_cart,
+                    color: green,
+                    size: 40,
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: pink,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      '${appData.cart.length}',
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                )
+              ],
             ),
           ),
         ));
