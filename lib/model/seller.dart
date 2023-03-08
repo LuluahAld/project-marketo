@@ -1,3 +1,4 @@
+import 'package:project_teamd/model/order.dart';
 import 'package:project_teamd/model/product.dart';
 
 class Seller {
@@ -10,7 +11,7 @@ class Seller {
   final String logo;
   final String location;
   final String letter;
-  final List<Order> orders;
+  final List<Orders> orders;
   final List<Product> product;
   final double rating;
 
@@ -41,7 +42,7 @@ class Seller {
       letter: map['letter'],
       product: (map['product'] as List).map((e) => Product.fromMap(e)).toList(),
       rating: double.parse(map['rating'].toString()),
-      orders: (map['orders'] as List).map((e) => Order.fromMap(e)).toList(),
+      orders: (map['orders'] as List).map((e) => Orders.fromMap(e)).toList(),
     );
   }
   Map<String, dynamic> toMap() {
