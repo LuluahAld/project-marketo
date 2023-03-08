@@ -370,28 +370,30 @@ class _LoginState extends State<Login> {
                           email: email.text,
                           password: password.text,
                         );
-                        FirebaseAuth.instance.authStateChanges().listen((user) {
-                          isLoggedIn = user != null;
-                          setState(() {});
+                        FirebaseAuth.instance.authStateChanges().listen(
+                          (user) {
+                            isLoggedIn = user != null;
+                            setState(() {});
 
-                          if (isLoggedIn) {
-                            setState(() {
-                              isLoading = false;
-                              isUser = true;
-                            });
-                            print(users.length);
-                            for (var i = 0; i < users.length; i++) {
-                              if (users[i].id == user?.uid) {
-                                currentUser = users[i];
+                            if (isLoggedIn) {
+                              setState(() {
+                                isLoading = false;
+                                isUser = true;
+                              });
+                              print(users.length);
+                              for (var i = 0; i < users.length; i++) {
+                                if (users[i].id == user?.uid) {
+                                  currentUser = users[i];
 
-                                setState(() {});
+                                  setState(() {});
+                                }
                               }
+                              Navigator.of(context)
+                                ..pop()
+                                ..pop();
                             }
-                            Navigator.of(context)
-                              ..pop()
-                              ..pop();
-                          }
-                        });
+                          },
+                        );
                       } on FirebaseAuthException catch (e) {
                         print(e);
                         if (e.code == 'user-not-found') {

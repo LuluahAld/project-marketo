@@ -4,7 +4,7 @@ import 'package:project_teamd/pages/user/seller_page.dart';
 
 import 'm_text.dart';
 
-class MainCategory extends StatelessWidget {
+class MainCategory extends StatefulWidget {
   const MainCategory(this.title, this.text, this.titleColor, this.textColor, this.navigatorChoise, {super.key});
   final String title;
   final String text;
@@ -12,6 +12,11 @@ class MainCategory extends StatelessWidget {
   final Color textColor;
   final int navigatorChoise;
 
+  @override
+  State<MainCategory> createState() => _MainCategoryState();
+}
+
+class _MainCategoryState extends State<MainCategory> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -22,20 +27,32 @@ class MainCategory extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            MText(text: title, fontweight: FontWeight.bold, color: titleColor, size: 20),
+            MText(text: widget.title, fontweight: FontWeight.bold, color: widget.titleColor, size: 20),
             InkWell(
                 onTap: () {
-                  if (navigatorChoise == 1) {
+                  if (widget.navigatorChoise == 1) {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => const SellerPage()));
                   }
-                  if (navigatorChoise == 2) {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const ProductListPage()));
+                  if (widget.navigatorChoise == 2) {
+                    navigateSecondPage();
                   }
                 },
-                child: MText(text: text, fontweight: FontWeight.bold, color: textColor, size: 20)),
+                child: MText(text: widget.text, fontweight: FontWeight.bold, color: widget.textColor, size: 20)),
           ],
         ),
       ),
     ])));
+  }
+
+  void refreshData() {}
+
+  onGoBack(dynamic value) {
+    refreshData();
+    setState(() {});
+  }
+
+  void navigateSecondPage() {
+    Route route = MaterialPageRoute(builder: (context) => const ProductListPage());
+    Navigator.push(context, route).then(onGoBack);
   }
 }

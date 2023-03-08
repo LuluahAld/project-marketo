@@ -8,9 +8,14 @@ import 'package:project_teamd/model/product.dart';
 
 import '../../constants/padding.dart';
 
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   const CartPage({super.key});
 
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     Product product = const Product(
@@ -29,7 +34,7 @@ class CartPage extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: grey,
-          toolbarHeight: 80.0,
+          elevation: 0.5,
           leading: const BackButton(
             color: Colors.black, // <-- SEE HERE
           ),

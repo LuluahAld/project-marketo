@@ -7,8 +7,39 @@ import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/user.dart';
 import 'package:project_teamd/pages/login_page.dart';
 
-class ProfilePage extends StatelessWidget {
+class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool isLoggedIn = false;
+  @override
+  void initState() {
+    FirebaseAuth.instance.authStateChanges().listen((user) {
+      isLoggedIn = user != null;
+      setState(() {});
+      isLoggedIn = user != null;
+      setState(() {});
+
+      if (isLoggedIn) {
+        setState(() {
+          isUser = true;
+        });
+
+        for (var i = 0; i < users.length; i++) {
+          if (users[i].id == user?.uid) {
+            currentUser = users[i];
+
+            setState(() {});
+          }
+        }
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
