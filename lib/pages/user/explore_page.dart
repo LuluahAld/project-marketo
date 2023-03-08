@@ -1,27 +1,76 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:project_teamd/constants/color_pallete.dart';
 
 import '../../components/logo.dart';
 import '../../components/product/explore_product_card.dart';
 import '../../components/textfields/search_bar.dart';
-import '../../constants/color_pallete.dart';
 import '../../model/product.dart';
 
-class ExplorePage extends StatelessWidget {
+class ExplorePage extends StatefulWidget {
   const ExplorePage({super.key});
 
   @override
+  State<ExplorePage> createState() => _ExplorePageState();
+}
+
+class _ExplorePageState extends State<ExplorePage> {
+  List<Product> product = [];
+  StreamSubscription? subscription;
+
+  @override
+  void initState() {
+    listenToProduct();
+    super.initState();
+  }
+
+  listenToProduct() {
+    subscription ??= FirebaseFirestore.instance.collection('product').snapshots().listen((collection) {
+      List<Product> newList = [];
+      for (final doc in collection.docs) {
+        final product = Product.fromMap(doc.data());
+        newList.add(product);
+      }
+
+      product = newList;
+      setState(() {});
+    });
+  }
+
+  Future<List<Product>> getSeller() async {
+    final collection = await FirebaseFirestore.instance.collection('product').get();
+    List<Product> newList = [];
+    for (final doc in collection.docs) {
+      final product = Product.fromMap(doc.data());
+      newList.add(product);
+      print("new list ");
+      print(newList);
+    }
+
+    return newList;
+  }
+
+  @override
+  void dispose() {
+    listenToProduct();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    Product product = const Product(
-        id: 'id',
-        name: 'name',
-        brand: 'brand',
-        shopName: 'shopName',
-        description: 'description',
-        rating: 5,
-        price: 1000,
-        category: 'category',
-        country: 'country',
-        imageUrl: 'images/bag2.jpg');
+    // Product product = const Product(
+    //     id: 'id',
+    //     name: 'name',
+    //     brand: 'brand',
+    //     shopName: 'shopName',
+    //     description: 'description',
+    //     rating: 5,
+    //     price: 1000,
+    //     category: 'category',
+    //     country: 'country',
+    //     imageUrl: 'images/bag2.jpg');
 
     return Scaffold(
         body: Column(
@@ -43,25 +92,26 @@ class ExplorePage extends StatelessWidget {
             ],
           ),
         ),
-        ListView(
-          physics: const BouncingScrollPhysics(),
-          shrinkWrap: true,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16),
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: 4,
-                itemBuilder: (context, index) => ExploreProductCard(
-                  product: product,
-                ),
-                separatorBuilder: (BuildContext context, int index) => const SizedBox(
-                  height: 12,
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.all(8),
+            physics: const BouncingScrollPhysics(),
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 16, right: 16),
+                child: Column(
+                  children: [
+                    for (final pro in product)
+                      ExploreProductCard(
+                        product: pro,
+                      ),
+                  ],
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     ));

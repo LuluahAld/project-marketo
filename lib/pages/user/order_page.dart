@@ -24,7 +24,8 @@ class OrderPage extends StatelessWidget {
       appBar: AppBar(
           elevation: 0.5,
           centerTitle: true,
-          backgroundColor: greyLight,
+          automaticallyImplyLeading: false,
+          backgroundColor: grey,
           title: MText(
             text: 'My Order',
             fontweight: FontWeight.bold,

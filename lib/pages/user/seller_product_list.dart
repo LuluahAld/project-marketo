@@ -12,21 +12,21 @@ class SellerProductListPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          leading: const BackButton(
-            color: Colors.black, // <-- SEE HERE
+          leading: BackButton(
+            color: green, // <-- SEE HERE
           ),
           title: Text(
             seller.userName,
-            style: const TextStyle(color: Colors.black),
+            style: TextStyle(color: green),
           ),
           backgroundColor: greyLight,
-          actions: const [
-            Icon(Icons.search, color: Colors.black),
-            SizedBox(
+          actions: [
+            Icon(Icons.search, color: green),
+            const SizedBox(
               width: 20,
             ),
-            Icon(Icons.favorite_border, color: Colors.black),
-            SizedBox(
+            Icon(Icons.favorite_border, color: green),
+            const SizedBox(
               width: 20,
             )
           ],

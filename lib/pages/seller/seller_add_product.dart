@@ -24,8 +24,8 @@ class _AddProductState extends State<AddProduct> {
         elevation: 0.5,
         centerTitle: true,
         backgroundColor: greyLight,
-        leading: const BackButton(
-          color: Colors.black,
+        leading: BackButton(
+          color: green,
         ),
         title: const Logo(
           size: 200,

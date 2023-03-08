@@ -7,14 +7,14 @@ class Seller {
   final String userName;
   final String email;
   final String about;
-  final List<String> review;
+  final List<dynamic> review;
   final String id;
   final String logo;
   final String location;
   final String letter;
   final List<Order> orders;
   final List<Product> product;
-  final String rating;
+  final double rating;
 
   const Seller({
     required this.name,
@@ -42,7 +42,7 @@ class Seller {
       location: map['location'],
       letter: map['letter'],
       product: (map['product'] as List).map((e) => Product.fromMap(e)).toList(),
-      rating: map['rating'],
+      rating: double.parse(map['rating'].toString()),
       orders: (map['orders'] as List).map((e) => Order.fromMap(e)).toList(),
     );
   }

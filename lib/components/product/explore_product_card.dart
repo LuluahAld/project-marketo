@@ -10,7 +10,7 @@ class ExploreProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
         Container(
           height: MediaQuery.of(context).size.height / 10,
@@ -20,33 +20,57 @@ class ExploreProductCard extends StatelessWidget {
             borderRadius: borderRad,
           ),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 6,
+              Column(
+                children: [
+                  Container(
+                      width: MediaQuery.of(context).size.width / 6,
+                      height: MediaQuery.of(context).size.height / 15.4,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.8),
+                        borderRadius: borderRad,
+                      ),
+                      child: Image.network(
+                        product.imageUrl,
+                      )),
+                ],
+              ),
+              const SizedBox(
+                width: 8,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  MText(text: product.category, fontweight: FontWeight.bold, color: green, size: 20),
+                  Row(
+                    children: [
+                      MText(text: product.category, fontweight: FontWeight.bold, color: green, size: 20),
+                    ],
+                  ),
                   const SizedBox(
                     height: 15,
                   ),
-                  MText(text: product.name, fontweight: FontWeight.normal, color: green, size: 16),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 1.6,
+                        child: Text(
+                          product.name,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.normal, color: green, fontSize: 16),
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ],
           ),
         ),
-        Container(
-            width: MediaQuery.of(context).size.width / 6,
-            height: MediaQuery.of(context).size.height / 10,
-            decoration: BoxDecoration(
-              color: grey,
-              borderRadius: borderRad,
-            ),
-            child: Image.asset(
-              'images/logo.png',
-            )),
+        const SizedBox(
+          height: 8,
+        )
       ],
     );
   }

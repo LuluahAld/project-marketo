@@ -3,10 +3,12 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/buttons/button.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 
+import '../../model/product.dart';
+
 class UserProductDetails extends StatelessWidget {
-  const UserProductDetails({
-    super.key,
-  });
+  const UserProductDetails({super.key, required this.pro});
+
+  final Product pro;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +25,8 @@ class UserProductDetails extends StatelessWidget {
           Container(
             decoration: BoxDecoration(color: grey),
             padding: const EdgeInsets.all(40),
-            child: Image.asset(
-              'images/pic1.png',
+            child: Image.network(
+              pro.imageUrl,
               fit: BoxFit.cover,
             ),
           ),
@@ -37,11 +39,12 @@ class UserProductDetails extends StatelessWidget {
                   children: [
                     Material(
                       color: Colors.transparent,
-                      child: MText(text: 'Product Name', fontweight: FontWeight.bold, color: lightgreen, size: 16),
+                      child: MText(text: pro.name, fontweight: FontWeight.bold, color: lightgreen, size: 16),
                     ),
                     Material(
                       color: Colors.transparent,
-                      child: MText(text: 'Price', fontweight: FontWeight.bold, color: lightgreen, size: 16),
+                      child:
+                          MText(text: pro.price.toString(), fontweight: FontWeight.bold, color: lightgreen, size: 16),
                     ),
                   ],
                 ),
@@ -53,11 +56,11 @@ class UserProductDetails extends StatelessWidget {
                   children: [
                     Material(
                       color: Colors.transparent,
-                      child: MText(text: 'Category', fontweight: FontWeight.bold, color: lightgreen, size: 16),
+                      child: MText(text: pro.category, fontweight: FontWeight.bold, color: lightgreen, size: 16),
                     ),
                     Material(
                       color: Colors.transparent,
-                      child: MText(text: 'Brand', fontweight: FontWeight.bold, color: lightgreen, size: 16),
+                      child: MText(text: pro.brand, fontweight: FontWeight.bold, color: lightgreen, size: 16),
                     ),
                   ],
                 ),
@@ -69,7 +72,7 @@ class UserProductDetails extends StatelessWidget {
                   children: [
                     Material(
                       color: Colors.transparent,
-                      child: MText(text: 'Description', fontweight: FontWeight.bold, color: lightgreen, size: 16),
+                      child: MText(text: pro.description, fontweight: FontWeight.bold, color: lightgreen, size: 16),
                     ),
                   ],
                 ),

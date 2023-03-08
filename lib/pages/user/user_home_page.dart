@@ -1,15 +1,99 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/appText/main_category.dart';
 import 'package:project_teamd/components/logo.dart';
-import 'package:project_teamd/components/product/product_cart.dart';
 import 'package:project_teamd/components/textfields/search_bar.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
+import 'package:project_teamd/model/seller.dart';
+import 'package:project_teamd/pages/user/user_product_details.dart';
 import 'package:project_teamd/pages/user/view_seller.dart';
 
-class UserHomePage extends StatelessWidget {
+import '../../components/product/product_card.dart';
+import '../../components/seller_card_home.dart';
+import '../../model/product.dart';
+
+class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
+
+  @override
+  State<UserHomePage> createState() => _UserHomePageState();
+}
+
+class _UserHomePageState extends State<UserHomePage> {
+  List<Seller> seller = [];
+  StreamSubscription? subscription;
+  List<Product> product = [];
+  StreamSubscription? subscriptionProduct;
+
+  @override
+  void initState() {
+    listenToSeller();
+    listenToProduct();
+    super.initState();
+  }
+
+  listenToSeller() {
+    subscription ??= FirebaseFirestore.instance.collection('seller').snapshots().listen((collection) {
+      List<Seller> newList = [];
+      for (final doc in collection.docs) {
+        final seller = Seller.fromMap(doc.data());
+        newList.add(seller);
+      }
+
+      seller = newList;
+      setState(() {});
+    });
+  }
+
+  Future<List<Seller>> getSeller() async {
+    final collection = await FirebaseFirestore.instance.collection('restaurant').get();
+    List<Seller> newList = [];
+    for (final doc in collection.docs) {
+      final seller = Seller.fromMap(doc.data());
+      newList.add(seller);
+      print("new list ");
+      print(newList);
+    }
+
+    return newList;
+  }
+
+  listenToProduct() {
+    subscriptionProduct ??= FirebaseFirestore.instance.collection('product').snapshots().listen((collection) {
+      List<Product> newList = [];
+      for (final doc in collection.docs) {
+        final product = Product.fromMap(doc.data());
+        newList.add(product);
+      }
+
+      product = newList;
+      setState(() {});
+    });
+  }
+
+  Future<List<Product>> getProduct() async {
+    final collection = await FirebaseFirestore.instance.collection('product').get();
+    List<Product> newList = [];
+    for (final doc in collection.docs) {
+      final product = Product.fromMap(doc.data());
+      newList.add(product);
+      print("new list ");
+      print(newList);
+    }
+
+    return newList;
+  }
+
+  @override
+  void dispose() {
+    listenToSeller();
+    listenToProduct();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,23 +127,15 @@ class UserHomePage extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller()));
-                      },
-                      child: ProductCard(
-                        image: 'images/single-person.png',
-                        text: 'Sameeraa',
+                    for (final sel in seller)
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller()));
+                        },
+                        child: SellerCardHome(
+                          seller: sel,
+                        ),
                       ),
-                    ),
-                    ProductCard(
-                      image: 'images/single-person2.png',
-                      text: 'Hadi',
-                    ),
-                    ProductCard(
-                      image: 'images/single-person.png',
-                      text: 'Hana',
-                    ),
                   ],
                 ),
               ),
@@ -67,24 +143,35 @@ class UserHomePage extends StatelessWidget {
                 height: 20,
               ),
               MainCategory('Recently Viewed', 'See All', green, lightgreen, 2),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    ProductCard(
-                      image: 'images/pic1.png',
-                      text: 'T-Shirt',
+              ListView(
+                padding: EdgeInsets.zero,
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                children: [
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (final product in product)
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => UserProductDetails(
+                                            pro: product,
+                                          )));
+                            },
+                            child: ProsuctCard2(
+                              product: product,
+                              cardWidth: 200,
+                              productImgWidth: 200,
+                            ),
+                          ),
+                      ],
                     ),
-                    ProductCard(
-                      image: 'images/bag1.png',
-                      text: 'Bag',
-                    ),
-                    ProductCard(
-                      image: 'images/watch1.jpg',
-                      text: 'Watch',
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 40,
