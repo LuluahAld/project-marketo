@@ -1,14 +1,14 @@
 import 'order.dart';
 
-class User {
+class Users {
   final String name;
   final String userName;
-  final String email;
+  final String? email;
   final String id;
   final String location;
   final List<Order> orders;
 
-  const User({
+  const Users({
     required this.name,
     required this.userName,
     required this.email,
@@ -17,8 +17,8 @@ class User {
     required this.orders,
   });
 
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
+  factory Users.fromMap(Map<String, dynamic> map) {
+    return Users(
       id: map['id'],
       name: map['name'],
       userName: map['userName'],

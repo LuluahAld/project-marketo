@@ -25,7 +25,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           backgroundColor: beige,
         ),
         onPressed: () {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const LandingPage()),
           );
