@@ -27,18 +27,19 @@ class _SellerCard extends State<SellerCard> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Container(
-                // width: 200,
-                // width: MediaQuery.of(context).size.width / 2.2,
-                width: widget.productImgWidth,
-                height: 120,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white.withOpacity(0.2),
-                ),
-                child: Image.asset(
-                  widget.seller.logo,
-                )),
+            Center(
+              child: Container(
+                  width: widget.productImgWidth,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.white.withOpacity(0.2),
+                  ),
+                  child: Image.network(
+                    widget.seller.logo,
+                    fit: BoxFit.fill,
+                  )),
+            ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -54,7 +55,14 @@ class _SellerCard extends State<SellerCard> {
                       const SizedBox(
                         width: 4,
                       ),
-                      MText(text: widget.seller.location, fontweight: FontWeight.normal, color: green, size: 16),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width / 4,
+                        child: Text(
+                          widget.seller.location,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontWeight: FontWeight.normal, color: green, fontSize: 16),
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -67,7 +75,8 @@ class _SellerCard extends State<SellerCard> {
                       const SizedBox(
                         width: 10,
                       ),
-                      MText(text: widget.seller.rating, fontweight: FontWeight.normal, color: green, size: 20),
+                      MText(
+                          text: widget.seller.rating.toString(), fontweight: FontWeight.normal, color: green, size: 20),
                     ],
                   ),
                 ],

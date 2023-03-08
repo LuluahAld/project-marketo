@@ -21,8 +21,9 @@ class OrderPage extends StatelessWidget {
     );
     return Scaffold(
         appBar: AppBar(
-            centerTitle: true,
+            automaticallyImplyLeading: false,
             backgroundColor: grey,
+            centerTitle: true,
             toolbarHeight: 80.0,
             title: MText(
               text: "My Order",

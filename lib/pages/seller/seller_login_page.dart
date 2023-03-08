@@ -627,7 +627,7 @@ class _RegisterState extends State<Register> {
                                       imageUrl:
                                           'https://ounass-prod2.atgcdn.ae/small_light(p=zoom,of=webp,q=65)/pub/media/catalog/product//2/1/214518473_natural_in.jpg?1620725566.9286')
                                 ],
-                                rating: '5.0');
+                                rating: 5.0);
                           } else {
                             currentSeller = Seller(
                                 name: '',
@@ -641,7 +641,7 @@ class _RegisterState extends State<Register> {
                                 letter: '',
                                 orders: [],
                                 product: [],
-                                rating: '4.8');
+                                rating: 4.8);
                           }
                           setState(() {});
 

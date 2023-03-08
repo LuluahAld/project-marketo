@@ -47,7 +47,7 @@ class _ViewSellerState extends State<ViewSeller> {
         letter: 'S',
         orders: [],
         product: [],
-        rating: "5.0");
+        rating: 5.0);
 
     return Scaffold(
       body: Column(
@@ -397,7 +397,7 @@ class _UserSellerPageViewState extends State<UserSellerPageView> {
       letter: 'S',
       orders: [],
       product: [],
-      rating: "5.0");
+      rating: 5.0);
 
   // the index of the current page
 
@@ -475,7 +475,7 @@ class About extends StatelessWidget {
         letter: 'S',
         orders: [],
         product: [],
-        rating: "5.0");
+        rating: 5.0);
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
       child: Column(children: [
@@ -564,7 +564,7 @@ class Products extends StatelessWidget {
         letter: 'S',
         orders: [],
         product: [],
-        rating: "5.0");
+        rating: 5.0);
     return Column(
       children: [
         ListView(padding: EdgeInsets.zero, physics: const BouncingScrollPhysics(), shrinkWrap: true, children: [
@@ -629,12 +629,12 @@ class Reviews extends StatelessWidget {
         letter: 'S',
         orders: [],
         product: [],
-        rating: "5.0");
+        rating: 5.0);
     Users user = const Users(
         name: 'Hana', userName: 'Super Hana', email: 'hana@gmail.com', id: '1', location: "KSA Dhahran", orders: []);
 
     return Column(children: [
-      OverAllRate(seller.rating, green, FontWeight.w400, 22, lightgreen),
+      OverAllRate(seller.rating.toString(), green, FontWeight.w400, 22, lightgreen),
       const Divider(
         height: 40,
         thickness: 1.5,

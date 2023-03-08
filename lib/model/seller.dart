@@ -1,6 +1,5 @@
+import 'package:project_teamd/model/order.dart';
 import 'package:project_teamd/model/product.dart';
-
-import 'order.dart';
 
 class Seller {
   final String name;
@@ -14,7 +13,7 @@ class Seller {
   final String letter;
   final List<Orders> orders;
   final List<Product> product;
-  final String rating;
+  final double rating;
 
   const Seller({
     required this.name,
@@ -42,7 +41,7 @@ class Seller {
       location: map['location'],
       letter: map['letter'],
       product: (map['product'] as List).map((e) => Product.fromMap(e)).toList(),
-      rating: map['rating'],
+      rating: double.parse(map['rating'].toString()),
       orders: (map['orders'] as List).map((e) => Orders.fromMap(e)).toList(),
     );
   }
@@ -77,4 +76,4 @@ Seller currentSeller = const Seller(
     letter: 'letter',
     orders: [],
     product: [],
-    rating: 'rating');
+    rating: 0);

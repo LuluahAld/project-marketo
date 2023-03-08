@@ -18,43 +18,45 @@ class orderHorisCard extends StatelessWidget {
             color: lightgrey,
             borderRadius: borderRad,
           ),
-          child: Row(
-            children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 7,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(order.shopName),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(order.id),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(order.orderStatus),
-                ],
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3.2,
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  const Text('Total'),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(order.numOfProduct),
-                  const SizedBox(
-                    height: 4,
-                  ),
-                  Text(order.orderDate),
-                ],
-              ),
-            ],
+          child: Expanded(
+            child: Row(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 7,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(order.shopName),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(order.id),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(order.orderStatus),
+                  ],
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 3.5,
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Text('Total'),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(order.numOfProduct),
+                    const SizedBox(
+                      height: 4,
+                    ),
+                    Text(order.orderDate),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
         Container(
