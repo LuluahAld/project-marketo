@@ -17,8 +17,8 @@ import '../../model/product.dart';
 final PageController _pageController = PageController(initialPage: 0);
 
 class ViewSeller extends StatefulWidget {
-  const ViewSeller({super.key});
-
+  ViewSeller({super.key, required this.seller});
+  Seller seller;
   @override
   State<ViewSeller> createState() => _ViewSellerState();
 }
@@ -35,19 +35,7 @@ class _ViewSellerState extends State<ViewSeller> {
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller(
-        name: 'Sameera',
-        userName: "@SuperSameera",
-        email: "sameera@gmail.com",
-        about: "Bags Store from london",
-        review: ['very good,fabuilas'],
-        id: "2",
-        logo: "images",
-        location: 'Jedddah',
-        letter: 'S',
-        orders: [],
-        product: [],
-        rating: 5.0);
+    Seller seller = widget.seller;
 
     return Scaffold(
       body: Column(

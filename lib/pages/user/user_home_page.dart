@@ -135,7 +135,12 @@ class _UserHomePageState extends State<UserHomePage> {
                 for (final sel in seller)
                   InkWell(
                     onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const ViewSeller()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ViewSeller(
+                                    seller: sel,
+                                  )));
                     },
                     child: SellerCardHome(
                       seller: sel,
