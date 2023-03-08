@@ -3,6 +3,7 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/buttons/button.dart';
 import 'package:project_teamd/components/order/order_card.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
+import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/model/product.dart';
 
 import '../../constants/padding.dart';
@@ -29,6 +30,9 @@ class CartPage extends StatelessWidget {
           centerTitle: true,
           backgroundColor: grey,
           toolbarHeight: 80.0,
+          leading: const BackButton(
+            color: Colors.black, // <-- SEE HERE
+          ),
           title: MText(
             text: "My Cart",
             fontweight: FontWeight.bold,
@@ -43,8 +47,10 @@ class CartPage extends StatelessWidget {
                 ListView.separated(
                   physics: const BouncingScrollPhysics(),
                   shrinkWrap: true,
-                  itemCount: 6,
-                  itemBuilder: (context, index) => OrderCard(product: product),
+                  itemCount: appData.cart.length,
+                  itemBuilder: (context, index) {
+                    return OrderCard(product: appData.cart[index]);
+                  },
                   separatorBuilder: (BuildContext context, int index) => const SizedBox(
                     height: 12,
                   ),
@@ -58,14 +64,22 @@ class CartPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       MText(text: 'Total', fontweight: FontWeight.normal, color: green, size: 20),
-                      MText(text: '9000 SAR', fontweight: FontWeight.normal, color: green, size: 18),
+                      MText(
+                          text: '${appData.calculateTotal()} SAR',
+                          fontweight: FontWeight.normal,
+                          color: green,
+                          size: 18),
                     ],
                   ),
                 ),
                 const SizedBox(
                   height: 12,
                 ),
-                button(color: lightgreen, text: 'Continue'),
+                button(
+                  color: lightgreen,
+                  text: 'Continue',
+                  NavChoice: 1,
+                ),
               ],
             )));
   }

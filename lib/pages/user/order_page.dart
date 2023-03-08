@@ -12,7 +12,7 @@ class OrderPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Order order = const Order(
+    Orders order = const Orders(
       id: 'id',
       orderStatus: 'orderStatus',
       orderDate: 'orderDate',
@@ -20,6 +20,12 @@ class OrderPage extends StatelessWidget {
       numOfProduct: 'numOfProduct',
       products: [],
     );
+    IconData icon = Icons.pending_actions;
+    if (order.orderStatus == 'On the Way') {
+      icon = Icons.local_shipping;
+    } else if (order.orderStatus == 'Delivered') {
+      icon = Icons.done;
+    }
     return Scaffold(
       appBar: AppBar(
           elevation: 0.5,
@@ -52,9 +58,21 @@ class OrderPage extends StatelessWidget {
           itemCount: 6,
           itemBuilder: (context, index) => InkWell(
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const OrderDetials()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => OrderDetials(
+                              order: const Orders(
+                                id: 'id',
+                                orderStatus: 'In Progress',
+                                orderDate: 'orderDate',
+                                shopName: 'shopName',
+                                numOfProduct: 'numOfProduct',
+                                products: [],
+                              ),
+                            )));
               },
-              child: orderHorisCard(order: order, icon: Icons.done)),
+              child: orderHorisCard(order: order, icon: icon)),
           separatorBuilder: (BuildContext context, int index) => const SizedBox(
             height: 12,
           ),

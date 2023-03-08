@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/buttons/button.dart';
-import 'package:project_teamd/components/order/order_summary_card.dart';
+import 'package:project_teamd/components/payment/payment_card.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
+import 'package:project_teamd/model/appData.dart';
+import 'package:project_teamd/model/order.dart';
 import 'package:project_teamd/model/user.dart';
 
-import '../../components/order/schedual_time.dart';
-import '../../components/order_location.dart';
-
-class ConfirmOrder extends StatelessWidget {
-  const ConfirmOrder({super.key});
+class PaymentPage extends StatelessWidget {
+  const PaymentPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     Users user =
         const Users(id: 'id', email: 'email', name: 'name', userName: 'userName', location: 'location', orders: []);
+    Orders order = Orders(
+        id: 'id',
+        orderStatus: 'Pending',
+        orderDate: DateTime.now().toString(),
+        shopName: 'Shopping with Hussin',
+        numOfProduct: appData.cart.length.toString(),
+        products: appData.cart);
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -24,7 +30,7 @@ class ConfirmOrder extends StatelessWidget {
             color: Colors.black, // <-- SEE HERE
           ),
           title: MText(
-            text: "Confirm Order",
+            text: "Payment",
             fontweight: FontWeight.bold,
             color: green,
             size: 20,
@@ -34,22 +40,17 @@ class ConfirmOrder extends StatelessWidget {
             padding: const EdgeInsets.all(25),
             child: ListView(
               children: [
-                OrderLocationCard(user),
                 const SizedBox(
                   height: 32,
                 ),
-                const scheduleTime(),
-                const SizedBox(
-                  height: 32,
-                ),
-                const OrderSummaryCard('9000', "100", "8000"),
+                const paymentCard(),
                 const SizedBox(
                   height: 32,
                 ),
                 button(
                   color: lightgreen,
-                  text: 'Proceed to payment',
-                  NavChoice: 3,
+                  text: 'Pay and Order',
+                  NavChoice: 4,
                 )
               ],
             )));

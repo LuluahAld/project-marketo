@@ -23,6 +23,12 @@ class _HomeState extends State<Home> {
   }
 
   @override
+  void initState() {
+    currentIndex = 0;
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final pages = [
       const UserHomePage(),

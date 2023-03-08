@@ -5,7 +5,7 @@ import 'package:project_teamd/model/order.dart';
 
 class SOrderCard extends StatefulWidget {
   SOrderCard({Key? key, required this.order}) : super(key: key);
-  Order order;
+  Orders order;
   @override
   State<SOrderCard> createState() => _SOrderCard();
 }

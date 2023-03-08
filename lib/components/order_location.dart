@@ -7,7 +7,7 @@ import '../../constants/color_pallete.dart';
 
 class OrderLocationCard extends StatelessWidget {
   const OrderLocationCard(this.user, {super.key});
-  final User user;
+  final Users user;
 
   @override
   Widget build(BuildContext context) {

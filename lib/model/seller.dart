@@ -1,7 +1,5 @@
 import 'package:project_teamd/model/product.dart';
 
-import 'order.dart';
-
 class Seller {
   final String name;
   final String userName;

@@ -1,11 +1,15 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/logo.dart';
-import 'package:project_teamd/components/textfields/textfield_m.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
-import 'package:project_teamd/pages/user/home.dart';
+
+import '../model/user.dart';
+
+bool isUser = false;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key}) : super();
@@ -227,7 +231,36 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+
+  TextEditingController password = TextEditingController();
   bool isVisible = false;
+  bool isLoading = false;
+  bool isLoggedIn = false;
+
+  @override
+  void initState() {
+    listenToUsers() {
+      // ignore: await_only_futures
+      FirebaseFirestore.instance.collection('user').snapshots().listen(
+        (collection) {
+          List<Users> newList = [];
+          for (final doc in collection.docs) {
+            final usersN = Users.fromMap(doc.data());
+            newList.add(usersN);
+          }
+          users = newList;
+          print(users.length);
+
+          setState(() {});
+        },
+      );
+    }
+
+    listenToUsers();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -252,9 +285,26 @@ class _LoginState extends State<Login> {
                 child: Column(
                   children: [
                     const SizedBox(height: 50),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: TextFieldM(hint: 'Email'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: TextField(
+                        controller: email,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(fontSize: 18),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.5, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 40),
                     Padding(
@@ -262,6 +312,7 @@ class _LoginState extends State<Login> {
                       child: SizedBox(
                         height: 50,
                         child: TextField(
+                          controller: password,
                           obscureText: !isVisible,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
@@ -290,14 +341,65 @@ class _LoginState extends State<Login> {
                   ],
                 ),
               ),
+              if (isLoading) ...[
+                Positioned(
+                  bottom: 20,
+                  left: 170,
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),
+                    height: 30,
+                    width: 30,
+                    child: CircularProgressIndicator(
+                      color: lightgreen,
+                    ),
+                  ),
+                ),
+              ],
               Positioned(
                 bottom: 76,
                 left: 48,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 40, right: 100),
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      try {
+                        final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text,
+                        );
+                        FirebaseAuth.instance.authStateChanges().listen((user) {
+                          isLoggedIn = user != null;
+                          setState(() {});
+
+                          if (isLoggedIn) {
+                            setState(() {
+                              isLoading = false;
+                              isUser = true;
+                            });
+                            print(users.length);
+                            for (var i = 0; i < users.length; i++) {
+                              if (users[i].id == user?.uid) {
+                                currentUser = users[i];
+
+                                setState(() {});
+                              }
+                            }
+                            Navigator.of(context)
+                              ..pop()
+                              ..pop();
+                          }
+                        });
+                      } on FirebaseAuthException catch (e) {
+                        print(e);
+                        if (e.code == 'user-not-found') {
+                          print('No user found for that email.');
+                        } else if (e.code == 'wrong-password') {
+                          print('Wrong password provided for that user.');
+                        }
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: lightgreen,
@@ -328,7 +430,12 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  TextEditingController email = TextEditingController();
+  TextEditingController username = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool isVisible = false;
+  bool isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -353,21 +460,55 @@ class _RegisterState extends State<Register> {
                 child: Column(
                   children: [
                     const SizedBox(height: 28),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: TextFieldM(hint: 'Email'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: TextField(
+                        controller: email,
+                        decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                          hintText: 'Email',
+                          hintStyle: const TextStyle(fontSize: 18),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 1, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(width: 0.5, color: green),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 32),
-                    const Padding(
-                      padding: EdgeInsets.only(left: 20, right: 20),
-                      child: TextFieldM(hint: 'Username'),
-                    ),
+                    Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
+                        child: TextField(
+                          controller: username,
+                          decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.grey.shade200,
+                            contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                            hintText: 'Username',
+                            hintStyle: const TextStyle(fontSize: 18),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 1, color: green),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(width: 0.5, color: green),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                          ),
+                        )),
                     const SizedBox(height: 32),
                     Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: SizedBox(
                         height: 50,
                         child: TextField(
+                          controller: password,
                           obscureText: !isVisible,
                           decoration: InputDecoration(
                             suffixIcon: IconButton(
@@ -396,13 +537,66 @@ class _RegisterState extends State<Register> {
                   ],
                 ),
               ),
+              if (isLoading) ...[
+                Positioned(
+                  bottom: 20,
+                  left: 170,
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 50, maxHeight: 50),
+                    height: 30,
+                    width: 30,
+                    child: CircularProgressIndicator(
+                      color: lightgreen,
+                    ),
+                  ),
+                ),
+              ],
               Positioned(
                 bottom: 76,
                 left: 48,
                 child: Padding(
                   padding: const EdgeInsets.only(left: 40, right: 100),
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      try {
+                        final result = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: email.text,
+                          password: password.text,
+                        );
+                        User? user = FirebaseAuth.instance.currentUser;
+                        if (user != null) {
+                          setState(() {
+                            isLoading = false;
+                          });
+                          String uid = user.uid; // <-- User ID
+                          String? email = user.email;
+                          currentUser =
+                              Users(name: '', userName: username.text, email: email, id: uid, location: '', orders: []);
+                          setState(() {});
+                          print(currentUser.userName);
+                          final collection = FirebaseFirestore.instance.collection('user');
+                          collection.doc(currentUser.id).set(currentUser.toMap());
+                        }
+                      } on FirebaseAuthException {}
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          padding: const EdgeInsets.all(12),
+                          dismissDirection: DismissDirection.none,
+                          behavior: SnackBarBehavior.floating,
+                          margin: const EdgeInsets.all(30),
+                          backgroundColor: lightgreen,
+                          content: const Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              'Account Successfully Registered. Please login.',
+                            ),
+                          ),
+                        ),
+                      );
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: lightgreen,
                     ),
@@ -415,7 +609,7 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
         ],

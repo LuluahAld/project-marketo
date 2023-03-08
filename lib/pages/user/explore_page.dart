@@ -23,6 +23,8 @@ class _ExplorePageState extends State<ExplorePage> {
   @override
   void initState() {
     listenToProduct();
+        appData.visability();
+
     super.initState();
   }
 
@@ -60,17 +62,13 @@ class _ExplorePageState extends State<ExplorePage> {
 
   @override
   Widget build(BuildContext context) {
-    // Product product = const Product(
-    //     id: 'id',
-    //     name: 'name',
-    //     brand: 'brand',
-    //     shopName: 'shopName',
-    //     description: 'description',
-    //     rating: 5,
-    //     price: 1000,
-    //     category: 'category',
-    //     country: 'country',
-    //     imageUrl: 'images/bag2.jpg');
+     if (appData.cart.isEmpty) {
+      appData.cartVisible == false;
+      setState(() {});
+    } else {
+      appData.cartVisible == true;
+      setState(() {});
+    }
 
     return Scaffold(
         body: Column(
@@ -114,6 +112,48 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
         ),
       ],
-    ));
+    ) floatingActionButton: Visibility(
+          visible: appData.cartVisible,
+          child: FloatingActionButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
+            },
+            backgroundColor: lightgrey,
+            child: Stack(
+              children: [
+                const SizedBox(
+                  height: 70,
+                  width: 70,
+                ),
+                Positioned(
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                  child: Icon(
+                    Icons.shopping_cart,
+                    color: green,
+                    size: 40,
+                  ),
+                ),
+                Positioned(
+                  right: 10,
+                  top: 8,
+                  child: Container(
+                    padding: const EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                      color: pink,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Text(
+                      '${appData.cart.length}',
+                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ));
   }
 }

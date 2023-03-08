@@ -1,6 +1,6 @@
 import 'product.dart';
 
-class Order {
+class Orders {
   final String id;
   final String orderStatus;
   final String orderDate;
@@ -8,7 +8,7 @@ class Order {
   final String numOfProduct;
   final List<Product> products;
 
-  const Order({
+  const Orders({
     required this.id,
     required this.orderStatus,
     required this.orderDate,
@@ -17,8 +17,8 @@ class Order {
     required this.products,
   });
 
-  factory Order.fromMap(Map<String, dynamic> map) {
-    return Order(
+  factory Orders.fromMap(Map<String, dynamic> map) {
+    return Orders(
       id: map['id'],
       orderStatus: map['orderStatus'],
       orderDate: map['orderDate'],

@@ -1,16 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/order/order_horis_card.dart';
-import 'package:project_teamd/model/order.dart';
 import 'package:project_teamd/pages/seller/seller_order_details.dart';
 
 import '../../components/appText/m_text.dart';
 import '../../constants/color_pallete.dart';
+import '../../model/order.dart';
 
 class SellerOListPage extends StatelessWidget {
   const SellerOListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Orders order = const Orders(
+      id: 'id',
+      orderStatus: 'In Progress',
+      orderDate: 'orderDate',
+      shopName: 'shopName',
+      numOfProduct: 'numOfProduct',
+      products: [],
+    );
     return Scaffold(
         appBar: AppBar(
             automaticallyImplyLeading: false,
@@ -35,18 +43,9 @@ class SellerOListPage extends StatelessWidget {
             itemCount: 6,
             itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SOrderDetials()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SOrderDetials(order: order)));
                 },
-                child: orderHorisCard(
-                    order: const Order(
-                      id: 'id',
-                      orderStatus: 'orderStatus',
-                      orderDate: 'orderDate',
-                      shopName: 'shopName',
-                      numOfProduct: 'numOfProduct',
-                      products: [],
-                    ),
-                    icon: Icons.done)),
+                child: orderHorisCard(order: order, icon: Icons.done)),
             separatorBuilder: (BuildContext context, int index) => const SizedBox(
               height: 12,
             ),

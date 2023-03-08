@@ -82,6 +82,7 @@ class UserProductDetails extends StatelessWidget {
                 button(
                   text: 'Add to cart',
                   color: lightgreen,
+                  NavChoice: 2,
                 ),
               ],
             ),

@@ -5,7 +5,7 @@ import 'package:project_teamd/model/order.dart';
 
 class orderHorisCard extends StatelessWidget {
   orderHorisCard({super.key, required this.order, required this.icon});
-  Order order;
+  Orders order;
   final icon;
   @override
   Widget build(BuildContext context) {
