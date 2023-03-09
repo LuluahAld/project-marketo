@@ -11,10 +11,12 @@ class scheduleTime extends StatefulWidget {
   State<scheduleTime> createState() => _scheduleTimeState();
 }
 
+String? text;
+
 class _scheduleTimeState extends State<scheduleTime> {
   bool selectedSched = false;
   String? dateN;
-  String? text;
+
   @override
   Widget build(BuildContext context) {
     return Container(

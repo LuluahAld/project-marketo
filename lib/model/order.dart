@@ -3,10 +3,11 @@ import 'product.dart';
 class Orders {
   final String id;
   final String orderStatus;
-  final String orderDate;
+  final String? orderDate;
   final String shopName;
   final String numOfProduct;
   final List<Product> products;
+  final double total;
 
   const Orders({
     required this.id,
@@ -15,6 +16,7 @@ class Orders {
     required this.shopName,
     required this.numOfProduct,
     required this.products,
+    required this.total,
   });
 
   factory Orders.fromMap(Map<String, dynamic> map) {
@@ -25,6 +27,7 @@ class Orders {
       shopName: map['shopName'],
       numOfProduct: map['numOfProduct'],
       products: (map['products'] as List).map((e) => Product.fromMap(e)).toList(),
+      total: double.parse(map['total'].toString()),
     );
   }
 
@@ -36,6 +39,9 @@ class Orders {
       'numOfProduct': numOfProduct,
       'shopName': shopName,
       'products': products.map((e) => e.toMap()).toList(),
+      'total': total,
     };
   }
 }
+
+List<Orders> orders = [];

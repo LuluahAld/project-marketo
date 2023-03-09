@@ -1,14 +1,54 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/logo.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
-import 'package:project_teamd/model/product.dart';
-import 'package:project_teamd/pages/seller/Sbotton.dart';
-import 'package:project_teamd/pages/seller/seller_product_details.dart';
-import 'package:project_teamd/pages/seller/seller_product_horis_card.dart';
+import 'package:project_teamd/model/seller.dart';
+import 'package:project_teamd/pages/seller/seller_add_product.dart';
 
-class SellerPListPage extends StatelessWidget {
+import '../../components/product/explore_product_card.dart';
+
+class SellerPListPage extends StatefulWidget {
   const SellerPListPage({super.key});
+
+  @override
+  State<SellerPListPage> createState() => _SellerPListPageState();
+}
+
+class _SellerPListPageState extends State<SellerPListPage> {
+  @override
+  void initState() {
+    listenToSellers() {
+      FirebaseFirestore.instance.collection('seller').snapshots().listen(
+        (collection) {
+          Seller seller = const Seller(
+              name: 'name',
+              userName: 'userName',
+              email: 'email',
+              about: 'about',
+              review: [],
+              id: 'id',
+              logo: 'logo',
+              location: 'location',
+              letter: 'letter',
+              orders: [],
+              product: [],
+              rating: 4);
+          for (final doc in collection.docs) {
+            if (doc.id == currentSeller.id) {
+              seller = Seller.fromMap(doc.data());
+            }
+          }
+          currentSeller = seller;
+
+          setState(() {});
+        },
+      );
+    }
+
+    listenToSellers();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,109 +69,62 @@ class SellerPListPage extends StatelessWidget {
       const SizedBox(
         height: 20,
       ),
-      ListView(
-        shrinkWrap: true,
-        padding: const EdgeInsets.all(12),
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              MText(text: 'Products', fontweight: FontWeight.bold, color: green, size: 20),
-              SizedBox(
-                width: 200,
-                child: Sbutton(
-                  text: ' + Add Product',
-                  color: lightgreen,
-                  NavChoice: 1,
+      Expanded(
+        child: ListView(
+          shrinkWrap: true,
+          padding: const EdgeInsets.all(12),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                MText(text: "Product", fontweight: FontWeight.bold, color: green, size: 20),
+                SizedBox(
+                  width: 150,
+                  height: 30,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: lightgreen,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const AddProduct()));
+                    },
+                    child: const Text(
+                      '+ Add Product',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15.0),
+              child: Expanded(
+                child: ListView(
+                  padding: const EdgeInsets.all(8),
+                  physics: const BouncingScrollPhysics(),
+                  shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.only(left: 5, right: 2),
+                        child: Column(
+                          children: [
+                            for (final pro in currentSeller.product)
+                              ExploreProductCard(
+                                product: pro,
+                              ),
+                          ],
+                        ))
+                  ],
                 ),
               ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          InkWell(
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => SellerProductDetails(
-                            product: const Product(
-                                id: 'id',
-                                name: 'name',
-                                brand: 'brand',
-                                shopName: 'shopName',
-                                description: 'description',
-                                rating: 5,
-                                price: 1000,
-                                category: 'category',
-                                country: 'country',
-                                imageUrl: 'images/bag2.jpg'),
-                          )));
-            },
-            child: SProductHorisCard(
-              product: const Product(
-                  id: 'id',
-                  name: 'name',
-                  brand: 'brand',
-                  shopName: 'shopName',
-                  description: 'description',
-                  rating: 5,
-                  price: 1000,
-                  category: 'category',
-                  country: 'country',
-                  imageUrl: 'images/bag2.jpg'),
             ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SProductHorisCard(
-            product: const Product(
-                id: 'id',
-                name: 'name',
-                brand: 'brand',
-                shopName: 'shopName',
-                description: 'description',
-                rating: 5,
-                price: 1000,
-                category: 'category',
-                country: 'country',
-                imageUrl: 'images/bag2.jpg'),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SProductHorisCard(
-            product: const Product(
-                id: 'id',
-                name: 'name',
-                brand: 'brand',
-                shopName: 'shopName',
-                description: 'description',
-                rating: 5,
-                price: 1000,
-                category: 'category',
-                country: 'country',
-                imageUrl: 'images/bag2.jpg'),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SProductHorisCard(
-            product: const Product(
-                id: 'id',
-                name: 'name',
-                brand: 'brand',
-                shopName: 'shopName',
-                description: 'description',
-                rating: 5,
-                price: 1000,
-                category: 'category',
-                country: 'country',
-                imageUrl: 'images/bag2.jpg'),
-          ),
-        ],
+            const SizedBox(
+              height: 8,
+            )
+          ],
+        ),
       ),
     ]));
   }

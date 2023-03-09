@@ -6,16 +6,17 @@ import 'package:project_teamd/components/order/order_status.dart';
 import 'package:project_teamd/components/order/seller_customer.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/model/order.dart';
+import 'package:project_teamd/model/product.dart';
 
 import '../../constants/color_pallete.dart';
 
-class OrderDetials extends StatelessWidget {
-  OrderDetials({super.key, required this.order});
+class OrderDetails extends StatelessWidget {
+  OrderDetails({super.key, required this.order});
   Orders order;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarLocal(title: 'Order #12345'),
+      appBar: AppBarLocal(title: 'Order #${order.id}'),
       body: ListView(
         padding: padding,
         children: [
@@ -23,21 +24,21 @@ class OrderDetials extends StatelessWidget {
           orderStatus(order: order),
           const SizedBox(height: 48),
           orderInfoCard(
-            order: const Orders(
-              id: 'id',
-              orderStatus: 'orderStatus',
-              orderDate: 'orderDate',
-              shopName: 'shopName',
-              numOfProduct: 'numOfProduct',
-              products: [],
-            ),
+            order: order,
           ),
           const SizedBox(height: 48),
-          const sellerCustomerInfo(),
+          sellerCustomerInfo(
+            order: order,
+          ),
           const SizedBox(height: 32),
           MText(text: 'Products', fontweight: FontWeight.w500, color: lightgreen, size: 24),
           const SizedBox(height: 16),
-          const OrderDetailsCard()
+          for (var product in order.products) ...[
+            OrderDetailsCard(
+              product: product,
+            ),
+            const SizedBox(height: 12)
+          ]
         ],
       ),
     );
@@ -45,9 +46,8 @@ class OrderDetials extends StatelessWidget {
 }
 
 class OrderDetailsCard extends StatelessWidget {
-  const OrderDetailsCard({
-    super.key,
-  });
+  final Product product;
+  const OrderDetailsCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -66,22 +66,25 @@ class OrderDetailsCard extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Product Title'),
-                    SizedBox(height: 4),
-                    Text('Category'),
-                    SizedBox(height: 4),
-                    Text('Description'),
+                  children: [
+                    Text(
+                      product.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 4),
+                    Text(product.category),
+                    const SizedBox(height: 4),
                   ],
                 ),
                 const SizedBox(width: 100),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Price'),
-                    SizedBox(height: 4),
-                    Text('Brand'),
-                    SizedBox(height: 4),
+                  children: [
+                    Text('${product.price} SAR'),
+                    const SizedBox(height: 4),
+                    Text(product.brand),
+                    const SizedBox(height: 4),
                   ],
                 ),
               ],
@@ -93,10 +96,7 @@ class OrderDetailsCard extends StatelessWidget {
                 borderRadius: const BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
                 color: grey,
               ),
-              child: Image.asset(
-                'images/bag1.png',
-                width: 120,
-              )),
+              child: Image.network(product.imageUrl)),
         ],
       ),
     );

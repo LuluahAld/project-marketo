@@ -580,7 +580,7 @@ class _RegisterState extends State<Register> {
                           if (email == 'hussin@gmail.com') {
                             currentSeller = Seller(
                                 name: 'Shopping with Hussin',
-                                userName: 'Hussin',
+                                userName: 'ShoppingWithHussin',
                                 email: email,
                                 about: 'First Male Shopper In KSA',
                                 review: ['Good', 'Great'],
@@ -590,27 +590,13 @@ class _RegisterState extends State<Register> {
                                 letter: '',
                                 orders: [
                                   const Orders(
-                                    id: 'order1',
-                                    orderStatus: 'In Process',
-                                    orderDate: '15 Jan 2023',
-                                    shopName: 'Shopping with Hussin',
-                                    numOfProduct: '1',
-                                    products: [
-                                      Product(
-                                          id: 'bag4',
-                                          name: 'Loubishore Bag in Braided Palm Leaves & Leather',
-                                          price: 2600,
-                                          brand: 'CHRISTIAN LOUBOUTIN',
-                                          description:
-                                              'The Loubishore by Christian Louboutin is the perfect bag to set off your summery edits. Its classic basket-inspired silhouette is handwoven from palm leaves with logo-embossed leather patches adding a signature touch. The design is completed with the house\'s red trims on the inside of the top handles.',
-                                          shopName: 'Shopping with Hussin',
-                                          category: 'Bags',
-                                          country: 'France',
-                                          rating: 4.5,
-                                          imageUrl:
-                                              'https://ounass-prod2.atgcdn.ae/small_light(p=zoom,of=webp,q=65)/pub/media/catalog/product//2/1/214518473_natural_in.jpg?1620725566.9286')
-                                    ],
-                                  )
+                                      id: 'id',
+                                      orderStatus: 'In Progress',
+                                      orderDate: 'orderDate',
+                                      shopName: 'shopName',
+                                      numOfProduct: 'numOfProduct',
+                                      products: [],
+                                      total: 0)
                                 ],
                                 product: [
                                   const Product(

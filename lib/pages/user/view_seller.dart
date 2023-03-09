@@ -56,7 +56,6 @@ class _ViewSellerState extends State<ViewSeller> {
                       backgroundColor: Colors.white,
                       radius: 55,
                     ),
-                    // Avatar(initial: seller.letter, radius: 55),
                     const SizedBox(height: 10),
                     MText(text: seller.userName, fontweight: FontWeight.w500, color: Colors.black, size: 20),
                     const SizedBox(height: 24),

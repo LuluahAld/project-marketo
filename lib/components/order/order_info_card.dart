@@ -27,13 +27,13 @@ class orderInfoCard extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              const Text('order date'),
+              Text(order.orderDate.toString()),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Text('Total'),
+              Text('${order.total} SAR'),
               const SizedBox(
                 height: 10,
               ),

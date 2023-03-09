@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
+import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/model/product.dart';
 
 import '../../constants/color_pallete.dart';
 import '../../constants/padding.dart';
 
 class OrderCard extends StatelessWidget {
+  final Function ondelete;
   OrderCard({
     super.key,
     required this.product,
+    required this.ondelete,
   });
   Product product;
 
@@ -79,6 +82,21 @@ class OrderCard extends StatelessWidget {
                   ],
                 ),
               ],
+            ),
+          ),
+        ),
+        Positioned(
+          bottom: 20,
+          right: 10,
+          child: InkWell(
+            onTap: () {
+              appData.cart.remove(product);
+              ondelete();
+            },
+            child: const Icon(
+              Icons.remove_circle,
+              color: Colors.redAccent,
+              size: 30,
             ),
           ),
         )

@@ -54,7 +54,12 @@ class _CartPageState extends State<CartPage> {
                   shrinkWrap: true,
                   itemCount: appData.cart.length,
                   itemBuilder: (context, index) {
-                    return OrderCard(product: appData.cart[index]);
+                    return OrderCard(
+                      product: appData.cart[index],
+                      ondelete: () {
+                        setState(() {});
+                      },
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) => const SizedBox(
                     height: 12,

@@ -24,6 +24,7 @@ class _SHome extends State<SHome> {
   @override
   void initState() {
     currentIndex = 0;
+
     super.initState();
   }
 

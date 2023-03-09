@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
     final pages = [
       const UserHomePage(),
       const ExplorePage(),
-      const OrderPage(),
+      const OrderListPage(),
       const ProfilePage(),
     ];
     return Scaffold(

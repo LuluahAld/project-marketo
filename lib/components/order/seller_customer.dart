@@ -1,14 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
+import 'package:project_teamd/model/seller.dart';
+
+import '../../model/order.dart';
 
 class sellerCustomerInfo extends StatelessWidget {
-  const sellerCustomerInfo({
-    super.key,
-  });
+  final Orders order;
+  const sellerCustomerInfo({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
+    var shopname = order.products[0].shopName;
+    Seller seller = Seller(
+        name: 'name',
+        userName: 'userName',
+        email: 'email',
+        about: 'about',
+        review: [],
+        id: 'id',
+        logo: 'logo',
+        location: 'location',
+        letter: 'letter',
+        orders: orders,
+        product: [],
+        rating: 5);
+    for (var i = 0; i < sellers.length; i++) {
+      if (sellers[i].name == shopname) {
+        seller = sellers[i];
+      }
+    }
     return Container(
       padding: padding,
       decoration: BoxDecoration(
@@ -20,12 +41,9 @@ class sellerCustomerInfo extends StatelessWidget {
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              Text('customer info'),
-              SizedBox(
-                height: 10,
-              ),
-              Text('seller info'),
+            children: [
+              const Text('Personal Shopper Information'),
+              Text(seller.name),
             ],
           ),
         ],

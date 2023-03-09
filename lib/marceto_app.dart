@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_teamd/model/order.dart';
 import 'package:project_teamd/pages/login_page.dart';
 import 'package:project_teamd/pages/onboarding_pages.dart';
 import 'package:project_teamd/pages/seller/Shome.dart';
@@ -41,36 +42,51 @@ class _MarcetoAppState extends State<MarcetoApp> {
           setState(() {});
         },
       );
-      listenToSellers() {
-        FirebaseFirestore.instance.collection('seller').snapshots().listen(
-          (collection) {
-            List<Seller> newList = [];
-            for (final doc in collection.docs) {
-              final usersN = Seller.fromMap(doc.data());
-              newList.add(usersN);
-            }
-            sellers = newList;
-
-            setState(() {});
-          },
-        );
-      }
-
-      listenToSellers();
     }
 
+    listenToSellers() {
+      FirebaseFirestore.instance.collection('seller').snapshots().listen(
+        (collection) {
+          List<Seller> newList = [];
+          for (final doc in collection.docs) {
+            final usersN = Seller.fromMap(doc.data());
+            newList.add(usersN);
+          }
+          sellers = newList;
+
+          setState(() {});
+        },
+      );
+    }
+
+    listenToSellers();
     listenToUsers();
+
+    listenToOrders() {
+      FirebaseFirestore.instance.collection('order').snapshots().listen(
+        (collection) {
+          List<Orders> newList = [];
+          for (final doc in collection.docs) {
+            final usersN = Orders.fromMap(doc.data());
+            newList.add(usersN);
+          }
+          orders = newList;
+
+          setState(() {});
+        },
+      );
+    }
+
+    listenToOrders();
     super.initState();
   }
 
-  late Widget home;
+  Widget home = const Home();
   @override
   Widget build(BuildContext context) {
     if (isUser) {
       home = const Home();
       setState(() {});
-    } else {
-      home = const SHome();
     }
     if (isSeller) {
       home = const SHome();

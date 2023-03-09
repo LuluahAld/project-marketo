@@ -52,7 +52,7 @@ class orderHorisCard extends StatelessWidget {
                     const SizedBox(
                       height: 4,
                     ),
-                    Text(order.orderDate),
+                    Text(order.orderDate.toString()),
                   ],
                 ),
               ],

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
-import 'package:project_teamd/components/buttons/button.dart';
 import 'package:project_teamd/components/order/order_summary_card.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/user.dart';
+import 'package:project_teamd/pages/user/payment_page.dart';
 
 import '../../components/order/schedual_time.dart';
 import '../../components/order_location.dart';
@@ -46,10 +46,23 @@ class ConfirmOrder extends StatelessWidget {
             const SizedBox(
               height: 32,
             ),
-            button(
-              color: lightgreen,
-              text: 'Proceed to payment',
-              NavChoice: 3,
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: lightgreen,
+                minimumSize: const Size.fromHeight(50),
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PaymentPage(
+                              date: text,
+                            )));
+              },
+              child: const Text(
+                'Proceed to payment',
+                style: TextStyle(fontSize: 16),
+              ),
             )
           ],
         ),

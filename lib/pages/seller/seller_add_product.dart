@@ -1,12 +1,13 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/logo.dart';
-import 'package:project_teamd/components/textfields/textfield_m.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
-import 'package:project_teamd/pages/seller/Sbotton.dart';
+import 'package:project_teamd/model/product.dart';
+import 'package:project_teamd/model/seller.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({super.key});
@@ -17,6 +18,11 @@ class AddProduct extends StatefulWidget {
 
 class _AddProductState extends State<AddProduct> {
   File? imageFile;
+  TextEditingController name = TextEditingController();
+  TextEditingController price = TextEditingController();
+  TextEditingController brand = TextEditingController();
+  TextEditingController cat = TextEditingController();
+  TextEditingController desc = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +44,22 @@ class _AddProductState extends State<AddProduct> {
           const SizedBox(
             height: 10,
           ),
-          const TextFieldM(
-            hint: 'Name',
+          TextField(
+            controller: name,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.shade200,
+              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+              hintStyle: const TextStyle(fontSize: 18),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: green),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 0.5, color: green),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -55,8 +75,22 @@ class _AddProductState extends State<AddProduct> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const TextFieldM(
-                      hint: 'Price',
+                    TextField(
+                      controller: price,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey.shade200,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                        hintStyle: const TextStyle(fontSize: 18),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1, color: green),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 0.5, color: green),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -72,8 +106,22 @@ class _AddProductState extends State<AddProduct> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const TextFieldM(
-                      hint: 'Brand',
+                    TextField(
+                      controller: brand,
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.grey.shade200,
+                        contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+                        hintStyle: const TextStyle(fontSize: 18),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 1, color: green),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(width: 0.5, color: green),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -87,8 +135,22 @@ class _AddProductState extends State<AddProduct> {
           const SizedBox(
             height: 10,
           ),
-          const TextFieldM(
-            hint: 'Category',
+          TextField(
+            controller: cat,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.shade200,
+              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+              hintStyle: const TextStyle(fontSize: 18),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: green),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 0.5, color: green),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -97,8 +159,22 @@ class _AddProductState extends State<AddProduct> {
           const SizedBox(
             height: 10,
           ),
-          const TextFieldM(
-            hint: 'Description',
+          TextField(
+            controller: desc,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: Colors.grey.shade200,
+              contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 16),
+              hintStyle: const TextStyle(fontSize: 18),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 1, color: green),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 0.5, color: green),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+            ),
           ),
           const SizedBox(
             height: 20,
@@ -143,10 +219,56 @@ class _AddProductState extends State<AddProduct> {
           const SizedBox(
             height: 40,
           ),
-          Sbutton(
-            color: lightgreen,
-            text: 'Add Product',
-            NavChoice: 2,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: lightgreen,
+              minimumSize: const Size.fromHeight(50),
+            ),
+            onPressed: () {
+              var id = DateTime.now().millisecondsSinceEpoch.remainder(100000000).toString();
+              var imageUrl = '';
+              if (imageFile!.path ==
+                  '/Users/luluahmaldakhil/Library/Developer/CoreSimulator/Devices/F1269B85-4240-43F6-993A-E489339499C9/data/Containers/Data/Application/A5BDF2AA-CD40-46F8-979C-A5775AFAE984/tmp/image_picker_8D687C5F-6607-469D-915F-E782BD310A6D-70959-0000582F0B8379F6.png') {
+                imageUrl =
+                    'https://ounass-prod2.atgcdn.ae/small_light(p=zoom,of=webp,q=65)/pub/media/catalog/product//2/1/215875963_brown_in.jpg?1670077595.0538';
+              } else {
+                imageUrl =
+                    'https://ounass-prod2.atgcdn.ae/small_light(p=zoom,of=webp,q=65)/pub/media/catalog/product//2/1/215875963_brown_in.jpg?1670077595.0538';
+              }
+              Product pro = Product(
+                  id: id,
+                  name: name.text,
+                  price: double.parse(price.text),
+                  brand: brand.text,
+                  description: desc.text,
+                  shopName: currentSeller.name,
+                  category: cat.text,
+                  country: 'Italy',
+                  rating: 5,
+                  imageUrl: imageUrl);
+              currentSeller.product.add(pro);
+
+              Seller seller = Seller(
+                  name: currentSeller.name,
+                  userName: currentSeller.userName,
+                  email: currentSeller.email,
+                  about: currentSeller.about,
+                  review: currentSeller.review,
+                  id: currentSeller.id,
+                  logo: currentSeller.logo,
+                  location: currentSeller.location,
+                  letter: currentSeller.letter,
+                  orders: currentSeller.orders,
+                  product: currentSeller.product,
+                  rating: currentSeller.rating);
+              final collection = FirebaseFirestore.instance.collection('seller');
+              collection.doc(seller.id).set(seller.toMap());
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Add Product',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
           const SizedBox(
             height: 40,
@@ -179,6 +301,7 @@ class _AddProductState extends State<AddProduct> {
       setState(
         () {
           imageFile = File(pickedFile.path);
+          print(imageFile!.path);
         },
       );
     }

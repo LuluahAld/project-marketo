@@ -3,67 +3,104 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/product.dart';
 
-class SProsuctCard extends StatefulWidget {
-  SProsuctCard({Key? key, required this.product}) : super(key: key);
+import '../user/user_product_details.dart';
+
+class SProductCard extends StatefulWidget {
+  SProductCard({Key? key, required this.product, required this.cardWidth, required this.productImgWidth})
+      : super(key: key);
   Product product;
+  double cardWidth;
+  double productImgWidth;
   @override
-  State<SProsuctCard> createState() => _SProsuctCard();
+  State<SProductCard> createState() => _SProsuctCard();
 }
 
-class _SProsuctCard extends State<SProsuctCard> {
+class _SProsuctCard extends State<SProductCard> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
-      child: Column(children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
-                height: MediaQuery.of(context).size.height / 7,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.white.withOpacity(0.2),
+    return Row(
+      children: [
+        Container(
+          width: widget.cardWidth,
+          decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
+          child: Column(children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Stack(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => UserProductDetails(
+                                      pro: widget.product,
+                                    )));
+                      },
+                      child: Container(
+                          height: MediaQuery.of(context).size.height / 7,
+                          width: widget.productImgWidth,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white.withOpacity(0.8),
+                          ),
+                          child: Image.network(
+                            widget.product.imageUrl,
+                            fit: BoxFit.contain,
+                          )),
+                    ),
+                  ],
                 ),
-                child: Image.asset(
-                  widget.product.imageUrl,
-                  fit: BoxFit.fill,
-                )),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      MText(text: widget.product.name, fontweight: FontWeight.normal, color: green, size: 16),
-                      const SizedBox(
-                        width: 10,
+                      Center(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                widget.product.name,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(fontWeight: FontWeight.normal, color: green, fontSize: 17),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      MText(text: '${widget.product.price} SAR', fontweight: FontWeight.normal, color: green, size: 16),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: MText(
+                                text: '${widget.product.price} SAR',
+                                fontweight: FontWeight.normal,
+                                color: green,
+                                size: 16),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      MText(text: widget.product.category, fontweight: FontWeight.normal, color: green, size: 16),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      MText(text: widget.product.brand, fontweight: FontWeight.normal, color: green, size: 16),
-                    ],
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
+          ]),
         ),
-      ]),
+        const SizedBox(
+          width: 12,
+        )
+      ],
     );
   }
 }

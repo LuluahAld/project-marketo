@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/pages/user/confirm_order.dart';
-import 'package:project_teamd/pages/user/home.dart';
-import 'package:project_teamd/pages/user/order_page.dart';
-import 'package:project_teamd/pages/user/payment_page.dart';
 
 class button extends StatelessWidget {
   final color;
@@ -28,9 +26,15 @@ class button extends StatelessWidget {
         } else if (NavChoice == 2) {
           Navigator.push(context, MaterialPageRoute(builder: (context) => const Scaffold()));
         } else if (NavChoice == 3) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentPage()));
+          // Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentPage()));
         } else if (NavChoice == 4) {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const Home()));
+          appData.cart.clear();
+          appData.total = 0.0;
+          appData.cartVisible = false;
+          Navigator.of(context)
+            ..pop()
+            ..pop()
+            ..pop();
         }
       },
       child: Text(

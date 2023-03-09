@@ -22,7 +22,13 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
       children: [
         Container(
           width: widget.cardWidth,
-          decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
+          decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.3),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey.withOpacity(0.1), spreadRadius: 3, blurRadius: 5, offset: const Offset(3, 3))
+              ],
+              borderRadius: BorderRadius.circular(20)),
           child: Column(children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.start,

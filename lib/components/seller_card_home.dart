@@ -25,7 +25,16 @@ class _SellerCardHomeState extends State<SellerCardHome> {
             Padding(
               padding: const EdgeInsets.only(right: 20, left: 12, top: 14),
               child: Container(
-                decoration: BoxDecoration(color: Colors.grey.withOpacity(0.3), borderRadius: BorderRadius.circular(20)),
+                decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.3),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.withOpacity(0.1),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: const Offset(3, 3))
+                    ],
+                    borderRadius: BorderRadius.circular(20)),
                 width: MediaQuery.of(context).size.width / 2.7,
                 height: MediaQuery.of(context).size.height / 5.5,
                 child: Column(children: [

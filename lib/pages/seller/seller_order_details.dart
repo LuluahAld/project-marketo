@@ -1,12 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appBar/appbar_local.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
-import 'package:project_teamd/components/order/order_info_card.dart';
 import 'package:project_teamd/components/order/order_status.dart';
-import 'package:project_teamd/components/order/seller_customer.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/model/order.dart';
-import 'package:project_teamd/pages/seller/Sbotton.dart';
+import 'package:project_teamd/model/product.dart';
 
 import '../../constants/color_pallete.dart';
 
@@ -16,7 +15,7 @@ class SOrderDetials extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarLocal(title: 'Order #12345'),
+      appBar: AppBarLocal(title: 'Order #${order.id}'),
       body: ListView(
         padding: padding,
         children: [
@@ -25,55 +24,109 @@ class SOrderDetials extends StatelessWidget {
             order: order,
           ),
           const SizedBox(height: 48),
-          orderInfoCard(
-            order: const Orders(
-              id: 'id',
-              orderStatus: 'orderStatus',
-              orderDate: 'orderDate',
-              shopName: 'shopName',
-              numOfProduct: 'numOfProduct',
-              products: [],
-            ),
-          ),
-          const SizedBox(height: 48),
-          const sellerCustomerInfo(),
-          const SizedBox(height: 32),
           MText(text: 'Products', fontweight: FontWeight.w500, color: lightgreen, size: 24),
           const SizedBox(height: 16),
-          const OrderDetailsCard(),
+          for (var product in order.products) ...[
+            OrderDetailsCard(product: product),
+            const SizedBox(
+              height: 12,
+            )
+          ],
           const SizedBox(height: 16),
           const Divider(),
           const SizedBox(height: 16),
-          Sbutton(
-            text: 'On the Way',
-            color: grey,
-            NavChoice: 3,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: grey,
+              minimumSize: const Size.fromHeight(50),
+            ),
+            onPressed: () {
+              final Orders orderNow = Orders(
+                  id: order.id,
+                  orderStatus: 'On the Way',
+                  orderDate: order.orderDate,
+                  shopName: order.shopName,
+                  numOfProduct: order.numOfProduct,
+                  products: order.products,
+                  total: order.total);
+              final collection = FirebaseFirestore.instance.collection('order');
+              collection.doc(orderNow.id).set(orderNow.toMap());
+            },
+            child: const Text(
+              'On the Way',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
           const SizedBox(height: 10),
-          Sbutton(
-            text: 'Delivered',
-            color: pink,
-            NavChoice: 3,
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: pink,
+              minimumSize: const Size.fromHeight(50),
+            ),
+            onPressed: () {
+              final Orders orderNow = Orders(
+                  id: order.id,
+                  orderStatus: 'Delivered',
+                  orderDate: order.orderDate,
+                  shopName: order.shopName,
+                  numOfProduct: order.numOfProduct,
+                  products: order.products,
+                  total: order.total);
+              final collection = FirebaseFirestore.instance.collection('order');
+              collection.doc(orderNow.id).set(orderNow.toMap());
+            },
+            child: const Text(
+              'Delivered',
+              style: TextStyle(fontSize: 16),
+            ),
           ),
           const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Expanded(
-                child: Sbutton(
-                  text: 'Accept',
-                  color: lightgreen,
-                  NavChoice: 3,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: lightgreen,
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: () {
+                    final Orders orderNow = Orders(
+                        id: order.id,
+                        orderStatus: 'In Progress',
+                        orderDate: order.orderDate,
+                        shopName: order.shopName,
+                        numOfProduct: order.numOfProduct,
+                        products: order.products,
+                        total: order.total);
+                    final collection = FirebaseFirestore.instance.collection('order');
+                    collection.doc(orderNow.id).set(orderNow.toMap());
+                  },
+                  child: const Text(
+                    'Accept',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
               const SizedBox(
                 width: 20,
               ),
-              const Expanded(
-                child: Sbutton(
-                  text: 'Decline',
-                  color: Colors.redAccent,
-                  NavChoice: 3,
+              Expanded(
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.redAccent,
+                    minimumSize: const Size.fromHeight(50),
+                  ),
+                  onPressed: () {
+                    final orderdoc = FirebaseFirestore.instance.collection('order');
+                    final orDoc = orderdoc.doc(order.id);
+                    orDoc.delete();
+                    Navigator.pop(context);
+                  },
+                  child: const Text(
+                    'Decline',
+                    style: TextStyle(fontSize: 16),
+                  ),
                 ),
               ),
             ],
@@ -85,9 +138,8 @@ class SOrderDetials extends StatelessWidget {
 }
 
 class OrderDetailsCard extends StatelessWidget {
-  const OrderDetailsCard({
-    super.key,
-  });
+  final Product product;
+  const OrderDetailsCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -106,22 +158,30 @@ class OrderDetailsCard extends StatelessWidget {
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Product Title'),
-                    SizedBox(height: 4),
-                    Text('Category'),
-                    SizedBox(height: 4),
-                    Text('Description'),
+                  children: [
+                    SizedBox(
+                      width: 160,
+                      child: Text(
+                        product.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(product.category),
+                    const SizedBox(height: 4),
                   ],
                 ),
-                const SizedBox(width: 100),
+                const SizedBox(
+                  width: 20,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text('Price'),
-                    SizedBox(height: 4),
-                    Text('Brand'),
-                    SizedBox(height: 4),
+                  children: [
+                    Text('${product.price} SAR'),
+                    const SizedBox(height: 4),
+                    Text(product.brand),
+                    const SizedBox(height: 4),
                   ],
                 ),
               ],
@@ -129,14 +189,14 @@ class OrderDetailsCard extends StatelessWidget {
           ),
           Container(
               height: 80,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
-                color: grey,
+              padding: const EdgeInsets.all(5),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                ),
               ),
-              child: Image.asset(
-                'images/bag1.png',
-                width: 120,
-              )),
+              child: ClipRRect(borderRadius: borderRad, child: Image.network(product.imageUrl))),
         ],
       ),
     );

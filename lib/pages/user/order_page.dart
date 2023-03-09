@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/components/order/order_horis_card.dart';
@@ -7,25 +8,37 @@ import 'package:project_teamd/pages/user/order_details.dart';
 
 import '../../constants/padding.dart';
 
-class OrderPage extends StatelessWidget {
-  const OrderPage({super.key});
+class OrderListPage extends StatefulWidget {
+  const OrderListPage({super.key});
+
+  @override
+  State<OrderListPage> createState() => _OrderListPageState();
+}
+
+class _OrderListPageState extends State<OrderListPage> {
+  @override
+  void initState() {
+    listenToOrders() {
+      FirebaseFirestore.instance.collection('order').snapshots().listen(
+        (collection) {
+          List<Orders> newList = [];
+          for (final doc in collection.docs) {
+            final usersN = Orders.fromMap(doc.data());
+            newList.add(usersN);
+          }
+          orders = newList;
+
+          setState(() {});
+        },
+      );
+    }
+
+    listenToOrders();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    Orders order = const Orders(
-      id: 'id',
-      orderStatus: 'orderStatus',
-      orderDate: 'orderDate',
-      shopName: 'shopName',
-      numOfProduct: 'numOfProduct',
-      products: [],
-    );
-    IconData icon = Icons.pending_actions;
-    if (order.orderStatus == 'On the Way') {
-      icon = Icons.local_shipping;
-    } else if (order.orderStatus == 'Delivered') {
-      icon = Icons.done;
-    }
     return Scaffold(
       appBar: AppBar(
           elevation: 0.5,
@@ -55,24 +68,27 @@ class OrderPage extends StatelessWidget {
         child: ListView.separated(
           physics: const BouncingScrollPhysics(),
           shrinkWrap: true,
-          itemCount: 6,
-          itemBuilder: (context, index) => InkWell(
-              onTap: () {
-                Navigator.push(
+          itemCount: orders.length,
+          itemBuilder: (context, i) {
+            IconData icon = Icons.pending_actions;
+            if (orders[i].orderStatus == 'On the Way') {
+              icon = Icons.local_shipping;
+            } else if (orders[i].orderStatus == 'Delivered') {
+              icon = Icons.done;
+            }
+            return InkWell(
+                onTap: () {
+                  Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => OrderDetials(
-                              order: const Orders(
-                                id: 'id',
-                                orderStatus: 'In Progress',
-                                orderDate: 'orderDate',
-                                shopName: 'shopName',
-                                numOfProduct: 'numOfProduct',
-                                products: [],
-                              ),
-                            )));
-              },
-              child: orderHorisCard(order: order, icon: icon)),
+                      builder: (context) => OrderDetails(
+                        order: orders[i],
+                      ),
+                    ),
+                  );
+                },
+                child: orderHorisCard(order: orders[i], icon: icon));
+          },
           separatorBuilder: (BuildContext context, int index) => const SizedBox(
             height: 12,
           ),
