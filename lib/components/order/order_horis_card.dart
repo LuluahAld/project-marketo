@@ -15,6 +15,14 @@ class orderHorisCard extends StatelessWidget {
           height: MediaQuery.of(context).size.height / 10,
           padding: padding,
           decoration: BoxDecoration(
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: const Offset(0, 2), // changes position of shadow
+              ),
+            ],
             color: lightgrey,
             borderRadius: borderRad,
           ),
@@ -22,37 +30,40 @@ class orderHorisCard extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 7,
+                  width: MediaQuery.of(context).size.width / 6,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(order.shopName),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(order.shopName),
+                        const SizedBox(
+                          width: 24,
+                        ),
+                        Text("${order.numOfProduct}  Product")
+                      ],
+                    ),
                     const SizedBox(
                       height: 4,
                     ),
-                    Text(order.id),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Order Status: ${order.orderStatus}"),
+                        const SizedBox(
+                          width: 16,
+                        ),
+                      ],
+                    ),
                     const SizedBox(
                       height: 4,
                     ),
-                    Text(order.orderStatus),
-                  ],
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 3.5,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    const Text('Total'),
-                    const SizedBox(
-                      height: 4,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [Text(order.orderDate.toString())],
                     ),
-                    Text(order.numOfProduct),
-                    const SizedBox(
-                      height: 4,
-                    ),
-                    Text(order.orderDate.toString()),
                   ],
                 ),
               ],
@@ -63,10 +74,14 @@ class orderHorisCard extends StatelessWidget {
             width: MediaQuery.of(context).size.width / 6,
             height: MediaQuery.of(context).size.height / 10,
             decoration: BoxDecoration(
-              color: grey,
+              color: pink.withOpacity(0.3),
               borderRadius: borderRad,
             ),
-            child: Icon(icon)),
+            child: Icon(
+              icon,
+              color: green,
+              size: 30,
+            )),
       ],
     );
   }

@@ -18,6 +18,14 @@ class ExploreProductCard extends StatelessWidget {
           decoration: BoxDecoration(
             color: lightgrey,
             borderRadius: borderRad,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 1,
+                blurRadius: 1,
+                offset: const Offset(0, 2), // changes position of shadow
+              ),
+            ],
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,

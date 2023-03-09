@@ -3,6 +3,7 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/constants/padding.dart';
 import 'package:project_teamd/model/appData.dart';
+import 'package:project_teamd/pages/user/user_home_page.dart';
 
 import '../../model/product.dart';
 
@@ -24,18 +25,33 @@ class UserProductDetails extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           Container(
-            decoration: BoxDecoration(color: grey),
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.9),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 3,
+                  offset: const Offset(0, 3), // changes position of shadow
+                ),
+              ],
+              border: Border.all(width: 0.0, color: green),
+              borderRadius: const BorderRadius.all(Radius.circular(10.0) //                 <--- border radius here
+                  ),
+            ),
             padding: const EdgeInsets.all(40),
             child: ClipRRect(
               borderRadius: borderRad,
               child: Image.network(
                 pro.imageUrl,
                 fit: BoxFit.cover,
+                height: MediaQuery.of(context).size.height / 2.3,
               ),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(14.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
                 Material(
@@ -44,7 +60,7 @@ class UserProductDetails extends StatelessWidget {
                     child: Text(
                       pro.name,
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 20,
                         fontWeight: FontWeight.w700,
                         color: green,
                       ),
@@ -112,6 +128,8 @@ class UserProductDetails extends StatelessWidget {
                   ),
                   onPressed: () {
                     appData.cart.add(pro);
+                    context.findAncestorStateOfType<UserHomePageState>()?.showCart = true;
+                    context.findAncestorStateOfType<UserHomePageState>()?.setState(() {});
                     Navigator.pop(context);
                   },
                   child: const Text(

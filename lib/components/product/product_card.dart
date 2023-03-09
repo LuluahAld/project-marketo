@@ -3,6 +3,7 @@ import 'package:project_teamd/components/appText/m_text.dart';
 import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/model/product.dart';
+import 'package:project_teamd/pages/user/user_home_page.dart';
 import 'package:project_teamd/pages/user/user_product_details.dart';
 
 class ProsuctCard2 extends StatefulWidget {
@@ -104,6 +105,8 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
                           InkWell(
                               onTap: () {
                                 appData.cart.add(widget.product);
+                                context.findAncestorStateOfType<UserHomePageState>()?.showCart = true;
+                                context.findAncestorStateOfType<UserHomePageState>()?.setState(() {});
                               },
                               child: const Icon(Icons.shopping_cart)),
                         ],

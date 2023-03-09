@@ -20,13 +20,14 @@ import '../../model/seller.dart';
 class UserHomePage extends StatefulWidget {
   const UserHomePage({super.key});
   @override
-  State<UserHomePage> createState() => _UserHomePageState();
+  State<UserHomePage> createState() => UserHomePageState();
 }
 
-class _UserHomePageState extends State<UserHomePage> {
+class UserHomePageState extends State<UserHomePage> {
   List<Seller> seller = [];
   StreamSubscription? subscription;
   List<Product> product = [];
+  bool showCart = appData.cart.isNotEmpty;
 
   StreamSubscription? subscriptionProduct;
 
@@ -127,7 +128,7 @@ class _UserHomePageState extends State<UserHomePage> {
           ),
           Expanded(
               child: ListView(shrinkWrap: true, padding: const EdgeInsets.all(12), children: [
-            MainCategory('Popular Seller', 'See All', green, lightgreen, 1),
+            MainCategory('Popular Sellers', 'See All', green, lightgreen, 1),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(children: [
@@ -175,6 +176,14 @@ class _UserHomePageState extends State<UserHomePage> {
                     decoration: BoxDecoration(
                       color: lightgrey,
                       borderRadius: borderRad,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 3,
+                          offset: const Offset(0, 3), // changes position of shadow
+                        ),
+                      ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,7 +219,7 @@ class _UserHomePageState extends State<UserHomePage> {
           ])),
         ]),
         floatingActionButton: Visibility(
-          visible: appData.cartVisible,
+          visible: showCart,
           child: FloatingActionButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));

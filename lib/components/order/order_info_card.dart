@@ -16,6 +16,14 @@ class orderInfoCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: lightgrey,
         borderRadius: borderRad,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 3,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -23,7 +31,7 @@ class orderInfoCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(order.id),
+              Text("Order Id:  ${order.id}"),
               const SizedBox(
                 height: 10,
               ),

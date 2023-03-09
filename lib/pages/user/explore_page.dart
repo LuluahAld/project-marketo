@@ -20,6 +20,7 @@ class ExplorePage extends StatefulWidget {
 
 class _ExplorePageState extends State<ExplorePage> {
   List<Product> product = [];
+  bool showCart = appData.cart.isNotEmpty;
   StreamSubscription? subscription;
 
   @override
@@ -112,7 +113,7 @@ class _ExplorePageState extends State<ExplorePage> {
           )
         ]),
         floatingActionButton: Visibility(
-          visible: appData.cartVisible,
+          visible: showCart,
           child: FloatingActionButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));

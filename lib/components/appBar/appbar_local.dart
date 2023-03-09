@@ -13,7 +13,7 @@ class AppBarLocal extends StatelessWidget with PreferredSizeWidget {
       iconTheme: const IconThemeData(color: Colors.black),
       elevation: 0.5,
       centerTitle: true,
-      backgroundColor: greyLight,
+      backgroundColor: grey,
       title: MText(
         text: title,
         fontweight: FontWeight.bold,

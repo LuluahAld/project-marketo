@@ -41,28 +41,17 @@ class _OrderListPageState extends State<OrderListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          elevation: 0.5,
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          backgroundColor: grey,
-          title: MText(
-            text: 'My Order',
-            fontweight: FontWeight.bold,
-            color: green,
-            size: 20,
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.search,
-                color: green,
-                size: 30,
-              ),
-              onPressed: () {
-                // do something
-              },
-            )
-          ]),
+        elevation: 0.5,
+        centerTitle: true,
+        automaticallyImplyLeading: false,
+        backgroundColor: grey,
+        title: MText(
+          text: 'My Order',
+          fontweight: FontWeight.bold,
+          color: green,
+          size: 20,
+        ),
+      ),
       body: Padding(
         padding: padding,
         child: ListView.separated(
