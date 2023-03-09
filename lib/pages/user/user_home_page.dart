@@ -223,6 +223,8 @@ class UserHomePageState extends State<UserHomePage> {
           child: FloatingActionButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const CartPage()));
+              context.findAncestorStateOfType<UserHomePageState>()?.showCart = false;
+              context.findAncestorStateOfType<UserHomePageState>()?.setState(() {});
             },
             backgroundColor: lightgrey,
             child: Stack(

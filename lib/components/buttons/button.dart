@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/pages/user/confirm_order.dart';
 
+import '../../pages/user/user_home_page.dart';
+
 class button extends StatelessWidget {
   final color;
   final text;
@@ -29,8 +31,10 @@ class button extends StatelessWidget {
           // Navigator.push(context, MaterialPageRoute(builder: (context) => const PaymentPage()));
         } else if (NavChoice == 4) {
           appData.cart.clear();
+
           appData.total = 0.0;
           appData.cartVisible = false;
+
           Navigator.of(context)
             ..pop()
             ..pop()

@@ -34,6 +34,7 @@ class orderHorisCard extends StatelessWidget {
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,16 +43,15 @@ class orderHorisCard extends StatelessWidget {
                         const SizedBox(
                           width: 24,
                         ),
-                        Text("${order.numOfProduct}  Product")
                       ],
                     ),
                     const SizedBox(
-                      height: 4,
+                      height: 20,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Order Status: ${order.orderStatus}"),
+                        Text("Order Number: #${order.id}"),
                         const SizedBox(
                           width: 16,
                         ),
@@ -59,10 +59,6 @@ class orderHorisCard extends StatelessWidget {
                     ),
                     const SizedBox(
                       height: 4,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [Text(order.orderDate.toString())],
                     ),
                   ],
                 ),

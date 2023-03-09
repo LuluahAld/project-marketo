@@ -6,6 +6,8 @@ import 'package:project_teamd/constants/color_pallete.dart';
 import 'package:project_teamd/model/appData.dart';
 import 'package:project_teamd/model/order.dart';
 
+import 'user_home_page.dart';
+
 class PaymentPage extends StatelessWidget {
   final String? date;
   const PaymentPage({super.key, required this.date});
@@ -13,11 +15,13 @@ class PaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var id = DateTime.now().millisecondsSinceEpoch.remainder(100000000).toString();
+    String name;
+
     Orders order = Orders(
         id: id,
         orderStatus: 'Pending',
         orderDate: date,
-        shopName: appData.cart[0].shopName,
+        shopName: 'Shopping with Hussin',
         numOfProduct: appData.cart.length.toString(),
         products: appData.cart,
         total: appData.calculateTotal());
@@ -57,7 +61,9 @@ class PaymentPage extends StatelessWidget {
                 collection.doc(order.id).set(order.toMap());
                 appData.cart.clear();
                 appData.total = 0.0;
-                appData.cartVisible = false;
+
+                context.findAncestorStateOfType<UserHomePageState>()?.showCart = false;
+                context.findAncestorStateOfType<UserHomePageState>()?.setState(() {});
                 Navigator.of(context)
                   ..pop()
                   ..pop()

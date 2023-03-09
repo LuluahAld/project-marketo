@@ -5,6 +5,7 @@ import 'package:project_teamd/model/product.dart';
 
 import '../../constants/color_pallete.dart';
 import '../../constants/padding.dart';
+import '../../pages/user/user_home_page.dart';
 
 class OrderCard extends StatelessWidget {
   final Function ondelete;
@@ -91,6 +92,8 @@ class OrderCard extends StatelessWidget {
           child: InkWell(
             onTap: () {
               appData.cart.remove(product);
+              context.findAncestorStateOfType<UserHomePageState>()?.showCart = true;
+              context.findAncestorStateOfType<UserHomePageState>()?.setState(() {});
               ondelete();
             },
             child: const Icon(

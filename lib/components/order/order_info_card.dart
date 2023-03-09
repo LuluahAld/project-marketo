@@ -31,21 +31,20 @@ class orderInfoCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Order Id:  ${order.id}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Order Id:  ${order.id}"),
+                  const SizedBox(
+                    width: 140,
+                  ),
+                  Text('${order.total} SAR'),
+                ],
+              ),
               const SizedBox(
                 height: 10,
               ),
               Text(order.orderDate.toString()),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
-              Text('${order.total} SAR'),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(order.orderStatus),
             ],
           ),
         ],

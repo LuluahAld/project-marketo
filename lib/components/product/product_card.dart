@@ -104,6 +104,21 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
                           ),
                           InkWell(
                               onTap: () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    padding: const EdgeInsets.all(12),
+                                    dismissDirection: DismissDirection.none,
+                                    behavior: SnackBarBehavior.floating,
+                                    margin: const EdgeInsets.all(30),
+                                    backgroundColor: lightgreen,
+                                    content: const Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        'Added to cart successfully.',
+                                      ),
+                                    ),
+                                  ),
+                                );
                                 appData.cart.add(widget.product);
                                 context.findAncestorStateOfType<UserHomePageState>()?.showCart = true;
                                 context.findAncestorStateOfType<UserHomePageState>()?.setState(() {});
