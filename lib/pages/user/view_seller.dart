@@ -175,8 +175,23 @@ class _ViewSellerState extends State<ViewSeller> {
                                                 minimumSize: const Size.fromHeight(50),
                                               ),
                                               onPressed: () {
-                                                Navigator.pop(context);
                                                 imageFile = null;
+                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                  SnackBar(
+                                                    padding: const EdgeInsets.all(12),
+                                                    dismissDirection: DismissDirection.none,
+                                                    behavior: SnackBarBehavior.floating,
+                                                    margin: const EdgeInsets.all(30),
+                                                    backgroundColor: lightgreen,
+                                                    content: const Align(
+                                                      alignment: Alignment.center,
+                                                      child: Text(
+                                                        'Order requested successfully.',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                                Navigator.pop(context);
                                               },
                                               child: const Text(
                                                 'Request',
@@ -333,7 +348,11 @@ class _ViewSellerState extends State<ViewSeller> {
               ),
             ],
           ),
-          SizedBox(height: MediaQuery.of(context).size.height / 1.9, child: const UserSellerPageView())
+          SizedBox(
+              height: MediaQuery.of(context).size.height / 1.9,
+              child: UserSellerPageView(
+                seller: widget.seller,
+              ))
         ],
       ),
     );
@@ -369,7 +388,8 @@ class _ViewSellerState extends State<ViewSeller> {
 }
 
 class UserSellerPageView extends StatefulWidget {
-  const UserSellerPageView({Key? key}) : super(key: key);
+  final Seller seller;
+  const UserSellerPageView({Key? key, required this.seller}) : super(key: key);
 
   @override
   State<UserSellerPageView> createState() => _UserSellerPageViewState();
@@ -377,19 +397,6 @@ class UserSellerPageView extends StatefulWidget {
 
 class _UserSellerPageViewState extends State<UserSellerPageView> {
   // declare and initizlize the page controller
-  Seller seller = const Seller(
-      name: 'Sameera',
-      userName: "@SuperSameera",
-      email: "sameera@gmail.com",
-      about: "Bags Store from london",
-      review: ['very good,fabuilas'],
-      id: "2",
-      logo: "images",
-      location: 'Jedddah',
-      letter: 'S',
-      orders: [],
-      product: [],
-      rating: 5.0);
 
   // the index of the current page
 
@@ -405,10 +412,17 @@ class _UserSellerPageViewState extends State<UserSellerPageView> {
     super.dispose();
   }
 
-  final List<Widget> _pages = [const About(), const Products(), const Reviews()];
-
   @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      About(
+        seller: widget.seller,
+      ),
+      Products(
+        seller: widget.seller,
+      ),
+      Reviews(seller: widget.seller)
+    ];
     return Scaffold(
       body: ListView(
         padding: EdgeInsets.zero,
@@ -432,9 +446,9 @@ class _UserSellerPageViewState extends State<UserSellerPageView> {
                             _activePage = page;
                           });
                         },
-                        itemCount: _pages.length,
+                        itemCount: pages.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return _pages[index % _pages.length];
+                          return pages[index % pages.length];
                         },
                       ),
                     ),
@@ -451,26 +465,14 @@ class _UserSellerPageViewState extends State<UserSellerPageView> {
 
 // Page One
 class About extends StatelessWidget {
-  const About({Key? key}) : super(key: key);
+  final Seller seller;
+  const About({Key? key, required this.seller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller(
-        name: 'Sameera',
-        userName: "@SuperSameera",
-        email: "sameera@gmail.com",
-        about: "Bags Store from london",
-        review: ['very good,fabuilas'],
-        id: "2",
-        logo: "images",
-        location: 'Jedddah',
-        letter: 'S',
-        orders: [],
-        product: [],
-        rating: 5.0);
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-      child: Column(children: [
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(
           children: [
             MText(
@@ -539,61 +541,43 @@ class About extends StatelessWidget {
 }
 
 // Page Two
-class Products extends StatelessWidget {
-  const Products({Key? key}) : super(key: key);
+class Products extends StatefulWidget {
+  final Seller seller;
+  const Products({Key? key, required this.seller}) : super(key: key);
 
   @override
+  State<Products> createState() => _ProductsState();
+}
+
+class _ProductsState extends State<Products> {
+  @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller(
-        name: 'Sameera',
-        userName: "@SuperSameera",
-        email: "sameera@gmail.com",
-        about: "Bags Store from london",
-        review: ['very good,fabuilas'],
-        id: "2",
-        logo: "images",
-        location: 'Jedddah',
-        letter: 'S',
-        orders: [],
-        product: [],
-        rating: 5.0);
     return Column(
       children: [
         ListView(padding: EdgeInsets.zero, physics: const BouncingScrollPhysics(), shrinkWrap: true, children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ProsuctCard2(
-                product: const Product(
-                  id: 'id',
-                  name: 'name',
-                  brand: 'brand',
-                  shopName: 'shopName',
-                  description: 'description',
-                  rating: 5,
-                  price: 1000,
-                  category: 'category',
-                  country: 'country',
-                  imageUrl: 'images/bag2.jpg',
-                ),
-                cardWidth: MediaQuery.of(context).size.width / 2.3,
-                productImgWidth: MediaQuery.of(context).size.width / 2.2,
-              ),
-              ProsuctCard2(
-                product: const Product(
-                  id: 'id',
-                  name: 'name',
-                  brand: 'brand',
-                  shopName: 'shopName',
-                  description: 'description',
-                  rating: 5,
-                  price: 1000,
-                  category: 'category',
-                  country: 'country',
-                  imageUrl: 'images/bag1.png',
-                ),
-                cardWidth: MediaQuery.of(context).size.width / 2.3,
-                productImgWidth: MediaQuery.of(context).size.width / 2.2,
+              Expanded(
+                child: GridView.count(shrinkWrap: true, crossAxisCount: 2, childAspectRatio: 0.84, children: [
+                  for (final pro in widget.seller.product)
+                    ProsuctCard2(
+                      product: Product(
+                        id: pro.id,
+                        name: pro.name,
+                        brand: pro.brand,
+                        shopName: pro.shopName,
+                        description: pro.description,
+                        rating: pro.rating,
+                        price: pro.price,
+                        category: pro.category,
+                        country: pro.country,
+                        imageUrl: pro.imageUrl,
+                      ),
+                      cardWidth: 185,
+                      productImgWidth: 200,
+                    ),
+                ]),
               ),
             ],
           )
@@ -605,101 +589,142 @@ class Products extends StatelessWidget {
 
 // Page Three
 class Reviews extends StatelessWidget {
-  const Reviews({Key? key}) : super(key: key);
+  final Seller seller;
+  const Reviews({Key? key, required this.seller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Seller seller = const Seller(
-        name: 'Sameera',
-        userName: "@SuperSameera",
-        email: "sameera@gmail.com",
-        about: "Bags Store from london",
-        review: ['very good,fabuilas'],
-        id: "2",
-        logo: "images",
-        location: 'Jedddah',
-        letter: 'S',
-        orders: [],
-        product: [],
-        rating: 5.0);
     Users user = const Users(
         name: 'Hana', userName: 'Super Hana', email: 'hana@gmail.com', id: '1', location: "KSA Dhahran", orders: []);
 
-    return Column(children: [
-      OverAllRate(seller.rating.toString(), green, FontWeight.w400, 22, lightgreen),
-      const Divider(
-        height: 40,
-        thickness: 1.5,
-      ),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            MText(
-              text: "Sorted by",
-              color: green,
-              fontweight: FontWeight.w400,
-              size: 20,
-            ),
-            Text(
-              "Most Relevent",
-              style: TextStyle(
-                  decoration: TextDecoration.underline, fontSize: 20, fontWeight: FontWeight.w400, color: green),
-            ),
-          ],
+    return Column(
+      children: [
+        OverAllRate(seller.rating.toString(), green, FontWeight.w400, 22, lightgreen),
+        const Divider(
+          height: 40,
+          thickness: 1.5,
         ),
-      ),
-      const SizedBox(height: 20),
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              MText(
+                text: "Sorted by",
+                color: green,
+                fontweight: FontWeight.w400,
+                size: 20,
+              ),
+              Text(
+                "Most Relevent",
+                style: TextStyle(
+                    decoration: TextDecoration.underline, fontSize: 20, fontWeight: FontWeight.w400, color: green),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
             child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Avatar(initial: '', radius: 20),
-                    const SizedBox(
-                      width: 4,
+                    Row(
+                      children: [
+                        const Avatar(initial: '', radius: 20),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        MText(
+                          text: "@${user.userName}",
+                          color: green,
+                          fontweight: FontWeight.w400,
+                          size: 20,
+                        ),
+                      ],
                     ),
-                    MText(
-                      text: "@${user.userName}",
-                      color: green,
-                      fontweight: FontWeight.w400,
-                      size: 20,
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Color.fromARGB(255, 255, 191, 0),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        MText(text: "5.0", fontweight: FontWeight.normal, color: lightgreen, size: 20),
+                      ],
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.star,
-                      color: Color.fromARGB(255, 255, 191, 0),
-                    ),
-                    const SizedBox(
-                      width: 8,
-                    ),
-                    MText(text: "5.0", fontweight: FontWeight.normal, color: lightgreen, size: 20),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: MText(
+                        text: "I reccommend this personal shopper. Really fast and professional.",
+                        fontweight: FontWeight.normal,
+                        color: lightgreen,
+                        size: 16),
+                  ),
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                children: [
-                  Container(
-                    child: MText(text: "User Review", fontweight: FontWeight.normal, color: lightgreen, size: 16),
-                  )
-                ],
-              ),
-            )
-          ],
-        )),
-      )
-    ]);
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        const Avatar(initial: '', radius: 20),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        MText(
+                          text: "@Luluah",
+                          color: green,
+                          fontweight: FontWeight.w400,
+                          size: 20,
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.star,
+                          color: Color.fromARGB(255, 255, 191, 0),
+                        ),
+                        const SizedBox(
+                          width: 8,
+                        ),
+                        MText(text: "5.0", fontweight: FontWeight.normal, color: lightgreen, size: 20),
+                      ],
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Container(
+                    child: MText(
+                        text: "He was amazing. The order was delivered as I requested.",
+                        fontweight: FontWeight.normal,
+                        color: lightgreen,
+                        size: 16),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }

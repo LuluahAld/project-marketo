@@ -32,11 +32,11 @@ class SellerLocationCard extends StatelessWidget {
               alignment: Alignment.centerLeft,
               child: Text(
                 'From',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal, color: lightgreen),
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal, color: lightgreen),
               ),
             ),
             const SizedBox(height: 12),
-            MText(text: seller.location, fontweight: FontWeight.bold, color: green, size: 20),
+            MText(text: seller.location, fontweight: FontWeight.bold, color: green, size: 18),
           ],
         )
       ],
