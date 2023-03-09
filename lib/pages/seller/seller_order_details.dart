@@ -34,103 +34,106 @@ class SOrderDetials extends StatelessWidget {
           ],
           const SizedBox(height: 16),
           const Divider(),
-          const SizedBox(height: 16),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: grey,
-              minimumSize: const Size.fromHeight(50),
+          const SizedBox(height: 70),
+          if (order.orderStatus == 'In Progress')
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: grey,
+                minimumSize: const Size.fromHeight(50),
+              ),
+              onPressed: () {
+                final Orders orderNow = Orders(
+                    id: order.id,
+                    orderStatus: 'On the Way',
+                    orderDate: order.orderDate,
+                    shopName: order.shopName,
+                    numOfProduct: order.numOfProduct,
+                    products: order.products,
+                    total: order.total);
+                final collection = FirebaseFirestore.instance.collection('order');
+                collection.doc(orderNow.id).set(orderNow.toMap());
+              },
+              child: const Text(
+                'On the Way',
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            onPressed: () {
-              final Orders orderNow = Orders(
-                  id: order.id,
-                  orderStatus: 'On the Way',
-                  orderDate: order.orderDate,
-                  shopName: order.shopName,
-                  numOfProduct: order.numOfProduct,
-                  products: order.products,
-                  total: order.total);
-              final collection = FirebaseFirestore.instance.collection('order');
-              collection.doc(orderNow.id).set(orderNow.toMap());
-            },
-            child: const Text(
-              'On the Way',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
           const SizedBox(height: 10),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: pink,
-              minimumSize: const Size.fromHeight(50),
+          if (order.orderStatus == 'On the Way')
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: pink,
+                minimumSize: const Size.fromHeight(50),
+              ),
+              onPressed: () {
+                final Orders orderNow = Orders(
+                    id: order.id,
+                    orderStatus: 'Delivered',
+                    orderDate: order.orderDate,
+                    shopName: order.shopName,
+                    numOfProduct: order.numOfProduct,
+                    products: order.products,
+                    total: order.total);
+                final collection = FirebaseFirestore.instance.collection('order');
+                collection.doc(orderNow.id).set(orderNow.toMap());
+              },
+              child: const Text(
+                'Delivered',
+                style: TextStyle(fontSize: 16),
+              ),
             ),
-            onPressed: () {
-              final Orders orderNow = Orders(
-                  id: order.id,
-                  orderStatus: 'Delivered',
-                  orderDate: order.orderDate,
-                  shopName: order.shopName,
-                  numOfProduct: order.numOfProduct,
-                  products: order.products,
-                  total: order.total);
-              final collection = FirebaseFirestore.instance.collection('order');
-              collection.doc(orderNow.id).set(orderNow.toMap());
-            },
-            child: const Text(
-              'Delivered',
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
           const SizedBox(height: 10),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: lightgreen,
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: () {
-                    final Orders orderNow = Orders(
-                        id: order.id,
-                        orderStatus: 'In Progress',
-                        orderDate: order.orderDate,
-                        shopName: order.shopName,
-                        numOfProduct: order.numOfProduct,
-                        products: order.products,
-                        total: order.total);
-                    final collection = FirebaseFirestore.instance.collection('order');
-                    collection.doc(orderNow.id).set(orderNow.toMap());
-                  },
-                  child: const Text(
-                    'Accept',
-                    style: TextStyle(fontSize: 16),
+          if (order.orderStatus == 'Pending')
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: lightgreen,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {
+                      final Orders orderNow = Orders(
+                          id: order.id,
+                          orderStatus: 'In Progress',
+                          orderDate: order.orderDate,
+                          shopName: order.shopName,
+                          numOfProduct: order.numOfProduct,
+                          products: order.products,
+                          total: order.total);
+                      final collection = FirebaseFirestore.instance.collection('order');
+                      collection.doc(orderNow.id).set(orderNow.toMap());
+                    },
+                    child: const Text(
+                      'Accept',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.redAccent,
-                    minimumSize: const Size.fromHeight(50),
-                  ),
-                  onPressed: () {
-                    final orderdoc = FirebaseFirestore.instance.collection('order');
-                    final orDoc = orderdoc.doc(order.id);
-                    orDoc.delete();
-                    Navigator.pop(context);
-                  },
-                  child: const Text(
-                    'Decline',
-                    style: TextStyle(fontSize: 16),
+                const SizedBox(
+                  width: 20,
+                ),
+                Expanded(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.redAccent,
+                      minimumSize: const Size.fromHeight(50),
+                    ),
+                    onPressed: () {
+                      final orderdoc = FirebaseFirestore.instance.collection('order');
+                      final orDoc = orderdoc.doc(order.id);
+                      orDoc.delete();
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Decline',
+                      style: TextStyle(fontSize: 16),
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              ],
+            ),
         ],
       ),
     );
