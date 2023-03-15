@@ -94,6 +94,20 @@ class SOrderDetials extends StatelessWidget {
               ),
             ),
           const SizedBox(height: 10),
+          if (order.orderStatus == 'Delivered')
+            Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(color: pink, borderRadius: borderRad),
+              child: const Center(
+                child: Text(
+                  'Order is complete',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
           if (order.orderStatus == 'On the Way')
             ElevatedButton(
               style: ElevatedButton.styleFrom(

@@ -106,6 +106,7 @@ class _ProsuctCard2 extends State<ProsuctCard2> {
                               onTap: () {
                                 ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
+                                    duration: const Duration(seconds: 2),
                                     padding: const EdgeInsets.all(12),
                                     dismissDirection: DismissDirection.none,
                                     behavior: SnackBarBehavior.floating,
